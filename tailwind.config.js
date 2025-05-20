@@ -3,13 +3,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        lightgray: '#D9D9D9',
-        lightPeach: "#EBDBDB",
-        black: "#2A2826",
-        gray: "#D9D9D9",
-        burntOrange: "#CC5500",
+        lightgray: "#D9D9D9",
+        darkPurple: "#3C096C",
+        purple: "#803FC0",
+        veryDarkPurple: "#34085A",
+        blue: "#62A4E9",
         white: "#ffffff",
-        brown: "855454",
+        lilac: "#DFCFEF",
        }, 
        fontFamily: {
         // Outfit: ['Outfit', 'sans-serif'],
