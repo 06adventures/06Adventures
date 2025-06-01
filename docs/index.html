@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adventure</title>
     <link href="./output.css" rel="stylesheet" />
-    <script src="src/https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init({
+            publicKey: "GW09f9_xPTh1MzhrR",
+        });
+    })();
+    </script>
+     <script src="https://cdn.tailwindcss.com"></script>
      <script>
       tailwind.config = {
          theme: {
@@ -18,6 +28,8 @@
                 blue: "#62A4E9",
                 white: "#ffffff",
                 lilac: "#DFCFEF",
+                gray: "#929292",
+                orange: "#FF6D1A",
             }, 
             fontFamily: {
                 // Outfit: ['Outfit', 'sans-serif'],
@@ -28,8 +40,8 @@
       }
   </script>
 </head>
-<body id="home" class="scroll-smooth">
-    <header class="bg-white relative z-50">
+<body class="scroll-smooth">
+    <header id="home" class="bg-white relative z-50">
     <!-- Navbar -->
     <nav class="flex justify-between items-center p-4">
         <!-- Logo -->
@@ -45,29 +57,32 @@
         <a href="#home" class="text-darkPurple hover:text-veryDarkPurple font-medium">Home</a>
 
         <!-- Destination Dropdown -->
-        <div class="relative group">
-            <button class="text-darkPurple hover:text-veryDarkPurple font-medium">Destination ▾</button>
-            <div class="absolute hidden group-hover:flex flex-col bg-white mt-2 rounded shadow-md min-w-[140px] z-50">
-            <a href="#" class="px-5 py-2 hover:text-darkPurple">Dubai</a>
-            <a href="#" class="px-5 py-2 hover:text-darkPurple">Qatar</a>
-            <a href="#" class="px-5 py-2 hover:text-darkPurple">Kenya</a>
-            </div>
+        <div class="relative">
+        <button onclick="toggleDropdown('destinationDropdown')" class="text-darkPurple hover:text-veryDarkPurple font-medium">Destination ▾</button>
+        <div id="destinationDropdown" class="absolute top-full left-0 hidden flex flex-col space-y-2 bg-white mt-2 rounded shadow-md min-w-[200px] z-[9999] max-h-60 overflow-auto">
+            <a href="#dubai" class="px-5 py-2 hover:text-darkPurple">Dubai</a>
+            <a href="#qatar" class="px-5 py-2 hover:text-darkPurple">Qatar</a>
+            <a href="#kenya" class="px-5 py-2 hover:text-darkPurple">Kenya</a>
+            <a href="#morocco" class="px-5 py-2 hover:text-darkPurple">Morocco</a>
+            <a href="#benin" class="px-5 py-2 hover:text-darkPurple">Benin Republic</a>
+            <a href="#seychelles" class="px-5 py-2 hover:text-darkPurple">Seychelles</a>
+        </div>
         </div>
         <!-- End of Destination Dropdown -->
 
         <!-- Services Dropdown -->
-        <div class="relative group">
-            <button class="text-darkPurple hover:text-veryDarkPurple font-medium">Services ▾</button>
-            <div class="absolute hidden group-hover:flex flex-col bg-white mt-2 rounded shadow-md min-w-[250px] whitespace-nowrap z-50">
+        <div class="relative">
+        <button onclick="toggleDropdown('servicesDropdown')" class="text-darkPurple hover:text-veryDarkPurple font-medium">Services ▾</button>
+        <div id="servicesDropdown" class="absolute top-full left-0 hidden flex flex-col space-y-2 bg-white mt-2 rounded shadow-md min-w-[250px] z-[9999] max-h-60 overflow-auto">
             <a href="#" class="px-5 py-2 hover:text-darkPurple">Customized Travel Planning</a>
             <a href="#" class="px-5 py-2 hover:text-darkPurple">Flight Bookings</a>
             <a href="#hotels" class="px-5 py-2 hover:text-darkPurple">Hotel Reservations</a>
             <a href="#" class="px-5 py-2 hover:text-darkPurple">Group Tours & Corporate Retreat</a>
             <a href="#honeymoon" class="px-5 py-2 hover:text-darkPurple">Honeymoon & Getaways</a>
             <a href="#adventures" class="px-5 py-2 hover:text-darkPurple">Adventure & Cultural Experiences</a>
-            <a href="#" class="px-5 py-2 hover:text-darkPurple">Visa Assistance</a>
+            <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer" class="px-5 py-2 hover:text-darkPurple">Visa Assistance</a>
             <a href="#" class="px-5 py-2 hover:text-darkPurple">Travel Insurance</a>
-            </div>
+        </div>
         </div>
         <!-- End of Services Dropdown -->
 
@@ -102,9 +117,12 @@
                 </svg>
             </button>
             <div id="destDropdown" class="hidden mt-1 pl-4 space-y-3">
-                <a href="#" class="block text-sm hover:text-darkPurple">Dubai</a>
-                <a href="#" class="block text-sm hover:text-darkPurple">Qatar</a>
-                <a href="#" class="block text-sm hover:text-darkPurple">Kenya</a>
+                <a href="#dubai" class="block text-sm hover:text-darkPurple">Dubai</a>
+                <a href="#qatar" class="block text-sm hover:text-darkPurple">Qatar</a>
+                <a href="#kenya" class="block text-sm hover:text-darkPurple">Kenya</a>
+                <a href="#morocco" class="block text-sm hover:text-darkPurple">Morocco</a>
+                <a href="#benin" class="block text-sm hover:text-darkPurple">Benin Republic</a>
+                <a href="#seychelles" class="block text-sm hover:text-darkPurple">Seychelles</a>
             </div>
             </div>
 
@@ -123,7 +141,7 @@
                 <a href="#" class="block text-sm hover:text-darkPurple">Group Tours & Corporate Retreat</a>
                 <a href="#honeymoon" class="block text-sm hover:text-darkPurple">Honeymoon & Getaways</a>
                 <a href="#adventures" class="block text-sm hover:text-darkPurple">Adventure & Cultural Experiences</a>
-                <a href="#" class="block text-sm hover:text-darkPurple">Visa Assistance</a>
+                <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer" class="block text-sm hover:text-darkPurple">Visa Assistance</a>
                 <a href="#" class="block text-sm hover:text-darkPurple">Travel Insurance</a>
             </div>
             </div>
@@ -136,7 +154,7 @@
     </header>
 
     <!-- Hero Section -->
-     <div class="relative h-screen bg-cover bg-center flex items-center justify-center px-4 sm:px-6" style="background-image: url('./assets/images/Hero-img.png');">
+    <div id="heroSection"  class="relative h-screen bg-cover bg-center flex items-center justify-center px-4 sm:px-6" style="background-image: url('./assets/images/hero-img-1.png');"> 
         <!-- <div class="absolute inset-0 bg-black bg-opacity-40"></div> -->
         <div class="relative z-10 text-center text-white md:px-8">
         <h1 class="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6">Embark on the Ultimate Adventure</h1>
@@ -147,8 +165,8 @@
         </div>
 
         <!-- left arrows -->
-        <!-- <div class="absolute left-20 top-1/2 transform -translate-y-1/2 z-10">
-        <button class="hover:bg-white">
+        <div id="prevHero" class="absolute left-5 top-1/2  z-10"> 
+        <button class="">
             <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="14.5" cy="14.5" r="13.5" transform="matrix(-1 0 0 1 29 0)" stroke="white" stroke-width="2"/>
             <g clip-path="url(#clip0_413_2160)">
@@ -161,12 +179,12 @@
             </defs>
             </svg>
         </button>
-        </div> -->
+        </div>
         <!-- end of left-arrows -->
 
         <!-- right-arrows -->
-        <!-- <div class="absolute right-20 top-1/2 transform -translate-y-1/2 z-10">
-        <button class="hover:bg-white">
+        <div id="nextHero" class="absolute right-5 top-1/2 z-10"> 
+        <button class="">
             <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="14.5" cy="14.5" r="13.5" stroke="white" stroke-width="2"/>
             <g clip-path="url(#clip0_413_2154)">
@@ -179,7 +197,7 @@
             </defs>
             </svg>
         </button>
-        </div> -->
+        </div>
         <!-- end of right-arrows -->
     </div>
     <!-- end of Hero Section -->
@@ -250,20 +268,21 @@
     <section id="adventures" class="pb-10 bg-white" id="experiences">
     <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center text-black mb-16">Adventure and Cultural Experiences</h2>
 
-    <div class="grid gap-5 mx-10 lg:grid-cols-3 md:grid-cols-2">
-        <!-- Doha City Tour -->
-        <div class="bg-white shadowmd rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
-        <img src="./assets/images/Qatar.png" alt="Qatar" class="w-full h-58 object-cover">
+     <!-- First 3 cards (visible) -->
+    <div class="grid gap-5 mx-10 lg:grid-cols-3 md:grid-cols-2 mb-10">
+        <!-- Dubai -->
+        <div id="dubai" class="bg-white shadowmd rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
+        <img src="./assets/images/Dubai.png" alt="Qatar" class="w-full h-58 object-cover">
         <div class="xl:p-5 p-3">
             <div class="flex justify-between">
                 <div>
-                <p class="xl:text-sm text-xs text-gray-500">Doha City Tour</p>
-                <h3 class="font-medium xl:font-bold">Discover Qatar</h3>
+                <p class="xl:text-sm text-xs text-gray-500">Land and Sea</p>
+                <h3 class="font-medium xl:font-bold">Dubai Land & Sea Cruise</h3>
                 <div class="flex text-black text-lg mt-2">★★★★★</div>  
             </div>
             <div>
-                <p class="xl:text-sm text-xs text-gray-500">Flight ticket</p>
-                <p class="text-2xl xl:text-3xl font-bold mt-2">₦3.2m</p>
+                <p class="xl:text-sm text-xs text-gray-500">Tours</p>
+                <p class="text-2xl xl:text-3xl font-bold mt-2">₦4.4m</p>
                 <p class="xl:text-sm text-xs text-gray-500">Per Person Sharing</p>
             </div>
             </div>
@@ -279,7 +298,7 @@
         </div>
 
         <!-- Trip to Kenya -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
+        <div id="kenya" class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
         <img src="./assets/images/Kenya.png" alt="Kenya" class="w-full h-58 object-cover">
         <div class="xl:p-5 p-3">
             <div class="flex justify-between">
@@ -306,7 +325,7 @@
         </div>
 
         <!-- Morocco Trip -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
+        <div id="morocco" class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
         <img src="./assets/images/Morocco.png" alt="Benin Republic" class="w-full h-58 object-cover">
         <div class="xl:p-5 p-3">
             <div class="flex justify-between">
@@ -331,9 +350,12 @@
             </div>
         </div>
         </div>
+    </div>
 
-        <!-- Republic of Benin -->
-        <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
+    <!-- Hidden cards -->
+    <div class="more-cards hidden grid gap-5 mx-10 md:grid-cols-2 lg:grid-cols-3">
+         <!-- Republic of Benin -->
+        <div id="benin" class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
         <img src="./assets/images/Benin-republic.png" alt="Seychelles" class="w-full h-58 object-cover">
         <div class="xl:p-5 p-3">
             <div class="flex justify-between">
@@ -360,7 +382,7 @@
         </div>
 
         <!-- Qatar Experience -->
-         <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
+        <div id="qatar" class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
         <img src="./assets/images/Qatar2.png" alt="Seychelles" class="w-full h-58 object-cover">
         <div class="xl:p-5 p-3">
             <div class="flex justify-between">
@@ -387,7 +409,7 @@
         </div>
 
         <!-- Summer in Seychelles -->
-         <div class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
+        <div id="seychelles" class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray">
         <img src="./assets/images/Seychelles.png" alt="Seychelles" class="w-full h-58 object-cover">
         <div class="xl:p-5 p-3">
             <div class="flex justify-between">
@@ -416,7 +438,9 @@
 
     <!-- View More -->
     <div class="text-center mt-10">
-        <button id="viewMoreBtn" class="text-purple-700 font-semibold text-xl hover:underline">View more</button>
+        <button class="view-more-btn border border-purple text-purple px-24 py-4 rounded-lg hover:bg-purple hover:text-white transition duration-300 ease-in-out">
+            View more
+        </button>
     </div>
     </section>
     <!-- End of Adventure and Cultural Experiences -->
@@ -425,29 +449,30 @@
     <section id="honeymoon" class="mx-10">
     <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-12">Honeymoon and Getaways</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 gap-4">
+    <!-- First 3 cards (visible) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 gap-5 mb-10">
         <!-- Salt Beach -->
-        <div class="relative bg-cover bg-center rounded-xl h-[384px] xl:h-[484px]" style="background-image: url('./assets/images/Salt-beach.png')">
+        <div class="relative bg-cover bg-center rounded-xl xl:h-[484px] h-[454px]" style="background-image: url('./assets/images/Salt-beach.png');">
 
         <!-- card -->
-         <div class="absolute bottom-3 xl:bottom-5 right-3 xl:right-5 left-3 xl:left-5 bg-purple text-white text-xs xl:py-3 py-2 rounded-tr-xl rounded-bl-xl">
+        <div class="absolute xl:bottom-5 bottom-3 xl:right-5 right-3 xl:left-5 left-3 bg-purple text-white py-3 rounded-tr-xl rounded-bl-xl">
 
-            <div class="flex justify-between items-center px-3 xl:px-7 pb-3 xl:pb-7">
+            <div class="flex justify-between items-center xl:px-5 px-3 pb-5">
             <div>
-                <h3 class="text-base xl:text-lg font-medium xl:font-semibold leading-none">Salt Beach</h3>
-                <p class="text-sm xl:text-sm text-gray-200">Ikaare Private Island</p>
+                <h3 class="xl:text-lg text-base font-semibold leading-none">Salt Beach</h3>
+                <p class="xl:text-sm text-xs text-gray-200">Ikaare Private Island</p>
             </div>
 
-            <div class="text-right leading-tight">
-                <span class="block text-sm xl:text-base font-semibold xl:font-bold">800k</span>
-                <span class="block text-xs xl:text-sm">per night</span>
+            <div class="text-right xl:leading-tight">
+                <span class="block xl:text-base text-sm font-bold">800k</span>
+                <span class="block xl:text-sm text-xs">per night</span>
             </div>
             </div>
 
             <!-- Features row -->
-             <div class="flex">
-                <div class="grid grid-cols-2 xl:grid-cols-3 gap-y-2 xl:gap-y-5 px-2 xl:px-7">
-                    <div class="flex items-center justify-center xl:gap-4 gap-2">
+            <div class="xl:flex">
+                <div class="grid xl:grid-cols-3 grid-cols-2 xl:gap-y-5 gap-y-3 gap-x-10 xl:gap-x-0 xl:px-5 px-3 mb-8 xl:mb-0">
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
                         <div>
                             <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_453_194)">
@@ -460,9 +485,9 @@
                             </defs>
                             </svg>
                         </div>
-                        <div>Swimming Pool</div>
+                        <div class="text-[10px]">Swimming Pool</div>
                     </div>
-                    <div class="flex items-center justify-center xl:gap-4 gap-2">
+                    <div class="flex items-center justify-center gap-2">
                         <div>
                             <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_453_215)">
@@ -477,17 +502,17 @@
                             </defs>
                             </svg>
                         </div>
-                        <div>Ludo</div>
+                        <div class="text-[10px]">Ludo</div>
                     </div>
-                    <div class="flex items-center justify-center xl:gap-4 gap-2">
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
                         <div>
                             <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0.916016 8.25004V7.33337C1.20629 7.33337 1.42217 7.25699 1.56364 7.10421C1.70511 6.95143 2.00104 6.87504 2.45143 6.87504C2.90182 6.87504 3.1979 6.95143 3.33968 7.10421C3.48146 7.25699 3.68954 7.33337 3.96393 7.33337C4.25421 7.33337 4.47008 7.25699 4.61156 7.10421C4.75303 6.95143 5.04896 6.87504 5.49935 6.87504C5.93477 6.87504 6.23085 6.95143 6.3876 7.10421C6.54435 7.25699 6.76007 7.33337 7.03477 7.33337C7.32504 7.33337 7.5371 7.25699 7.67093 7.10421C7.80477 6.95143 8.09688 6.87504 8.54727 6.87504C8.99765 6.87504 9.29374 6.95143 9.43552 7.10421C9.57729 7.25699 9.79302 7.33337 10.0827 7.33337V8.25004C9.64727 8.25004 9.35134 8.17365 9.19489 8.02087C9.03845 7.8681 8.82257 7.79171 8.54727 7.79171C8.27196 7.79171 8.06388 7.8681 7.92302 8.02087C7.78215 8.17365 7.48607 8.25004 7.03477 8.25004C6.59935 8.25004 6.30342 8.17365 6.14697 8.02087C5.99053 7.8681 5.77465 7.79171 5.49935 7.79171C5.20907 7.79171 4.99335 7.8681 4.85218 8.02087C4.71102 8.17365 4.41493 8.25004 3.96393 8.25004C3.51293 8.25004 3.22082 8.17365 3.0876 8.02087C2.95438 7.8681 2.74232 7.79171 2.45143 7.79171C2.16054 7.79171 1.94482 7.8681 1.80427 8.02087C1.66371 8.17365 1.36763 8.25004 0.916016 8.25004ZM0.916016 6.41671V5.50004C1.20629 5.50004 1.42217 5.42365 1.56364 5.27087C1.70511 5.1181 2.00104 5.04171 2.45143 5.04171C2.88685 5.04171 3.17911 5.1181 3.32822 5.27087C3.47734 5.42365 3.68924 5.50004 3.96393 5.50004C4.25421 5.50004 4.46993 5.42365 4.6111 5.27087C4.75227 5.1181 5.04835 5.04171 5.49935 5.04171C5.93477 5.04171 6.22886 5.1181 6.38164 5.27087C6.53442 5.42365 6.74449 5.50004 7.01185 5.50004C7.30213 5.50004 7.51785 5.42365 7.65902 5.27087C7.80018 5.1181 8.09627 5.04171 8.54727 5.04171C8.98268 5.04171 9.27877 5.1181 9.43552 5.27087C9.59227 5.42365 9.80799 5.50004 10.0827 5.50004V6.41671C9.63199 6.41671 9.33209 6.34032 9.18297 6.18754C9.03386 6.03476 8.82196 5.95837 8.54727 5.95837C8.27257 5.95837 8.06449 6.03476 7.92302 6.18754C7.78154 6.34032 7.48546 6.41671 7.03477 6.41671C6.59935 6.41671 6.30342 6.34032 6.14697 6.18754C5.99053 6.03476 5.77465 5.95837 5.49935 5.95837C5.20907 5.95837 4.99702 6.03476 4.86318 6.18754C4.72935 6.34032 4.43724 6.41671 3.98685 6.41671C3.53646 6.41671 3.23671 6.34032 3.0876 6.18754C2.93849 6.03476 2.72643 5.95837 2.45143 5.95837C2.17643 5.95837 1.96071 6.03476 1.80427 6.18754C1.64782 6.34032 1.35174 6.41671 0.916016 6.41671ZM0.916016 4.58337V3.66671C1.20629 3.66671 1.42217 3.59032 1.56364 3.43754C1.70511 3.28476 2.00104 3.20837 2.45143 3.20837C2.88685 3.20837 3.17911 3.28476 3.32822 3.43754C3.47734 3.59032 3.68924 3.66671 3.96393 3.66671C4.25421 3.66671 4.46993 3.59032 4.6111 3.43754C4.75227 3.28476 5.04835 3.20837 5.49935 3.20837C5.93477 3.20837 6.22886 3.28476 6.38164 3.43754C6.53442 3.59032 6.74449 3.66671 7.01185 3.66671C7.30213 3.66671 7.51785 3.59032 7.65902 3.43754C7.80018 3.28476 8.09627 3.20837 8.54727 3.20837C8.98268 3.20837 9.27877 3.28476 9.43552 3.43754C9.59227 3.59032 9.80799 3.66671 10.0827 3.66671V4.58337C9.63199 4.58337 9.33209 4.50699 9.18297 4.35421C9.03386 4.20143 8.82196 4.12504 8.54727 4.12504C8.27257 4.12504 8.06449 4.20143 7.92302 4.35421C7.78154 4.50699 7.48546 4.58337 7.03477 4.58337C6.59935 4.58337 6.30342 4.50699 6.14697 4.35421C5.99053 4.20143 5.77465 4.12504 5.49935 4.12504C5.20907 4.12504 4.99702 4.20143 4.86318 4.35421C4.72935 4.50699 4.43724 4.58337 3.98685 4.58337C3.53646 4.58337 3.23671 4.50699 3.0876 4.35421C2.93849 4.20143 2.72643 4.12504 2.45143 4.12504C2.17643 4.12504 1.96071 4.20143 1.80427 4.35421C1.64782 4.50699 1.35174 4.58337 0.916016 4.58337Z" fill="white"/>
                             </svg>
                         </div>
-                        <div>Water Sport</div>
+                        <div class="text-[10px]">Water Sport</div>
                     </div>
-                    <div class="flex items-center justify-center xl:gap-4 gap-2">
+                    <div class="flex items-center justify-center xl:justify-start lg:pl-0 md:pl-5 pl-0 gap-2">
                         <div>
                             <svg width="14" height="14" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_453_212)">
@@ -501,9 +526,9 @@
                             </defs>
                             </svg>
                         </div>
-                        <div>Football</div>
+                        <div class="text-[10px]">Football</div>
                     </div>
-                    <div class="flex items-center justify-center xl:gap-4 gap-2">
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
                         <div>
                             <svg width="13" height="13" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_453_207)">
@@ -516,23 +541,23 @@
                             </defs>
                             </svg>
                         </div>
-                        <div>Tennis</div>
+                        <div class="text-[10px]">Tennis</div>
                     </div>
-                    <div class="flex items-center justify-center xl:gap-4 gap-2">
+                    <div class="flex items-center xl:justify-center justify-end gap-2">
                         <div>
                             <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.70278 1.375L6.11259 2.95419C5.71659 3.35053 5.71659 4.00778 6.11259 4.40481L5.50072 5.005L5.06072 4.565L2.48259 1.98688L2.23509 1.75038L1.98759 1.98653C1.69539 2.28081 1.53141 2.6787 1.53141 3.09341C1.53141 3.50811 1.69539 3.906 1.98759 4.20028L4.14703 6.35903L1.47266 9.03341L1.96662 9.52841L4.641 6.85334L5.04938 7.25072L5.29619 7.49753L5.53269 7.25072L6.14456 6.63816L9.03447 9.52806L9.52947 9.03306L6.39241 5.90734L5.99469 5.5L6.59625 4.88813H6.60725L6.61756 4.89844C7.01563 5.27656 7.65569 5.27828 8.04619 4.88813L8.0785 4.84481L9.62538 3.29794L9.14206 2.81462L7.56322 4.39312C7.41369 4.543 7.24113 4.54609 7.09056 4.40447L8.90556 2.57812L8.42259 2.09481L6.59625 3.90981C6.45463 3.75959 6.45772 3.58669 6.60725 3.4375L8.18609 1.85831L7.70278 1.375ZM2.33134 2.82563L5.66228 6.15519L5.29653 6.52059L2.48225 3.70528C2.22719 3.45091 2.21962 3.12916 2.331 2.82528L2.33134 2.82563Z" fill="white"/>
                             </svg>
                         </div>
-                        <div>Wld Cls Dine</div>
+                        <div class="text-[10px]">Wld Cls Dine</div>
                     </div>
                 </div>
                 
                 <!-- Book-now button (tiny) -->
-                <div class="absolute bottom-2 xl:bottom-3 right-2 xl:right-3">
+                <div class="absolute bottom-3 xl:right-3 right-28">
                     <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer">
                     <button
-                    class="bg-white text-purple p-1 rounded-md font-medium text-sm hover:bg-darkPurple transition">
+                    class="bg-white text-purple py-1 px-2 rounded-md font-medium text-xs hover:bg-darkPurple hover:text-white transition">
                     Book now
                     </button>
                     </a>
@@ -541,112 +566,86 @@
         </div>
         </div>
 
-        <div class="relative bg-cover bg-center rounded-xl h-[484px]" style="background-image: url('./assets/images/Yolo-island.png');">
+        <!-- YOLO Beach Resort -->
+        <div class="relative bg-cover bg-center rounded-xl xl:h-[484px] h-[454px]" style="background-image: url('./assets/images/Yolo-island.png');">
 
         <!-- card -->
-         <div class="absolute bottom-5 right-5 left-5 bg-purple text-white text-xs py-3 rounded-tr-xl rounded-bl-xl">
+        <div class="absolute xl:bottom-5 bottom-3 xl:right-5 right-3 xl:left-5 left-3 bg-purple text-white py-3 rounded-tr-xl rounded-bl-xl">
 
-            <div class="flex justify-between items-center px-7 pb-7">
+            <div class="flex justify-between items-center xl:px-5 px-3 pb-5">
             <div>
-                <h3 class="text-lg font-semibold leading-none">Salt Beach</h3>
-                <p class="text-sm text-gray-200">Ikaare Private Island</p>
+                <h3 class="xl:text-lg text-base font-semibold leading-none">YOLO Beach Resort</h3>
+                <p class="xl:text-sm text-xs text-gray-200">Ibeshe</p>
             </div>
 
-            <div class="text-right leading-tight">
-                <span class="block text-base font-bold">800k</span>
-                <span class="block text-sm">per night</span>
+            <div class="text-right xl:leading-tight">
+                <span class="block xl:text-base text-sm font-bold">800k</span>
+                <span class="block xl:text-sm text-xs">per night</span>
             </div>
             </div>
 
             <!-- Features row -->
-             <div class="flex">
-                <div class="grid grid-cols-3 gap-y-5 px-7">
-                    <div class="flex items-center justify-center gap-4">
+            <div class="xl:flex">
+                <div class="grid grid-cols-2 xl:gap-y-5 gap-y-3 gap-x-10 xl:px-5 px-3 mb-8 xl:mb-0">
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
                         <div>
-                            <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_194)">
-                            <path d="M2.83398 9.75V8.91667C3.09787 8.91667 3.29579 8.84722 3.42773 8.70833C3.55968 8.56944 3.8201 8.5 4.20898 8.5C4.59787 8.5 4.86523 8.56944 5.01107 8.70833C5.1569 8.84722 5.35482 8.91667 5.60482 8.91667C5.85482 8.91667 6.05273 8.84722 6.19857 8.70833C6.3444 8.56944 6.61176 8.5 7.00065 8.5C7.38954 8.5 7.6569 8.56944 7.80273 8.70833C7.94857 8.84722 8.14648 8.91667 8.39648 8.91667C8.64648 8.91667 8.8444 8.84722 8.99023 8.70833C9.13607 8.56944 9.40343 8.5 9.79232 8.5C10.1812 8.5 10.4416 8.56944 10.5736 8.70833C10.7055 8.84722 10.9034 8.91667 11.1673 8.91667V9.75C10.7576 9.75 10.4886 9.68056 10.3602 9.54167C10.2319 9.40278 10.0426 9.33333 9.79232 9.33333C9.54204 9.33333 9.34412 9.40278 9.19857 9.54167C9.05301 9.68056 8.78565 9.75 8.39648 9.75C8.00732 9.75 7.73996 9.68056 7.5944 9.54167C7.44885 9.40278 7.25093 9.33333 7.00065 9.33333C6.75037 9.33333 6.55246 9.40278 6.4069 9.54167C6.26135 9.68056 5.99398 9.75 5.60482 9.75C5.21565 9.75 4.94829 9.68056 4.80273 9.54167C4.65718 9.40278 4.45926 9.33333 4.20898 9.33333C3.95871 9.33333 3.7694 9.40278 3.64107 9.54167C3.51273 9.68056 3.24371 9.75 2.83398 9.75ZM2.83398 7.875V7.04167C3.09787 7.04167 3.29579 6.97222 3.42773 6.83333C3.55968 6.69444 3.8201 6.625 4.20898 6.625C4.59787 6.625 4.86704 6.69444 5.01648 6.83333C5.16593 6.97222 5.36204 7.04167 5.60482 7.04167C5.85482 7.04167 6.05273 6.97222 6.19857 6.83333C6.3444 6.69444 6.61176 6.625 7.00065 6.625C7.38954 6.625 7.6569 6.69444 7.80273 6.83333C7.94857 6.97222 8.14648 7.04167 8.39648 7.04167C8.64648 7.04167 8.8444 6.97222 8.99023 6.83333C9.13607 6.69444 9.40343 6.625 9.79232 6.625C10.1812 6.625 10.4416 6.69444 10.5736 6.83333C10.7055 6.97222 10.9034 7.04167 11.1673 7.04167V7.875C10.7576 7.875 10.4886 7.80556 10.3602 7.66667C10.2319 7.52778 10.0426 7.45833 9.79232 7.45833C9.54204 7.45833 9.34926 7.52778 9.21398 7.66667C9.07871 7.80556 8.80621 7.875 8.39648 7.875C8.00065 7.875 7.73162 7.80556 7.5894 7.66667C7.44718 7.52778 7.25093 7.45833 7.00065 7.45833C6.73676 7.45833 6.54065 7.52778 6.41232 7.66667C6.28398 7.80556 6.01482 7.875 5.60482 7.875C5.19482 7.875 4.92218 7.80556 4.7869 7.66667C4.65162 7.52778 4.45898 7.45833 4.20898 7.45833C3.95898 7.45833 3.76982 7.52778 3.64148 7.66667C3.51315 7.80556 3.24398 7.875 2.83398 7.875ZM4.87565 5.75L6.26107 4.36458L5.8444 3.94792C5.61523 3.71875 5.37218 3.55208 5.11523 3.44792C4.85829 3.34375 4.54232 3.29167 4.16732 3.29167V2.25C4.68815 2.25 5.11871 2.30736 5.45898 2.42208C5.79926 2.53681 6.1326 2.75722 6.45898 3.08333L9.12565 5.75C9.0076 5.82639 8.89301 5.88722 8.7819 5.9325C8.67079 5.97778 8.54232 6.00028 8.39648 6C8.14648 6 7.94857 5.93056 7.80273 5.79167C7.6569 5.65278 7.38954 5.58333 7.00065 5.58333C6.61176 5.58333 6.3444 5.65278 6.19857 5.79167C6.05273 5.93056 5.85482 6 5.60482 6C5.45898 6 5.33051 5.9775 5.2194 5.9325C5.10829 5.8875 4.99371 5.82667 4.87565 5.75ZM8.95898 2.25C9.25065 2.25 9.49718 2.3525 9.69857 2.5575C9.89996 2.7625 10.0007 3.00722 10.0007 3.29167C10.0007 3.58333 9.89996 3.82986 9.69857 4.03125C9.49718 4.23264 9.25065 4.33333 8.95898 4.33333C8.66732 4.33333 8.42079 4.23264 8.2194 4.03125C8.01801 3.82986 7.91732 3.58333 7.91732 3.29167C7.91732 3.00695 8.01801 2.76208 8.2194 2.55708C8.42079 2.35208 8.66732 2.24972 8.95898 2.25Z" fill="white"/>
+                            <svg width="12" height="12" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.05482 7.13337L6.72148 6.56671L7.32982 4.74587L7.91732 4.55004L8.33398 4.86254V4.92087C8.33398 4.95004 8.34648 4.97504 8.34648 5.00004C8.34648 5.82087 8.07148 6.54587 7.52565 7.17087L7.05482 7.13337ZM4.06315 6.25004L3.49232 4.57087L5.00065 3.51254L6.50898 4.57087L5.93815 6.25004H4.06315ZM5.00065 8.34587C4.63398 8.34587 4.28815 8.28754 3.95898 8.17087L3.67148 7.54171L3.94648 7.08337H6.07565L6.32982 7.54171L6.04232 8.17087C5.71315 8.28754 5.36732 8.34587 5.00065 8.34587ZM2.47565 7.17087C2.25482 6.91254 2.06315 6.56671 1.90065 6.14587C1.73815 5.72087 1.65482 5.33754 1.65482 5.00004C1.65482 4.97504 1.66732 4.95004 1.66732 4.92087V4.86254L2.08398 4.55004L2.67148 4.74587L3.27982 6.56671L2.94648 7.13337L2.47565 7.17087ZM4.58398 2.20421V2.78754L2.91732 3.94171L2.35898 3.76671L2.18398 3.20004C2.36732 2.91671 2.63815 2.63337 2.99648 2.35837C3.35482 2.08337 3.69648 1.90421 4.02148 1.81254L4.58398 2.20421ZM5.97982 1.81254C6.30482 1.90421 6.64648 2.08337 7.00482 2.35837C7.36315 2.63337 7.63398 2.91671 7.81732 3.20004L7.64232 3.76671L7.08398 3.94587L5.41732 2.79171V2.20421L5.97982 1.81254ZM2.05482 2.05421C1.25065 2.87087 0.833984 3.85421 0.833984 5.00004C0.833984 6.14587 1.25065 7.12921 2.05482 7.94587C2.85898 8.76254 3.85482 9.16671 5.00065 9.16671C6.14648 9.16671 7.12982 8.75004 7.94648 7.94587C8.76315 7.14171 9.16732 6.14587 9.16732 5.00004C9.16732 3.85421 8.75065 2.87087 7.94648 2.05421C7.14232 1.23754 6.14648 0.833374 5.00065 0.833374C3.85482 0.833374 2.87148 1.25004 2.05482 2.05421Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="text-[10px]">Beach Soccer</div>
+                    </div>
+                    <div class="flex items-center justify-center gap-2">
+                        <div>
+                            <svg width="11" height="11" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_453_88)">
+                            <path d="M6.41719 1.75V2.77083L5.97969 2.91667L5.53052 2.19917C5.4926 2.13792 5.39635 2.16417 5.39635 2.23708V3.28125C5.39635 3.56708 5.2826 3.82375 5.10469 4.01917V6.125H4.37552V4.375H4.3026C4.24135 4.375 4.1801 4.36625 4.12177 4.3575L2.82677 4.14167L2.5001 4.72792L2.7801 6.125H2.04219L1.75052 4.73958C1.74177 4.65208 1.75052 4.56458 1.79719 4.48875L2.09469 3.96083C1.94987 3.88033 1.82853 3.76349 1.74261 3.62182C1.65668 3.48015 1.60915 3.31854 1.60469 3.15292C1.59302 3.19667 1.58719 3.26083 1.59594 3.35417C1.60469 3.4825 1.63677 3.67208 1.61635 3.88208C1.60469 4.09208 1.50844 4.30792 1.38594 4.45083C1.26052 4.59375 1.12344 4.69292 0.977605 4.76875L0.773438 4.56458C0.828855 4.4275 0.884271 4.305 0.895938 4.19125C0.913438 4.08333 0.893021 3.99583 0.860938 3.91708L0.706355 3.5875C0.645105 3.43875 0.569271 3.22292 0.583855 2.96917C0.592605 2.72125 0.729688 2.3975 0.989271 2.21958C1.25177 2.04167 1.53469 2.01833 1.7651 2.065C1.91094 2.09417 2.05969 2.16417 2.18802 2.26333C2.29594 2.21375 2.42135 2.1875 2.5526 2.1875H4.22969V2.04167C4.22969 1.39708 4.75177 0.875 5.39635 0.875H6.41719L6.1576 1.26583C6.3151 1.37083 6.41719 1.54875 6.41719 1.75Z" fill="white"/>
                             </g>
                             <defs>
-                            <clipPath id="clip0_453_194">
-                            <rect width="10" height="10" fill="white"/>
+                            <clipPath id="clip0_453_88">
+                            <rect width="7" height="7" fill="white"/>
                             </clipPath>
                             </defs>
                             </svg>
                         </div>
-                        <div>Swimming Pool</div>
+                        <div class="text-[10px]">Horse Riding</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
                         <div>
-                            <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_215)">
-                            <path d="M1.97852 4.33752L2.42935 5.93294L3.22685 5.70752M3.60956 4.02002L3.57622 5.12835C3.57186 5.27395 3.62551 5.41531 3.72537 5.52135C3.82524 5.62738 3.96313 5.6894 4.10872 5.69377C4.25432 5.69813 4.39568 5.64448 4.50172 5.54462C4.60775 5.44476 4.66978 5.30686 4.67414 5.16127L4.70727 4.05294M5.20914 5.94044L5.36914 4.29044L5.74039 4.32648C5.83522 4.33561 5.92732 4.36335 6.01142 4.40809C6.09553 4.45284 6.16999 4.51373 6.23055 4.58727C6.29111 4.66081 6.33658 4.74557 6.36436 4.8367C6.39215 4.92782 6.4017 5.02353 6.39247 5.11835L6.37227 5.3246C6.36313 5.41941 6.3354 5.51149 6.29067 5.59558C6.24593 5.67967 6.18507 5.75412 6.11155 5.81468C6.03803 5.87524 5.95329 5.92072 5.86219 5.94851C5.77109 5.97631 5.6754 5.98588 5.5806 5.97669L5.20914 5.94044Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M7.96405 4.69183C7.93513 4.38991 7.66694 4.1686 7.36502 4.19752C7.06311 4.22644 6.8418 4.49463 6.87072 4.79654L6.92405 5.35337C6.95297 5.65528 7.22116 5.87659 7.52307 5.84768C7.82499 5.81876 8.0463 5.55057 8.01738 5.24865L7.96405 4.69183Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8.02148 1.14587H1.97982C1.51958 1.14587 1.14648 1.51897 1.14648 1.97921V8.02087C1.14648 8.48111 1.51958 8.85421 1.97982 8.85421H8.02148C8.48172 8.85421 8.85482 8.48111 8.85482 8.02087V1.97921C8.85482 1.51897 8.48172 1.14587 8.02148 1.14587Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_215">
-                            <rect width="10" height="10" fill="white"/>
-                            </clipPath>
-                            </defs>
+                            <svg width="14" height="14" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.66211 6.0972C5.14086 6.1402 5.70461 5.9887 5.55286 5.5862M9.41711 6.53545L9.82211 6.48545C10.2001 6.4392 10.2721 6.3062 10.2034 6.06745M11.0919 4.7567L11.1244 4.5927C10.9444 4.2867 10.7644 4.2082 10.5844 4.0907L10.0519 4.1227M11.0914 4.7567L11.0284 5.0747L10.6221 5.01595C10.5634 5.13345 10.3979 5.2372 10.1866 5.27845L9.72661 5.36845L8.93911 5.52245L8.88561 5.8037M5.86861 6.85095C5.83436 7.08345 5.60836 7.25845 5.36411 7.24245C5.12011 7.2262 4.94961 7.0247 4.98411 6.79245C5.01811 6.55995 5.24411 6.38495 5.48811 6.40095C5.73261 6.4172 5.90286 6.61845 5.86861 6.85095Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.95153 5.69178C10.1588 6.02178 10.3663 6.35153 10.9323 6.35003L10.4188 5.61128M8.22528 6.49003L7.10403 6.41778L6.93203 7.25728C6.65803 7.28428 6.52603 7.33403 6.16803 7.30103M9.30853 7.00453C9.26928 7.44678 8.87753 7.52478 8.42603 7.46253L6.93178 7.25753M8.86753 6.98553L8.23928 5.44328M5.11328 5.50128C5.46953 5.56403 5.87103 5.58528 6.24003 5.57003C6.61278 5.55453 6.95253 5.50153 7.17778 5.41553" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6.29359 5.98046L6.35009 6.40946C6.85284 6.42996 7.31409 6.47171 7.66259 6.23221C8.06109 5.95796 8.15134 5.71871 8.11209 5.44046M6.55984 4.34621C6.25734 4.18121 5.99309 4.03546 5.74409 3.99121C5.34809 3.92121 5.11084 3.86221 4.55859 4.07196" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7.72331 5.4417L8.02831 5.4447C8.36981 5.4482 8.60381 5.3327 8.78631 5.1922C9.02256 5.01045 9.67606 4.9297 10.2481 4.8387C10.4018 4.58795 10.3531 4.3382 10.2318 4.2582L9.85856 4.0122C9.20531 4.05645 8.68256 4.06645 8.20656 4.2667C7.97606 4.3642 7.63106 4.3792 7.24031 4.37045M6.55456 4.3427C6.90131 4.6292 7.09456 5.01945 7.24881 5.4387M3.62681 5.26695C3.52731 5.04495 3.37681 4.7852 3.14356 4.89545M2.95831 3.78745L3.97831 3.1217C4.20381 3.2327 4.32331 3.3882 4.31206 3.5857C4.30331 3.7357 4.22131 3.82945 4.15706 3.9147M4.26981 4.73295L3.62656 5.2667M3.14331 4.8952L2.91406 4.4872L2.95806 3.7872" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4.15796 3.91455C4.10346 3.98705 4.06196 4.0533 4.08971 4.1428L4.27071 4.7328M4.38546 5.3368L4.58696 6.39205M10.1507 6.85255C10.1507 6.91005 10.1469 6.96847 10.1392 7.0278C10.0407 7.78555 9.34571 8.39005 8.58646 8.3778C8.14571 8.37055 7.78046 8.1573 7.57046 7.8318M2.61271 7.5118C2.58771 7.7048 2.41021 7.8593 2.21646 7.85605C2.02271 7.8528 1.88596 7.69355 1.91121 7.50005C1.93621 7.30705 2.11371 7.15255 2.30721 7.1558C2.50096 7.15905 2.63796 7.3183 2.61271 7.5113V7.5118Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.42936 6.64124C3.59911 6.88299 3.68011 7.19224 3.63636 7.52799C3.53836 8.28549 2.84336 8.88999 2.08386 8.87799C1.32461 8.86549 0.788359 8.24149 0.886609 7.48374C0.984859 6.72599 1.67986 6.12124 2.43936 6.13374C2.50803 6.1349 2.57486 6.14099 2.63986 6.15199" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4.10987 7.04601C4.16987 5.52801 3.15437 5.15101 1.96387 5.36101C1.67487 5.41151 1.32937 5.50776 1.40512 5.78251M3.57362 5.64126L3.38037 5.91251M3.17312 6.20276L2.47137 7.18551" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <div>Ludo</div>
+                        <div class="text-[10px]">Quad Bikes</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center justify-center xl:justify-start lg:pl-0 md:pl-5 pl-0 gap-2">
                         <div>
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.916016 8.25004V7.33337C1.20629 7.33337 1.42217 7.25699 1.56364 7.10421C1.70511 6.95143 2.00104 6.87504 2.45143 6.87504C2.90182 6.87504 3.1979 6.95143 3.33968 7.10421C3.48146 7.25699 3.68954 7.33337 3.96393 7.33337C4.25421 7.33337 4.47008 7.25699 4.61156 7.10421C4.75303 6.95143 5.04896 6.87504 5.49935 6.87504C5.93477 6.87504 6.23085 6.95143 6.3876 7.10421C6.54435 7.25699 6.76007 7.33337 7.03477 7.33337C7.32504 7.33337 7.5371 7.25699 7.67093 7.10421C7.80477 6.95143 8.09688 6.87504 8.54727 6.87504C8.99765 6.87504 9.29374 6.95143 9.43552 7.10421C9.57729 7.25699 9.79302 7.33337 10.0827 7.33337V8.25004C9.64727 8.25004 9.35134 8.17365 9.19489 8.02087C9.03845 7.8681 8.82257 7.79171 8.54727 7.79171C8.27196 7.79171 8.06388 7.8681 7.92302 8.02087C7.78215 8.17365 7.48607 8.25004 7.03477 8.25004C6.59935 8.25004 6.30342 8.17365 6.14697 8.02087C5.99053 7.8681 5.77465 7.79171 5.49935 7.79171C5.20907 7.79171 4.99335 7.8681 4.85218 8.02087C4.71102 8.17365 4.41493 8.25004 3.96393 8.25004C3.51293 8.25004 3.22082 8.17365 3.0876 8.02087C2.95438 7.8681 2.74232 7.79171 2.45143 7.79171C2.16054 7.79171 1.94482 7.8681 1.80427 8.02087C1.66371 8.17365 1.36763 8.25004 0.916016 8.25004ZM0.916016 6.41671V5.50004C1.20629 5.50004 1.42217 5.42365 1.56364 5.27087C1.70511 5.1181 2.00104 5.04171 2.45143 5.04171C2.88685 5.04171 3.17911 5.1181 3.32822 5.27087C3.47734 5.42365 3.68924 5.50004 3.96393 5.50004C4.25421 5.50004 4.46993 5.42365 4.6111 5.27087C4.75227 5.1181 5.04835 5.04171 5.49935 5.04171C5.93477 5.04171 6.22886 5.1181 6.38164 5.27087C6.53442 5.42365 6.74449 5.50004 7.01185 5.50004C7.30213 5.50004 7.51785 5.42365 7.65902 5.27087C7.80018 5.1181 8.09627 5.04171 8.54727 5.04171C8.98268 5.04171 9.27877 5.1181 9.43552 5.27087C9.59227 5.42365 9.80799 5.50004 10.0827 5.50004V6.41671C9.63199 6.41671 9.33209 6.34032 9.18297 6.18754C9.03386 6.03476 8.82196 5.95837 8.54727 5.95837C8.27257 5.95837 8.06449 6.03476 7.92302 6.18754C7.78154 6.34032 7.48546 6.41671 7.03477 6.41671C6.59935 6.41671 6.30342 6.34032 6.14697 6.18754C5.99053 6.03476 5.77465 5.95837 5.49935 5.95837C5.20907 5.95837 4.99702 6.03476 4.86318 6.18754C4.72935 6.34032 4.43724 6.41671 3.98685 6.41671C3.53646 6.41671 3.23671 6.34032 3.0876 6.18754C2.93849 6.03476 2.72643 5.95837 2.45143 5.95837C2.17643 5.95837 1.96071 6.03476 1.80427 6.18754C1.64782 6.34032 1.35174 6.41671 0.916016 6.41671ZM0.916016 4.58337V3.66671C1.20629 3.66671 1.42217 3.59032 1.56364 3.43754C1.70511 3.28476 2.00104 3.20837 2.45143 3.20837C2.88685 3.20837 3.17911 3.28476 3.32822 3.43754C3.47734 3.59032 3.68924 3.66671 3.96393 3.66671C4.25421 3.66671 4.46993 3.59032 4.6111 3.43754C4.75227 3.28476 5.04835 3.20837 5.49935 3.20837C5.93477 3.20837 6.22886 3.28476 6.38164 3.43754C6.53442 3.59032 6.74449 3.66671 7.01185 3.66671C7.30213 3.66671 7.51785 3.59032 7.65902 3.43754C7.80018 3.28476 8.09627 3.20837 8.54727 3.20837C8.98268 3.20837 9.27877 3.28476 9.43552 3.43754C9.59227 3.59032 9.80799 3.66671 10.0827 3.66671V4.58337C9.63199 4.58337 9.33209 4.50699 9.18297 4.35421C9.03386 4.20143 8.82196 4.12504 8.54727 4.12504C8.27257 4.12504 8.06449 4.20143 7.92302 4.35421C7.78154 4.50699 7.48546 4.58337 7.03477 4.58337C6.59935 4.58337 6.30342 4.50699 6.14697 4.35421C5.99053 4.20143 5.77465 4.12504 5.49935 4.12504C5.20907 4.12504 4.99702 4.20143 4.86318 4.35421C4.72935 4.50699 4.43724 4.58337 3.98685 4.58337C3.53646 4.58337 3.23671 4.50699 3.0876 4.35421C2.93849 4.20143 2.72643 4.12504 2.45143 4.12504C2.17643 4.12504 1.96071 4.20143 1.80427 4.35421C1.64782 4.50699 1.35174 4.58337 0.916016 4.58337Z" fill="white"/>
-                            </svg>
-                        </div>
-                        <div>Water Sport</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="14" height="14" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_212)">
-                            <path d="M7.1518 1.84834C6.80465 1.49855 6.39158 1.22107 5.9365 1.03196C5.48142 0.842848 4.99336 0.745853 4.50055 0.746587C4.00761 0.745754 3.5194 0.842701 3.06419 1.03182C2.60897 1.22093 2.19578 1.49846 1.84855 1.84834C0.386422 3.31009 0.386422 5.68946 1.84855 7.15159C2.19583 7.50151 2.60908 7.77906 3.06436 7.96818C3.51964 8.1573 4.00792 8.25422 4.50092 8.25334C4.99371 8.25412 5.48175 8.15718 5.93683 7.96814C6.39191 7.77909 6.80499 7.50168 7.15217 7.15196C8.6143 5.69021 8.6143 3.31084 7.1518 1.84834ZM4.56805 1.49996H4.43342C4.4563 1.49959 4.47805 1.49659 4.50092 1.49659C4.5238 1.49659 4.54517 1.49959 4.56805 1.49996ZM6.8413 6.37496H6.00017L5.52842 7.31846C5.19924 7.43971 4.85135 7.50228 4.50055 7.50334C4.1491 7.50238 3.80055 7.43968 3.4708 7.31809L3.00017 6.37871H2.16205C1.85284 5.99429 1.64373 5.53922 1.55342 5.05421L2.25017 4.12496L1.79417 3.21259C1.94009 2.9033 2.13781 2.62123 2.3788 2.37859C2.71665 2.03968 3.13067 1.78651 3.5863 1.64021L4.50017 2.24996L5.41442 1.64059C5.87001 1.78677 6.28403 2.03981 6.62192 2.37859C6.86267 2.62092 7.06026 2.9026 7.20617 3.21146L6.75017 4.12496L7.44692 5.05421C7.35706 5.53767 7.14901 5.9914 6.8413 6.37496Z" fill="white"/>
-                            <path d="M3.1875 4.125L3.75 5.625H5.25L5.8125 4.125L4.5 3.1875L3.1875 4.125Z" fill="white"/>
+                            <svg width="11" height="11" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_453_90)">
+                            <path d="M1.575 1.31252C1.575 1.01252 1.8375 0.712524 2.175 0.712524C2.5125 0.712524 2.775 0.975024 2.775 1.31252C2.775 1.65002 2.475 1.87502 2.175 1.87502C1.875 1.87502 1.575 1.61252 1.575 1.31252ZM8.25 1.46252L8.0625 1.12502L5.0625 2.66252L5.25 3.00002L8.25 1.46252ZM7.8 7.61252L8.1375 7.95002C7.9125 8.17502 7.6875 8.32502 7.425 8.43752C7.1625 8.55002 6.8625 8.62502 6.5625 8.62502H0.75V8.13752H1.7625L2.55 6.82502L1.6875 5.62502L1.3875 2.70002C1.3875 2.36252 1.6875 2.06252 2.025 2.06252C2.1375 2.06252 2.25 2.10002 2.325 2.13752L3.6375 3.11252L4.5 2.81252L4.8 3.41252L3.4875 3.97502C3.45 3.93752 2.8875 3.52502 2.475 3.18752L2.625 4.50002L4.6125 6.18752L5.25 8.13752H6.5625C6.7875 8.13752 7.0125 8.10002 7.2375 7.98752C7.4625 7.91252 7.65 7.76252 7.8 7.61252ZM2.625 8.13752H4.5L3.9 6.67502L3.0375 5.96252L3.4875 6.90002L2.625 8.13752Z" fill="white"/>
                             </g>
                             <defs>
-                            <clipPath id="clip0_453_212">
+                            <clipPath id="clip0_453_90">
                             <rect width="9" height="9" fill="white"/>
                             </clipPath>
                             </defs>
                             </svg>
                         </div>
-                        <div>Football</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="13" height="13" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_207)">
-                            <path d="M6.00018 5.00001C6.3538 5.00001 6.69294 5.14048 6.94299 5.39053C7.19304 5.64058 7.33352 5.97972 7.33352 6.33334C7.33352 6.68696 7.19304 7.0261 6.94299 7.27615C6.69294 7.5262 6.3538 7.66667 6.00018 7.66667C5.64656 7.66667 5.30742 7.5262 5.05737 7.27615C4.80732 7.0261 4.66685 6.68696 4.66685 6.33334C4.66685 5.97972 4.80732 5.64058 5.05737 5.39053C5.30742 5.14048 5.64656 5.00001 6.00018 5.00001ZM6.00018 5.66667C5.82337 5.66667 5.6538 5.73691 5.52878 5.86194C5.40375 5.98696 5.33352 6.15653 5.33352 6.33334C5.33352 6.51015 5.40375 6.67972 5.52878 6.80474C5.6538 6.92977 5.82337 7.00001 6.00018 7.00001C6.17699 7.00001 6.34656 6.92977 6.47159 6.80474C6.59661 6.67972 6.66685 6.51015 6.66685 6.33334C6.66685 6.15653 6.59661 5.98696 6.47159 5.86194C6.34656 5.73691 6.17699 5.66667 6.00018 5.66667ZM2.01685 4.84667C2.01685 4.84667 2.48685 4.37334 2.49018 3.43334C2.37018 2.70334 2.65685 1.84667 3.31352 1.19334C4.29018 0.216674 5.71352 0.0566736 6.50018 0.83334C7.27685 1.62001 7.11685 3.04334 6.14018 4.02001C5.48685 4.67667 4.63018 4.96334 3.90018 4.84334C2.96018 4.84667 2.48685 5.31667 2.48685 5.31667L1.07352 6.73001L0.603516 6.26001L2.01685 4.84667ZM6.02352 1.31001C5.50018 0.790007 4.50018 0.946674 3.78352 1.66667C3.07018 2.38001 2.91018 3.38334 3.43018 3.90334C3.95352 4.42334 4.95352 4.26334 5.66685 3.55001C6.38685 2.83334 6.54352 1.83334 6.02352 1.31001Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_207">
-                            <rect width="8" height="8" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        </div>
-                        <div>Tennis</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.70278 1.375L6.11259 2.95419C5.71659 3.35053 5.71659 4.00778 6.11259 4.40481L5.50072 5.005L5.06072 4.565L2.48259 1.98688L2.23509 1.75038L1.98759 1.98653C1.69539 2.28081 1.53141 2.6787 1.53141 3.09341C1.53141 3.50811 1.69539 3.906 1.98759 4.20028L4.14703 6.35903L1.47266 9.03341L1.96662 9.52841L4.641 6.85334L5.04938 7.25072L5.29619 7.49753L5.53269 7.25072L6.14456 6.63816L9.03447 9.52806L9.52947 9.03306L6.39241 5.90734L5.99469 5.5L6.59625 4.88813H6.60725L6.61756 4.89844C7.01563 5.27656 7.65569 5.27828 8.04619 4.88813L8.0785 4.84481L9.62538 3.29794L9.14206 2.81462L7.56322 4.39312C7.41369 4.543 7.24113 4.54609 7.09056 4.40447L8.90556 2.57812L8.42259 2.09481L6.59625 3.90981C6.45463 3.75959 6.45772 3.58669 6.60725 3.4375L8.18609 1.85831L7.70278 1.375ZM2.33134 2.82563L5.66228 6.15519L5.29653 6.52059L2.48225 3.70528C2.22719 3.45091 2.21962 3.12916 2.331 2.82528L2.33134 2.82563Z" fill="white"/>
-                            </svg>
-                        </div>
-                        <div>Wld Cls Dine</div>
+                        <div class="text-[10px]">Jet ski</div>
                     </div>
                 </div>
                 
                 <!-- Book-now button (tiny) -->
-                <div class="absolute bottom-3 right-3">
+                <div class="absolute bottom-3 xl:right-3 right-28">
                     <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer">
                     <button
-                    class="bg-white text-purple p-1 rounded-md font-medium text-sm hover:bg-darkPurple transition">
+                    class="bg-white text-purple py-1 px-2 rounded-md font-medium text-xs hover:bg-darkPurple hover:text-white transition">
                     Book now
                     </button>
                     </a>
@@ -655,27 +654,28 @@
         </div>
         </div>
 
-        <div class="relative bg-cover bg-center rounded-xl h-[484px]" style="background-image: url('./assets/images/Avista-beach-house.png');">
+        <!-- Avista Beach Resort -->
+        <div class="relative bg-cover bg-center rounded-xl xl:h-[484px] h-[454px]" style="background-image: url('./assets/images/Avista-beach-house.png');">
 
         <!-- card -->
-         <div class="absolute bottom-5 right-5 left-5 bg-purple text-white text-xs py-3 rounded-tr-xl rounded-bl-xl">
+        <div class="absolute xl:bottom-5 bottom-3 xl:right-5 right-3 xl:left-5 left-3 bg-purple text-white py-3 rounded-tr-xl rounded-bl-xl">
 
-            <div class="flex justify-between items-center px-7 pb-7">
+            <div class="flex justify-between items-center xl:px-5 px-3 pb-5">
             <div>
-                <h3 class="text-lg font-semibold leading-none">Salt Beach</h3>
-                <p class="text-sm text-gray-200">Ikaare Private Island</p>
+                <h3 class="xl:text-lg text-base font-semibold leading-none">Avista Beach Resort</h3>
+                <p class="xl:text-sm text-xs text-gray-200">Okun Ajah</p>
             </div>
 
-            <div class="text-right leading-tight">
-                <span class="block text-base font-bold">800k</span>
-                <span class="block text-sm">per night</span>
+            <div class="text-right xl:leading-tight">
+                <span class="block xl:text-base text-sm font-bold">600k</span>
+                <span class="block xl:text-sm text-xs">per night</span>
             </div>
             </div>
 
             <!-- Features row -->
-             <div class="flex">
-                <div class="grid grid-cols-3 gap-y-5 px-7">
-                    <div class="flex items-center justify-center gap-4">
+            <div class="xl:flex">
+                <div class="grid xl:grid-cols-3 grid-cols-2 xl:gap-y-5 gap-y-3 gap-x-10 xl:gap-x-5 xl:px-5 px-3 mb-8 xl:mb-0">
+                    <div class="flex items-center xl:justifycenter justify-start gap-2">
                         <div>
                             <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_453_194)">
@@ -688,50 +688,46 @@
                             </defs>
                             </svg>
                         </div>
-                        <div>Swimming Pool</div>
+                        <div class="text-[10px]">Private Pool</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center justify-center gap-2">
                         <div>
-                            <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_215)">
-                            <path d="M1.97852 4.33752L2.42935 5.93294L3.22685 5.70752M3.60956 4.02002L3.57622 5.12835C3.57186 5.27395 3.62551 5.41531 3.72537 5.52135C3.82524 5.62738 3.96313 5.6894 4.10872 5.69377C4.25432 5.69813 4.39568 5.64448 4.50172 5.54462C4.60775 5.44476 4.66978 5.30686 4.67414 5.16127L4.70727 4.05294M5.20914 5.94044L5.36914 4.29044L5.74039 4.32648C5.83522 4.33561 5.92732 4.36335 6.01142 4.40809C6.09553 4.45284 6.16999 4.51373 6.23055 4.58727C6.29111 4.66081 6.33658 4.74557 6.36436 4.8367C6.39215 4.92782 6.4017 5.02353 6.39247 5.11835L6.37227 5.3246C6.36313 5.41941 6.3354 5.51149 6.29067 5.59558C6.24593 5.67967 6.18507 5.75412 6.11155 5.81468C6.03803 5.87524 5.95329 5.92072 5.86219 5.94851C5.77109 5.97631 5.6754 5.98588 5.5806 5.97669L5.20914 5.94044Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M7.96405 4.69183C7.93513 4.38991 7.66694 4.1686 7.36502 4.19752C7.06311 4.22644 6.8418 4.49463 6.87072 4.79654L6.92405 5.35337C6.95297 5.65528 7.22116 5.87659 7.52307 5.84768C7.82499 5.81876 8.0463 5.55057 8.01738 5.24865L7.96405 4.69183Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8.02148 1.14587H1.97982C1.51958 1.14587 1.14648 1.51897 1.14648 1.97921V8.02087C1.14648 8.48111 1.51958 8.85421 1.97982 8.85421H8.02148C8.48172 8.85421 8.85482 8.48111 8.85482 8.02087V1.97921C8.85482 1.51897 8.48172 1.14587 8.02148 1.14587Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg width="11" height="11" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_453_88)">
+                            <path d="M6.41719 1.75V2.77083L5.97969 2.91667L5.53052 2.19917C5.4926 2.13792 5.39635 2.16417 5.39635 2.23708V3.28125C5.39635 3.56708 5.2826 3.82375 5.10469 4.01917V6.125H4.37552V4.375H4.3026C4.24135 4.375 4.1801 4.36625 4.12177 4.3575L2.82677 4.14167L2.5001 4.72792L2.7801 6.125H2.04219L1.75052 4.73958C1.74177 4.65208 1.75052 4.56458 1.79719 4.48875L2.09469 3.96083C1.94987 3.88033 1.82853 3.76349 1.74261 3.62182C1.65668 3.48015 1.60915 3.31854 1.60469 3.15292C1.59302 3.19667 1.58719 3.26083 1.59594 3.35417C1.60469 3.4825 1.63677 3.67208 1.61635 3.88208C1.60469 4.09208 1.50844 4.30792 1.38594 4.45083C1.26052 4.59375 1.12344 4.69292 0.977605 4.76875L0.773438 4.56458C0.828855 4.4275 0.884271 4.305 0.895938 4.19125C0.913438 4.08333 0.893021 3.99583 0.860938 3.91708L0.706355 3.5875C0.645105 3.43875 0.569271 3.22292 0.583855 2.96917C0.592605 2.72125 0.729688 2.3975 0.989271 2.21958C1.25177 2.04167 1.53469 2.01833 1.7651 2.065C1.91094 2.09417 2.05969 2.16417 2.18802 2.26333C2.29594 2.21375 2.42135 2.1875 2.5526 2.1875H4.22969V2.04167C4.22969 1.39708 4.75177 0.875 5.39635 0.875H6.41719L6.1576 1.26583C6.3151 1.37083 6.41719 1.54875 6.41719 1.75Z" fill="white"/>
                             </g>
                             <defs>
-                            <clipPath id="clip0_453_215">
-                            <rect width="10" height="10" fill="white"/>
+                            <clipPath id="clip0_453_88">
+                            <rect width="7" height="7" fill="white"/>
                             </clipPath>
                             </defs>
                             </svg>
                         </div>
-                        <div>Ludo</div>
+                        <div class="text-[10px]">Horse Riding</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
                         <div>
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.916016 8.25004V7.33337C1.20629 7.33337 1.42217 7.25699 1.56364 7.10421C1.70511 6.95143 2.00104 6.87504 2.45143 6.87504C2.90182 6.87504 3.1979 6.95143 3.33968 7.10421C3.48146 7.25699 3.68954 7.33337 3.96393 7.33337C4.25421 7.33337 4.47008 7.25699 4.61156 7.10421C4.75303 6.95143 5.04896 6.87504 5.49935 6.87504C5.93477 6.87504 6.23085 6.95143 6.3876 7.10421C6.54435 7.25699 6.76007 7.33337 7.03477 7.33337C7.32504 7.33337 7.5371 7.25699 7.67093 7.10421C7.80477 6.95143 8.09688 6.87504 8.54727 6.87504C8.99765 6.87504 9.29374 6.95143 9.43552 7.10421C9.57729 7.25699 9.79302 7.33337 10.0827 7.33337V8.25004C9.64727 8.25004 9.35134 8.17365 9.19489 8.02087C9.03845 7.8681 8.82257 7.79171 8.54727 7.79171C8.27196 7.79171 8.06388 7.8681 7.92302 8.02087C7.78215 8.17365 7.48607 8.25004 7.03477 8.25004C6.59935 8.25004 6.30342 8.17365 6.14697 8.02087C5.99053 7.8681 5.77465 7.79171 5.49935 7.79171C5.20907 7.79171 4.99335 7.8681 4.85218 8.02087C4.71102 8.17365 4.41493 8.25004 3.96393 8.25004C3.51293 8.25004 3.22082 8.17365 3.0876 8.02087C2.95438 7.8681 2.74232 7.79171 2.45143 7.79171C2.16054 7.79171 1.94482 7.8681 1.80427 8.02087C1.66371 8.17365 1.36763 8.25004 0.916016 8.25004ZM0.916016 6.41671V5.50004C1.20629 5.50004 1.42217 5.42365 1.56364 5.27087C1.70511 5.1181 2.00104 5.04171 2.45143 5.04171C2.88685 5.04171 3.17911 5.1181 3.32822 5.27087C3.47734 5.42365 3.68924 5.50004 3.96393 5.50004C4.25421 5.50004 4.46993 5.42365 4.6111 5.27087C4.75227 5.1181 5.04835 5.04171 5.49935 5.04171C5.93477 5.04171 6.22886 5.1181 6.38164 5.27087C6.53442 5.42365 6.74449 5.50004 7.01185 5.50004C7.30213 5.50004 7.51785 5.42365 7.65902 5.27087C7.80018 5.1181 8.09627 5.04171 8.54727 5.04171C8.98268 5.04171 9.27877 5.1181 9.43552 5.27087C9.59227 5.42365 9.80799 5.50004 10.0827 5.50004V6.41671C9.63199 6.41671 9.33209 6.34032 9.18297 6.18754C9.03386 6.03476 8.82196 5.95837 8.54727 5.95837C8.27257 5.95837 8.06449 6.03476 7.92302 6.18754C7.78154 6.34032 7.48546 6.41671 7.03477 6.41671C6.59935 6.41671 6.30342 6.34032 6.14697 6.18754C5.99053 6.03476 5.77465 5.95837 5.49935 5.95837C5.20907 5.95837 4.99702 6.03476 4.86318 6.18754C4.72935 6.34032 4.43724 6.41671 3.98685 6.41671C3.53646 6.41671 3.23671 6.34032 3.0876 6.18754C2.93849 6.03476 2.72643 5.95837 2.45143 5.95837C2.17643 5.95837 1.96071 6.03476 1.80427 6.18754C1.64782 6.34032 1.35174 6.41671 0.916016 6.41671ZM0.916016 4.58337V3.66671C1.20629 3.66671 1.42217 3.59032 1.56364 3.43754C1.70511 3.28476 2.00104 3.20837 2.45143 3.20837C2.88685 3.20837 3.17911 3.28476 3.32822 3.43754C3.47734 3.59032 3.68924 3.66671 3.96393 3.66671C4.25421 3.66671 4.46993 3.59032 4.6111 3.43754C4.75227 3.28476 5.04835 3.20837 5.49935 3.20837C5.93477 3.20837 6.22886 3.28476 6.38164 3.43754C6.53442 3.59032 6.74449 3.66671 7.01185 3.66671C7.30213 3.66671 7.51785 3.59032 7.65902 3.43754C7.80018 3.28476 8.09627 3.20837 8.54727 3.20837C8.98268 3.20837 9.27877 3.28476 9.43552 3.43754C9.59227 3.59032 9.80799 3.66671 10.0827 3.66671V4.58337C9.63199 4.58337 9.33209 4.50699 9.18297 4.35421C9.03386 4.20143 8.82196 4.12504 8.54727 4.12504C8.27257 4.12504 8.06449 4.20143 7.92302 4.35421C7.78154 4.50699 7.48546 4.58337 7.03477 4.58337C6.59935 4.58337 6.30342 4.50699 6.14697 4.35421C5.99053 4.20143 5.77465 4.12504 5.49935 4.12504C5.20907 4.12504 4.99702 4.20143 4.86318 4.35421C4.72935 4.50699 4.43724 4.58337 3.98685 4.58337C3.53646 4.58337 3.23671 4.50699 3.0876 4.35421C2.93849 4.20143 2.72643 4.12504 2.45143 4.12504C2.17643 4.12504 1.96071 4.20143 1.80427 4.35421C1.64782 4.50699 1.35174 4.58337 0.916016 4.58337Z" fill="white"/>
+                            <svg width="8" height="8" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.97 0.83125C4.47417 0.35 3.88792 0.0729167 3.20833 0V1.05583L5.83333 2.56667C5.75167 1.89583 5.46292 1.3125 4.97 0.83125ZM2.91667 5.83333C3.92 5.83333 4.71333 5.43083 5.29958 4.62583L4.3925 4.08333L1.77042 5.6C2.135 5.75458 2.52 5.83333 2.91667 5.83333ZM3.20833 2.74458L5.58542 4.10375C5.71375 3.82958 5.79833 3.54083 5.83333 3.24042L3.20833 1.72958V2.74458ZM0.548333 4.61125C0.740833 4.87667 0.950833 5.0925 1.18125 5.25L3.80333 3.7625L2.91667 3.25208L0.548333 4.61125ZM2.63667 0C2.33333 0.02625 2.04167 0.105 1.75 0.233333V3.25208L2.63667 2.74458V0ZM0 2.91667C0 3.32208 0.0875 3.72458 0.259583 4.11833L1.16667 3.58167V0.583333C0.387917 1.16667 0 1.93958 0 2.91667Z" fill="white"/>
                             </svg>
                         </div>
-                        <div>Water Sport</div>
+                        <div class="text-[10px]">Volleyball</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center justify-center xl:justify-start lg:pl-0 md:pl-5 pl-0 gap-2">
                         <div>
-                            <svg width="14" height="14" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_212)">
-                            <path d="M7.1518 1.84834C6.80465 1.49855 6.39158 1.22107 5.9365 1.03196C5.48142 0.842848 4.99336 0.745853 4.50055 0.746587C4.00761 0.745754 3.5194 0.842701 3.06419 1.03182C2.60897 1.22093 2.19578 1.49846 1.84855 1.84834C0.386422 3.31009 0.386422 5.68946 1.84855 7.15159C2.19583 7.50151 2.60908 7.77906 3.06436 7.96818C3.51964 8.1573 4.00792 8.25422 4.50092 8.25334C4.99371 8.25412 5.48175 8.15718 5.93683 7.96814C6.39191 7.77909 6.80499 7.50168 7.15217 7.15196C8.6143 5.69021 8.6143 3.31084 7.1518 1.84834ZM4.56805 1.49996H4.43342C4.4563 1.49959 4.47805 1.49659 4.50092 1.49659C4.5238 1.49659 4.54517 1.49959 4.56805 1.49996ZM6.8413 6.37496H6.00017L5.52842 7.31846C5.19924 7.43971 4.85135 7.50228 4.50055 7.50334C4.1491 7.50238 3.80055 7.43968 3.4708 7.31809L3.00017 6.37871H2.16205C1.85284 5.99429 1.64373 5.53922 1.55342 5.05421L2.25017 4.12496L1.79417 3.21259C1.94009 2.9033 2.13781 2.62123 2.3788 2.37859C2.71665 2.03968 3.13067 1.78651 3.5863 1.64021L4.50017 2.24996L5.41442 1.64059C5.87001 1.78677 6.28403 2.03981 6.62192 2.37859C6.86267 2.62092 7.06026 2.9026 7.20617 3.21146L6.75017 4.12496L7.44692 5.05421C7.35706 5.53767 7.14901 5.9914 6.8413 6.37496Z" fill="white"/>
-                            <path d="M3.1875 4.125L3.75 5.625H5.25L5.8125 4.125L4.5 3.1875L3.1875 4.125Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_212">
-                            <rect width="9" height="9" fill="white"/>
-                            </clipPath>
-                            </defs>
+                            <svg width="14" height="14" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.66211 6.0972C5.14086 6.1402 5.70461 5.9887 5.55286 5.5862M9.41711 6.53545L9.82211 6.48545C10.2001 6.4392 10.2721 6.3062 10.2034 6.06745M11.0919 4.7567L11.1244 4.5927C10.9444 4.2867 10.7644 4.2082 10.5844 4.0907L10.0519 4.1227M11.0914 4.7567L11.0284 5.0747L10.6221 5.01595C10.5634 5.13345 10.3979 5.2372 10.1866 5.27845L9.72661 5.36845L8.93911 5.52245L8.88561 5.8037M5.86861 6.85095C5.83436 7.08345 5.60836 7.25845 5.36411 7.24245C5.12011 7.2262 4.94961 7.0247 4.98411 6.79245C5.01811 6.55995 5.24411 6.38495 5.48811 6.40095C5.73261 6.4172 5.90286 6.61845 5.86861 6.85095Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.95153 5.69178C10.1588 6.02178 10.3663 6.35153 10.9323 6.35003L10.4188 5.61128M8.22528 6.49003L7.10403 6.41778L6.93203 7.25728C6.65803 7.28428 6.52603 7.33403 6.16803 7.30103M9.30853 7.00453C9.26928 7.44678 8.87753 7.52478 8.42603 7.46253L6.93178 7.25753M8.86753 6.98553L8.23928 5.44328M5.11328 5.50128C5.46953 5.56403 5.87103 5.58528 6.24003 5.57003C6.61278 5.55453 6.95253 5.50153 7.17778 5.41553" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6.29359 5.98046L6.35009 6.40946C6.85284 6.42996 7.31409 6.47171 7.66259 6.23221C8.06109 5.95796 8.15134 5.71871 8.11209 5.44046M6.55984 4.34621C6.25734 4.18121 5.99309 4.03546 5.74409 3.99121C5.34809 3.92121 5.11084 3.86221 4.55859 4.07196" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7.72331 5.4417L8.02831 5.4447C8.36981 5.4482 8.60381 5.3327 8.78631 5.1922C9.02256 5.01045 9.67606 4.9297 10.2481 4.8387C10.4018 4.58795 10.3531 4.3382 10.2318 4.2582L9.85856 4.0122C9.20531 4.05645 8.68256 4.06645 8.20656 4.2667C7.97606 4.3642 7.63106 4.3792 7.24031 4.37045M6.55456 4.3427C6.90131 4.6292 7.09456 5.01945 7.24881 5.4387M3.62681 5.26695C3.52731 5.04495 3.37681 4.7852 3.14356 4.89545M2.95831 3.78745L3.97831 3.1217C4.20381 3.2327 4.32331 3.3882 4.31206 3.5857C4.30331 3.7357 4.22131 3.82945 4.15706 3.9147M4.26981 4.73295L3.62656 5.2667M3.14331 4.8952L2.91406 4.4872L2.95806 3.7872" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4.15796 3.91455C4.10346 3.98705 4.06196 4.0533 4.08971 4.1428L4.27071 4.7328M4.38546 5.3368L4.58696 6.39205M10.1507 6.85255C10.1507 6.91005 10.1469 6.96847 10.1392 7.0278C10.0407 7.78555 9.34571 8.39005 8.58646 8.3778C8.14571 8.37055 7.78046 8.1573 7.57046 7.8318M2.61271 7.5118C2.58771 7.7048 2.41021 7.8593 2.21646 7.85605C2.02271 7.8528 1.88596 7.69355 1.91121 7.50005C1.93621 7.30705 2.11371 7.15255 2.30721 7.1558C2.50096 7.15905 2.63796 7.3183 2.61271 7.5113V7.5118Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.42936 6.64124C3.59911 6.88299 3.68011 7.19224 3.63636 7.52799C3.53836 8.28549 2.84336 8.88999 2.08386 8.87799C1.32461 8.86549 0.788359 8.24149 0.886609 7.48374C0.984859 6.72599 1.67986 6.12124 2.43936 6.13374C2.50803 6.1349 2.57486 6.14099 2.63986 6.15199" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4.10987 7.04601C4.16987 5.52801 3.15437 5.15101 1.96387 5.36101C1.67487 5.41151 1.32937 5.50776 1.40512 5.78251M3.57362 5.64126L3.38037 5.91251M3.17312 6.20276L2.47137 7.18551" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
-                        <div>Football</div>
+                        <div class="text-[10px]">Quad Bike</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center xl:justifycenter justify-start gap-2">
                         <div>
                             <svg width="13" height="13" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_453_207)">
@@ -744,23 +740,116 @@
                             </defs>
                             </svg>
                         </div>
-                        <div>Tennis</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.70278 1.375L6.11259 2.95419C5.71659 3.35053 5.71659 4.00778 6.11259 4.40481L5.50072 5.005L5.06072 4.565L2.48259 1.98688L2.23509 1.75038L1.98759 1.98653C1.69539 2.28081 1.53141 2.6787 1.53141 3.09341C1.53141 3.50811 1.69539 3.906 1.98759 4.20028L4.14703 6.35903L1.47266 9.03341L1.96662 9.52841L4.641 6.85334L5.04938 7.25072L5.29619 7.49753L5.53269 7.25072L6.14456 6.63816L9.03447 9.52806L9.52947 9.03306L6.39241 5.90734L5.99469 5.5L6.59625 4.88813H6.60725L6.61756 4.89844C7.01563 5.27656 7.65569 5.27828 8.04619 4.88813L8.0785 4.84481L9.62538 3.29794L9.14206 2.81462L7.56322 4.39312C7.41369 4.543 7.24113 4.54609 7.09056 4.40447L8.90556 2.57812L8.42259 2.09481L6.59625 3.90981C6.45463 3.75959 6.45772 3.58669 6.60725 3.4375L8.18609 1.85831L7.70278 1.375ZM2.33134 2.82563L5.66228 6.15519L5.29653 6.52059L2.48225 3.70528C2.22719 3.45091 2.21962 3.12916 2.331 2.82528L2.33134 2.82563Z" fill="white"/>
-                            </svg>
-                        </div>
-                        <div>Wld Cls Dine</div>
+                        <div class="text-[10px]">Tennis</div>
                     </div>
                 </div>
                 
                 <!-- Book-now button (tiny) -->
-                <div class="absolute bottom-3 right-3">
+                <div class="absolute bottom-3 xl:right-3 right-28">
                     <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer">
                     <button
-                    class="bg-white text-purple p-1 rounded-md font-medium text-sm hover:bg-darkPurple transition">
+                    class="bg-white text-purple py-1 px-2 rounded-md font-medium text-xs hover:bg-darkPurple hover:text-white transition">
+                    Book now
+                    </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+     <!-- Hidden cards -->
+    <div class="more-cards hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 gap-5">
+        <!-- Bel Beach House -->
+        <div class="relative bg-cover bg-center rounded-xl xl:h-[484px] h-[454px]" style="background-image: url('./assets/images/Bel-beach-house.png');">
+
+        <!-- card -->
+        <div class="absolute xl:bottom-5 bottom-3 xl:right-5 right-3 xl:left-5 left-3 bg-purple text-white py-3 rounded-tr-xl rounded-bl-xl">
+
+            <div class="flex justify-between items-center xl:px-5 px-3 pb-5">
+            <div>
+                <h3 class="xl:text-lg text-base font-semibold leading-none">Bel Beach House</h3>
+                <p class="xl:text-sm text-xs text-gray-200">Ilashe</p>
+            </div>
+
+            <div class="text-right xl:leading-tight">
+                <span class="block xl:text-base text-sm font-bold">1.85m</span>
+                <span class="block xl:text-sm text-xs">per night</span>
+            </div>
+            </div>
+
+            <!-- Features row -->
+            <div class="xl:flex">
+                <div class="grid xl:grid-cols-3 grid-cols-2 xl:gap-y-5 gap-y-3 gap-x-10 xl:gap-x-0 xl:px-5 px-3 mb-8 xl:mb-0">
+                    <div class="flex items-center xl:justifycenter justify-start gap-2">
+                        <div>
+                            <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_453_194)">
+                            <path d="M2.83398 9.75V8.91667C3.09787 8.91667 3.29579 8.84722 3.42773 8.70833C3.55968 8.56944 3.8201 8.5 4.20898 8.5C4.59787 8.5 4.86523 8.56944 5.01107 8.70833C5.1569 8.84722 5.35482 8.91667 5.60482 8.91667C5.85482 8.91667 6.05273 8.84722 6.19857 8.70833C6.3444 8.56944 6.61176 8.5 7.00065 8.5C7.38954 8.5 7.6569 8.56944 7.80273 8.70833C7.94857 8.84722 8.14648 8.91667 8.39648 8.91667C8.64648 8.91667 8.8444 8.84722 8.99023 8.70833C9.13607 8.56944 9.40343 8.5 9.79232 8.5C10.1812 8.5 10.4416 8.56944 10.5736 8.70833C10.7055 8.84722 10.9034 8.91667 11.1673 8.91667V9.75C10.7576 9.75 10.4886 9.68056 10.3602 9.54167C10.2319 9.40278 10.0426 9.33333 9.79232 9.33333C9.54204 9.33333 9.34412 9.40278 9.19857 9.54167C9.05301 9.68056 8.78565 9.75 8.39648 9.75C8.00732 9.75 7.73996 9.68056 7.5944 9.54167C7.44885 9.40278 7.25093 9.33333 7.00065 9.33333C6.75037 9.33333 6.55246 9.40278 6.4069 9.54167C6.26135 9.68056 5.99398 9.75 5.60482 9.75C5.21565 9.75 4.94829 9.68056 4.80273 9.54167C4.65718 9.40278 4.45926 9.33333 4.20898 9.33333C3.95871 9.33333 3.7694 9.40278 3.64107 9.54167C3.51273 9.68056 3.24371 9.75 2.83398 9.75ZM2.83398 7.875V7.04167C3.09787 7.04167 3.29579 6.97222 3.42773 6.83333C3.55968 6.69444 3.8201 6.625 4.20898 6.625C4.59787 6.625 4.86704 6.69444 5.01648 6.83333C5.16593 6.97222 5.36204 7.04167 5.60482 7.04167C5.85482 7.04167 6.05273 6.97222 6.19857 6.83333C6.3444 6.69444 6.61176 6.625 7.00065 6.625C7.38954 6.625 7.6569 6.69444 7.80273 6.83333C7.94857 6.97222 8.14648 7.04167 8.39648 7.04167C8.64648 7.04167 8.8444 6.97222 8.99023 6.83333C9.13607 6.69444 9.40343 6.625 9.79232 6.625C10.1812 6.625 10.4416 6.69444 10.5736 6.83333C10.7055 6.97222 10.9034 7.04167 11.1673 7.04167V7.875C10.7576 7.875 10.4886 7.80556 10.3602 7.66667C10.2319 7.52778 10.0426 7.45833 9.79232 7.45833C9.54204 7.45833 9.34926 7.52778 9.21398 7.66667C9.07871 7.80556 8.80621 7.875 8.39648 7.875C8.00065 7.875 7.73162 7.80556 7.5894 7.66667C7.44718 7.52778 7.25093 7.45833 7.00065 7.45833C6.73676 7.45833 6.54065 7.52778 6.41232 7.66667C6.28398 7.80556 6.01482 7.875 5.60482 7.875C5.19482 7.875 4.92218 7.80556 4.7869 7.66667C4.65162 7.52778 4.45898 7.45833 4.20898 7.45833C3.95898 7.45833 3.76982 7.52778 3.64148 7.66667C3.51315 7.80556 3.24398 7.875 2.83398 7.875ZM4.87565 5.75L6.26107 4.36458L5.8444 3.94792C5.61523 3.71875 5.37218 3.55208 5.11523 3.44792C4.85829 3.34375 4.54232 3.29167 4.16732 3.29167V2.25C4.68815 2.25 5.11871 2.30736 5.45898 2.42208C5.79926 2.53681 6.1326 2.75722 6.45898 3.08333L9.12565 5.75C9.0076 5.82639 8.89301 5.88722 8.7819 5.9325C8.67079 5.97778 8.54232 6.00028 8.39648 6C8.14648 6 7.94857 5.93056 7.80273 5.79167C7.6569 5.65278 7.38954 5.58333 7.00065 5.58333C6.61176 5.58333 6.3444 5.65278 6.19857 5.79167C6.05273 5.93056 5.85482 6 5.60482 6C5.45898 6 5.33051 5.9775 5.2194 5.9325C5.10829 5.8875 4.99371 5.82667 4.87565 5.75ZM8.95898 2.25C9.25065 2.25 9.49718 2.3525 9.69857 2.5575C9.89996 2.7625 10.0007 3.00722 10.0007 3.29167C10.0007 3.58333 9.89996 3.82986 9.69857 4.03125C9.49718 4.23264 9.25065 4.33333 8.95898 4.33333C8.66732 4.33333 8.42079 4.23264 8.2194 4.03125C8.01801 3.82986 7.91732 3.58333 7.91732 3.29167C7.91732 3.00695 8.01801 2.76208 8.2194 2.55708C8.42079 2.35208 8.66732 2.24972 8.95898 2.25Z" fill="white"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_453_194">
+                            <rect width="10" height="10" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                        </div>
+                        <div class="text-[10px]">Swimming Pool</div>
+                    </div>
+                    <div class="flex items-center xl:justifystart justify-center gap-2">
+                        <div>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.155 8.22001L7.27003 3.23501C7.17216 3.06497 7.04168 2.91593 6.88606 2.79646C6.73045 2.67698 6.55278 2.5894 6.36323 2.53877C6.17369 2.48813 5.97601 2.47542 5.78155 2.50138C5.58708 2.52733 5.39966 2.59143 5.23003 2.69001C5.00003 2.82001 4.81503 3.00001 4.68003 3.23501L1.80003 8.22001C1.70122 8.38875 1.63691 8.57544 1.61084 8.76924C1.58477 8.96303 1.59745 9.16008 1.64815 9.34894C1.69886 9.5378 1.78657 9.7147 1.9062 9.86938C2.02583 10.0241 2.17499 10.1534 2.34503 10.25C2.57003 10.39 2.82503 10.46 3.09003 10.46H8.86503C9.06136 10.4593 9.25563 10.42 9.43676 10.3443C9.61789 10.2686 9.78233 10.1579 9.92069 10.0186C10.0591 9.87931 10.1686 9.71413 10.2431 9.5325C10.3177 9.35087 10.3557 9.15633 10.355 8.96001C10.355 8.70001 10.285 8.44501 10.155 8.22001ZM2.68503 8.71501L5.55503 3.73501C5.69003 3.50001 6.00003 3.41001 6.23003 3.55001C6.31003 3.59001 6.37503 3.65501 6.42003 3.73501L9.29003 8.71501C9.42503 8.95501 9.34503 9.25001 9.10503 9.39501C9.03003 9.44001 8.94503 9.46501 8.86003 9.46501H3.10503C2.83003 9.46001 2.60503 9.23501 2.61003 8.96001C2.61003 8.87501 2.63003 8.79001 2.67503 8.71501H2.68503ZM5.98503 6.72501C5.43503 6.72501 5.00003 6.28001 5.00003 5.73001C5.00003 5.17501 5.43503 4.73001 5.98503 4.73001C6.25025 4.73001 6.5046 4.83536 6.69214 5.0229C6.87967 5.21044 6.98503 5.46479 6.98503 5.73001C6.98503 6.28001 6.53503 6.72501 5.97503 6.72501H5.98503ZM4.73003 8.96501C4.18003 8.96501 3.73503 8.52001 3.73503 7.97001C3.73503 7.42 4.18003 6.97501 4.73003 6.97501C5.28003 6.97501 5.73003 7.42 5.73003 7.97001C5.73003 8.52001 5.28003 8.96501 4.73003 8.96501ZM7.22003 8.96501C6.95654 8.96369 6.70422 8.85844 6.51791 8.67212C6.33159 8.48581 6.22634 8.23349 6.22503 7.97001C6.22634 7.70652 6.33159 7.4542 6.51791 7.26789C6.70422 7.08157 6.95654 6.97632 7.22003 6.97501C7.77003 6.97501 8.22003 7.42 8.22003 7.97001C8.22003 8.52001 7.77003 8.96501 7.22003 8.96501Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="text-[10px]">Snooker</div>
+                    </div>
+                    <div class="flex items-center xl:justifycenter justify-start gap-2">
+                        <div>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.59995 7.39995L8.17495 5.32495L6.39995 4.09995L5.82495 6.17495L7.59995 7.39995ZM1.99995 9.41245L1.58745 9.21245C1.32912 9.10412 1.15412 8.91879 1.06245 8.65645C0.970786 8.39412 0.983286 8.13362 1.09995 7.87495L1.99995 5.92495V9.41245ZM3.99995 10.5C3.72495 10.5 3.48962 10.4 3.29395 10.2C3.09829 9.99995 3.00029 9.76245 2.99995 9.48745V6.49995L4.33745 10.175C4.36245 10.2333 4.38329 10.2896 4.39995 10.344C4.41662 10.3983 4.44579 10.4503 4.48745 10.5H3.99995ZM6.57495 10.4375C6.31662 10.5291 6.05829 10.5166 5.79995 10.4C5.54162 10.2833 5.36662 10.0958 5.27495 9.83745L3.06245 3.72495C2.97079 3.46662 2.98329 3.21029 3.09995 2.95595C3.21662 2.70162 3.40412 2.52879 3.66245 2.43745L7.42495 1.06245C7.68329 0.970786 7.93962 0.983286 8.19395 1.09995C8.44829 1.21662 8.62112 1.40412 8.71245 1.66245L10.9375 7.77495C11.0291 8.03329 11.0166 8.28962 10.9 8.54395C10.7833 8.79829 10.5958 8.97112 10.3375 9.06245L6.57495 10.4375ZM6.22495 9.49995L9.99995 8.12495L7.76245 1.99995L3.99995 3.37495L6.22495 9.49995Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="text-[10px]">Card Games & Jenga</div>
+                    </div>
+                    <div class="flex items-center justify-center xl:justify-start lg:pl-0 md:pl-5 pl-0 gap-2">
+                        <div>
+                            <svg width="8" height="8" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.97 0.83125C4.47417 0.35 3.88792 0.0729167 3.20833 0V1.05583L5.83333 2.56667C5.75167 1.89583 5.46292 1.3125 4.97 0.83125ZM2.91667 5.83333C3.92 5.83333 4.71333 5.43083 5.29958 4.62583L4.3925 4.08333L1.77042 5.6C2.135 5.75458 2.52 5.83333 2.91667 5.83333ZM3.20833 2.74458L5.58542 4.10375C5.71375 3.82958 5.79833 3.54083 5.83333 3.24042L3.20833 1.72958V2.74458ZM0.548333 4.61125C0.740833 4.87667 0.950833 5.0925 1.18125 5.25L3.80333 3.7625L2.91667 3.25208L0.548333 4.61125ZM2.63667 0C2.33333 0.02625 2.04167 0.105 1.75 0.233333V3.25208L2.63667 2.74458V0ZM0 2.91667C0 3.32208 0.0875 3.72458 0.259583 4.11833L1.16667 3.58167V0.583333C0.387917 1.16667 0 1.93958 0 2.91667Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="text-[10px]">Volleyball Court</div>
+                    </div>
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
+                        <div>
+                            <svg width="13" height="13" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_453_207)">
+                            <path d="M6.00018 5.00001C6.3538 5.00001 6.69294 5.14048 6.94299 5.39053C7.19304 5.64058 7.33352 5.97972 7.33352 6.33334C7.33352 6.68696 7.19304 7.0261 6.94299 7.27615C6.69294 7.5262 6.3538 7.66667 6.00018 7.66667C5.64656 7.66667 5.30742 7.5262 5.05737 7.27615C4.80732 7.0261 4.66685 6.68696 4.66685 6.33334C4.66685 5.97972 4.80732 5.64058 5.05737 5.39053C5.30742 5.14048 5.64656 5.00001 6.00018 5.00001ZM6.00018 5.66667C5.82337 5.66667 5.6538 5.73691 5.52878 5.86194C5.40375 5.98696 5.33352 6.15653 5.33352 6.33334C5.33352 6.51015 5.40375 6.67972 5.52878 6.80474C5.6538 6.92977 5.82337 7.00001 6.00018 7.00001C6.17699 7.00001 6.34656 6.92977 6.47159 6.80474C6.59661 6.67972 6.66685 6.51015 6.66685 6.33334C6.66685 6.15653 6.59661 5.98696 6.47159 5.86194C6.34656 5.73691 6.17699 5.66667 6.00018 5.66667ZM2.01685 4.84667C2.01685 4.84667 2.48685 4.37334 2.49018 3.43334C2.37018 2.70334 2.65685 1.84667 3.31352 1.19334C4.29018 0.216674 5.71352 0.0566736 6.50018 0.83334C7.27685 1.62001 7.11685 3.04334 6.14018 4.02001C5.48685 4.67667 4.63018 4.96334 3.90018 4.84334C2.96018 4.84667 2.48685 5.31667 2.48685 5.31667L1.07352 6.73001L0.603516 6.26001L2.01685 4.84667ZM6.02352 1.31001C5.50018 0.790007 4.50018 0.946674 3.78352 1.66667C3.07018 2.38001 2.91018 3.38334 3.43018 3.90334C3.95352 4.42334 4.95352 4.26334 5.66685 3.55001C6.38685 2.83334 6.54352 1.83334 6.02352 1.31001Z" fill="white"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_453_207">
+                            <rect width="8" height="8" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                        </div>
+                        <div class="text-[10px]">Tennis</div>
+                    </div>
+                    <div class="flex items-center xl:justify-start justify-end gap-2">
+                        <div>
+                            <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.36364 5.85H2.27273C2.51383 5.85 2.74506 5.94482 2.91555 6.1136C3.08604 6.28239 3.18182 6.5113 3.18182 6.75V7.65H3.63636V6.75C3.63636 6.5113 3.73214 6.28239 3.90263 6.1136C4.07312 5.94482 4.30435 5.85 4.54545 5.85H5.45455C5.69565 5.85 5.92688 5.94482 6.09737 6.1136C6.26786 6.28239 6.36364 6.5113 6.36364 6.75V7.65H6.81818V6.75C6.81818 6.5113 6.91396 6.28239 7.08445 6.1136C7.25494 5.94482 7.48617 5.85 7.72727 5.85H8.63636C8.87747 5.85 9.1087 5.94482 9.27919 6.1136C9.44968 6.28239 9.54545 6.5113 9.54545 6.75V7.65H10V9H0V7.65H0.454545V6.75C0.454545 6.5113 0.550324 6.28239 0.720812 6.1136C0.8913 5.94482 1.12253 5.85 1.36364 5.85ZM4.54545 2.25L6.36364 3.6L4.54545 4.95V2.25ZM1.36364 0H8.63636C8.87747 0 9.1087 0.0948211 9.27919 0.263604C9.44968 0.432387 9.54545 0.661305 9.54545 0.9V5.193C9.27009 5.03235 8.95598 4.94838 8.63636 4.95V0.9H1.36364V4.95C1.03182 4.95 0.722727 5.0355 0.454545 5.193V0.9C0.454545 0.661305 0.550324 0.432387 0.720812 0.263604C0.8913 0.0948211 1.12253 0 1.36364 0Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="text-[10px]">Cinema</div>
+                    </div>
+                </div>
+                
+                <!-- Book-now button (tiny) -->
+                <div class="absolute bottom-3 xl:right-3 right-28">
+                    <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer">
+                    <button
+                    class="bg-white text-purple py-1 px-2 rounded-md font-medium text-xs hover:bg-darkPurple hover:text-white transition">
                     Book now
                     </button>
                     </a>
@@ -769,112 +858,66 @@
         </div>
         </div>
 
-        <div class="relative bg-cover bg-center rounded-xl h-[484px]" style="background-image: url('./assets/images/Bel-beach-house.png');">
+        <!-- Yacht Hotel -->
+        <div class="relative bg-cover bg-center rounded-xl xl:h-[484px] h-[454px]" style="background-image: url('./assets/images/Yacht-hotel.png');">
 
         <!-- card -->
-         <div class="absolute bottom-5 right-5 left-5 bg-purple text-white text-xs py-3 rounded-tr-xl rounded-bl-xl">
+        <div class="absolute xl:bottom-5 bottom-3 xl:right-5 right-3 xl:left-5 left-3 bg-purple text-white py-3 rounded-tr-xl rounded-bl-xl">
 
-            <div class="flex justify-between items-center px-7 pb-7">
+            <div class="flex justify-between items-center xl:px-5 px-3 pb-5">
             <div>
-                <h3 class="text-lg font-semibold leading-none">Salt Beach</h3>
-                <p class="text-sm text-gray-200">Ikaare Private Island</p>
+                <h3 class="xl:text-lg text-base font-semibold leading-none">Yacht Hotel</h3>
+                <p class="xl:text-sm text-xs text-gray-200">Lekki Phase 1</p>
             </div>
 
-            <div class="text-right leading-tight">
-                <span class="block text-base font-bold">800k</span>
-                <span class="block text-sm">per night</span>
+            <div class="text-right xl:leading-tight">
+                <span class="block xl:text-base text-sm font-bold">450k</span>
+                <span class="block xl:text-sm text-xs">per night</span>
             </div>
             </div>
 
             <!-- Features row -->
-             <div class="flex">
-                <div class="grid grid-cols-3 gap-y-5 px-7">
-                    <div class="flex items-center justify-center gap-4">
+            <div class="xl:flex">
+                <div class="grid grid-cols-2 xl:gap-y-5 gap-y-3 gap-x-10 xl:gap-x-5 xl:px-5 px-3 mb-8 xl:mb-0">
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
                         <div>
-                            <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_194)">
-                            <path d="M2.83398 9.75V8.91667C3.09787 8.91667 3.29579 8.84722 3.42773 8.70833C3.55968 8.56944 3.8201 8.5 4.20898 8.5C4.59787 8.5 4.86523 8.56944 5.01107 8.70833C5.1569 8.84722 5.35482 8.91667 5.60482 8.91667C5.85482 8.91667 6.05273 8.84722 6.19857 8.70833C6.3444 8.56944 6.61176 8.5 7.00065 8.5C7.38954 8.5 7.6569 8.56944 7.80273 8.70833C7.94857 8.84722 8.14648 8.91667 8.39648 8.91667C8.64648 8.91667 8.8444 8.84722 8.99023 8.70833C9.13607 8.56944 9.40343 8.5 9.79232 8.5C10.1812 8.5 10.4416 8.56944 10.5736 8.70833C10.7055 8.84722 10.9034 8.91667 11.1673 8.91667V9.75C10.7576 9.75 10.4886 9.68056 10.3602 9.54167C10.2319 9.40278 10.0426 9.33333 9.79232 9.33333C9.54204 9.33333 9.34412 9.40278 9.19857 9.54167C9.05301 9.68056 8.78565 9.75 8.39648 9.75C8.00732 9.75 7.73996 9.68056 7.5944 9.54167C7.44885 9.40278 7.25093 9.33333 7.00065 9.33333C6.75037 9.33333 6.55246 9.40278 6.4069 9.54167C6.26135 9.68056 5.99398 9.75 5.60482 9.75C5.21565 9.75 4.94829 9.68056 4.80273 9.54167C4.65718 9.40278 4.45926 9.33333 4.20898 9.33333C3.95871 9.33333 3.7694 9.40278 3.64107 9.54167C3.51273 9.68056 3.24371 9.75 2.83398 9.75ZM2.83398 7.875V7.04167C3.09787 7.04167 3.29579 6.97222 3.42773 6.83333C3.55968 6.69444 3.8201 6.625 4.20898 6.625C4.59787 6.625 4.86704 6.69444 5.01648 6.83333C5.16593 6.97222 5.36204 7.04167 5.60482 7.04167C5.85482 7.04167 6.05273 6.97222 6.19857 6.83333C6.3444 6.69444 6.61176 6.625 7.00065 6.625C7.38954 6.625 7.6569 6.69444 7.80273 6.83333C7.94857 6.97222 8.14648 7.04167 8.39648 7.04167C8.64648 7.04167 8.8444 6.97222 8.99023 6.83333C9.13607 6.69444 9.40343 6.625 9.79232 6.625C10.1812 6.625 10.4416 6.69444 10.5736 6.83333C10.7055 6.97222 10.9034 7.04167 11.1673 7.04167V7.875C10.7576 7.875 10.4886 7.80556 10.3602 7.66667C10.2319 7.52778 10.0426 7.45833 9.79232 7.45833C9.54204 7.45833 9.34926 7.52778 9.21398 7.66667C9.07871 7.80556 8.80621 7.875 8.39648 7.875C8.00065 7.875 7.73162 7.80556 7.5894 7.66667C7.44718 7.52778 7.25093 7.45833 7.00065 7.45833C6.73676 7.45833 6.54065 7.52778 6.41232 7.66667C6.28398 7.80556 6.01482 7.875 5.60482 7.875C5.19482 7.875 4.92218 7.80556 4.7869 7.66667C4.65162 7.52778 4.45898 7.45833 4.20898 7.45833C3.95898 7.45833 3.76982 7.52778 3.64148 7.66667C3.51315 7.80556 3.24398 7.875 2.83398 7.875ZM4.87565 5.75L6.26107 4.36458L5.8444 3.94792C5.61523 3.71875 5.37218 3.55208 5.11523 3.44792C4.85829 3.34375 4.54232 3.29167 4.16732 3.29167V2.25C4.68815 2.25 5.11871 2.30736 5.45898 2.42208C5.79926 2.53681 6.1326 2.75722 6.45898 3.08333L9.12565 5.75C9.0076 5.82639 8.89301 5.88722 8.7819 5.9325C8.67079 5.97778 8.54232 6.00028 8.39648 6C8.14648 6 7.94857 5.93056 7.80273 5.79167C7.6569 5.65278 7.38954 5.58333 7.00065 5.58333C6.61176 5.58333 6.3444 5.65278 6.19857 5.79167C6.05273 5.93056 5.85482 6 5.60482 6C5.45898 6 5.33051 5.9775 5.2194 5.9325C5.10829 5.8875 4.99371 5.82667 4.87565 5.75ZM8.95898 2.25C9.25065 2.25 9.49718 2.3525 9.69857 2.5575C9.89996 2.7625 10.0007 3.00722 10.0007 3.29167C10.0007 3.58333 9.89996 3.82986 9.69857 4.03125C9.49718 4.23264 9.25065 4.33333 8.95898 4.33333C8.66732 4.33333 8.42079 4.23264 8.2194 4.03125C8.01801 3.82986 7.91732 3.58333 7.91732 3.29167C7.91732 3.00695 8.01801 2.76208 8.2194 2.55708C8.42079 2.35208 8.66732 2.24972 8.95898 2.25Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_194">
-                            <rect width="10" height="10" fill="white"/>
-                            </clipPath>
-                            </defs>
+                            <svg width="11" height="11" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.75 7.875V2.25H3V0.75H6V2.25H8.25V7.875H0.75ZM3.75 2.25H5.25V1.5H3.75V2.25ZM7.5 5.625H5.625V6.375H3.375V5.625H1.5V7.125H7.5V5.625ZM4.125 5.625H4.875V4.875H4.125V5.625ZM1.5 4.875H3.375V4.125H5.625V4.875H7.5V3H1.5V4.875Z" fill="white"/>
                             </svg>
                         </div>
-                        <div>Swimming Pool</div>
+                        <div class="text-[10px]">Business Facility</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center justify-center gap-2">
                         <div>
-                            <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_215)">
-                            <path d="M1.97852 4.33752L2.42935 5.93294L3.22685 5.70752M3.60956 4.02002L3.57622 5.12835C3.57186 5.27395 3.62551 5.41531 3.72537 5.52135C3.82524 5.62738 3.96313 5.6894 4.10872 5.69377C4.25432 5.69813 4.39568 5.64448 4.50172 5.54462C4.60775 5.44476 4.66978 5.30686 4.67414 5.16127L4.70727 4.05294M5.20914 5.94044L5.36914 4.29044L5.74039 4.32648C5.83522 4.33561 5.92732 4.36335 6.01142 4.40809C6.09553 4.45284 6.16999 4.51373 6.23055 4.58727C6.29111 4.66081 6.33658 4.74557 6.36436 4.8367C6.39215 4.92782 6.4017 5.02353 6.39247 5.11835L6.37227 5.3246C6.36313 5.41941 6.3354 5.51149 6.29067 5.59558C6.24593 5.67967 6.18507 5.75412 6.11155 5.81468C6.03803 5.87524 5.95329 5.92072 5.86219 5.94851C5.77109 5.97631 5.6754 5.98588 5.5806 5.97669L5.20914 5.94044Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M7.96405 4.69183C7.93513 4.38991 7.66694 4.1686 7.36502 4.19752C7.06311 4.22644 6.8418 4.49463 6.87072 4.79654L6.92405 5.35337C6.95297 5.65528 7.22116 5.87659 7.52307 5.84768C7.82499 5.81876 8.0463 5.55057 8.01738 5.24865L7.96405 4.69183Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8.02148 1.14587H1.97982C1.51958 1.14587 1.14648 1.51897 1.14648 1.97921V8.02087C1.14648 8.48111 1.51958 8.85421 1.97982 8.85421H8.02148C8.48172 8.85421 8.85482 8.48111 8.85482 8.02087V1.97921C8.85482 1.51897 8.48172 1.14587 8.02148 1.14587Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_215">
-                            <rect width="10" height="10" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        </div>
-                        <div>Ludo</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.916016 8.25004V7.33337C1.20629 7.33337 1.42217 7.25699 1.56364 7.10421C1.70511 6.95143 2.00104 6.87504 2.45143 6.87504C2.90182 6.87504 3.1979 6.95143 3.33968 7.10421C3.48146 7.25699 3.68954 7.33337 3.96393 7.33337C4.25421 7.33337 4.47008 7.25699 4.61156 7.10421C4.75303 6.95143 5.04896 6.87504 5.49935 6.87504C5.93477 6.87504 6.23085 6.95143 6.3876 7.10421C6.54435 7.25699 6.76007 7.33337 7.03477 7.33337C7.32504 7.33337 7.5371 7.25699 7.67093 7.10421C7.80477 6.95143 8.09688 6.87504 8.54727 6.87504C8.99765 6.87504 9.29374 6.95143 9.43552 7.10421C9.57729 7.25699 9.79302 7.33337 10.0827 7.33337V8.25004C9.64727 8.25004 9.35134 8.17365 9.19489 8.02087C9.03845 7.8681 8.82257 7.79171 8.54727 7.79171C8.27196 7.79171 8.06388 7.8681 7.92302 8.02087C7.78215 8.17365 7.48607 8.25004 7.03477 8.25004C6.59935 8.25004 6.30342 8.17365 6.14697 8.02087C5.99053 7.8681 5.77465 7.79171 5.49935 7.79171C5.20907 7.79171 4.99335 7.8681 4.85218 8.02087C4.71102 8.17365 4.41493 8.25004 3.96393 8.25004C3.51293 8.25004 3.22082 8.17365 3.0876 8.02087C2.95438 7.8681 2.74232 7.79171 2.45143 7.79171C2.16054 7.79171 1.94482 7.8681 1.80427 8.02087C1.66371 8.17365 1.36763 8.25004 0.916016 8.25004ZM0.916016 6.41671V5.50004C1.20629 5.50004 1.42217 5.42365 1.56364 5.27087C1.70511 5.1181 2.00104 5.04171 2.45143 5.04171C2.88685 5.04171 3.17911 5.1181 3.32822 5.27087C3.47734 5.42365 3.68924 5.50004 3.96393 5.50004C4.25421 5.50004 4.46993 5.42365 4.6111 5.27087C4.75227 5.1181 5.04835 5.04171 5.49935 5.04171C5.93477 5.04171 6.22886 5.1181 6.38164 5.27087C6.53442 5.42365 6.74449 5.50004 7.01185 5.50004C7.30213 5.50004 7.51785 5.42365 7.65902 5.27087C7.80018 5.1181 8.09627 5.04171 8.54727 5.04171C8.98268 5.04171 9.27877 5.1181 9.43552 5.27087C9.59227 5.42365 9.80799 5.50004 10.0827 5.50004V6.41671C9.63199 6.41671 9.33209 6.34032 9.18297 6.18754C9.03386 6.03476 8.82196 5.95837 8.54727 5.95837C8.27257 5.95837 8.06449 6.03476 7.92302 6.18754C7.78154 6.34032 7.48546 6.41671 7.03477 6.41671C6.59935 6.41671 6.30342 6.34032 6.14697 6.18754C5.99053 6.03476 5.77465 5.95837 5.49935 5.95837C5.20907 5.95837 4.99702 6.03476 4.86318 6.18754C4.72935 6.34032 4.43724 6.41671 3.98685 6.41671C3.53646 6.41671 3.23671 6.34032 3.0876 6.18754C2.93849 6.03476 2.72643 5.95837 2.45143 5.95837C2.17643 5.95837 1.96071 6.03476 1.80427 6.18754C1.64782 6.34032 1.35174 6.41671 0.916016 6.41671ZM0.916016 4.58337V3.66671C1.20629 3.66671 1.42217 3.59032 1.56364 3.43754C1.70511 3.28476 2.00104 3.20837 2.45143 3.20837C2.88685 3.20837 3.17911 3.28476 3.32822 3.43754C3.47734 3.59032 3.68924 3.66671 3.96393 3.66671C4.25421 3.66671 4.46993 3.59032 4.6111 3.43754C4.75227 3.28476 5.04835 3.20837 5.49935 3.20837C5.93477 3.20837 6.22886 3.28476 6.38164 3.43754C6.53442 3.59032 6.74449 3.66671 7.01185 3.66671C7.30213 3.66671 7.51785 3.59032 7.65902 3.43754C7.80018 3.28476 8.09627 3.20837 8.54727 3.20837C8.98268 3.20837 9.27877 3.28476 9.43552 3.43754C9.59227 3.59032 9.80799 3.66671 10.0827 3.66671V4.58337C9.63199 4.58337 9.33209 4.50699 9.18297 4.35421C9.03386 4.20143 8.82196 4.12504 8.54727 4.12504C8.27257 4.12504 8.06449 4.20143 7.92302 4.35421C7.78154 4.50699 7.48546 4.58337 7.03477 4.58337C6.59935 4.58337 6.30342 4.50699 6.14697 4.35421C5.99053 4.20143 5.77465 4.12504 5.49935 4.12504C5.20907 4.12504 4.99702 4.20143 4.86318 4.35421C4.72935 4.50699 4.43724 4.58337 3.98685 4.58337C3.53646 4.58337 3.23671 4.50699 3.0876 4.35421C2.93849 4.20143 2.72643 4.12504 2.45143 4.12504C2.17643 4.12504 1.96071 4.20143 1.80427 4.35421C1.64782 4.50699 1.35174 4.58337 0.916016 4.58337Z" fill="white"/>
-                            </svg>
-                        </div>
-                        <div>Water Sport</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="14" height="14" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_212)">
-                            <path d="M7.1518 1.84834C6.80465 1.49855 6.39158 1.22107 5.9365 1.03196C5.48142 0.842848 4.99336 0.745853 4.50055 0.746587C4.00761 0.745754 3.5194 0.842701 3.06419 1.03182C2.60897 1.22093 2.19578 1.49846 1.84855 1.84834C0.386422 3.31009 0.386422 5.68946 1.84855 7.15159C2.19583 7.50151 2.60908 7.77906 3.06436 7.96818C3.51964 8.1573 4.00792 8.25422 4.50092 8.25334C4.99371 8.25412 5.48175 8.15718 5.93683 7.96814C6.39191 7.77909 6.80499 7.50168 7.15217 7.15196C8.6143 5.69021 8.6143 3.31084 7.1518 1.84834ZM4.56805 1.49996H4.43342C4.4563 1.49959 4.47805 1.49659 4.50092 1.49659C4.5238 1.49659 4.54517 1.49959 4.56805 1.49996ZM6.8413 6.37496H6.00017L5.52842 7.31846C5.19924 7.43971 4.85135 7.50228 4.50055 7.50334C4.1491 7.50238 3.80055 7.43968 3.4708 7.31809L3.00017 6.37871H2.16205C1.85284 5.99429 1.64373 5.53922 1.55342 5.05421L2.25017 4.12496L1.79417 3.21259C1.94009 2.9033 2.13781 2.62123 2.3788 2.37859C2.71665 2.03968 3.13067 1.78651 3.5863 1.64021L4.50017 2.24996L5.41442 1.64059C5.87001 1.78677 6.28403 2.03981 6.62192 2.37859C6.86267 2.62092 7.06026 2.9026 7.20617 3.21146L6.75017 4.12496L7.44692 5.05421C7.35706 5.53767 7.14901 5.9914 6.8413 6.37496Z" fill="white"/>
-                            <path d="M3.1875 4.125L3.75 5.625H5.25L5.8125 4.125L4.5 3.1875L3.1875 4.125Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_212">
-                            <rect width="9" height="9" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        </div>
-                        <div>Football</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="13" height="13" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_207)">
-                            <path d="M6.00018 5.00001C6.3538 5.00001 6.69294 5.14048 6.94299 5.39053C7.19304 5.64058 7.33352 5.97972 7.33352 6.33334C7.33352 6.68696 7.19304 7.0261 6.94299 7.27615C6.69294 7.5262 6.3538 7.66667 6.00018 7.66667C5.64656 7.66667 5.30742 7.5262 5.05737 7.27615C4.80732 7.0261 4.66685 6.68696 4.66685 6.33334C4.66685 5.97972 4.80732 5.64058 5.05737 5.39053C5.30742 5.14048 5.64656 5.00001 6.00018 5.00001ZM6.00018 5.66667C5.82337 5.66667 5.6538 5.73691 5.52878 5.86194C5.40375 5.98696 5.33352 6.15653 5.33352 6.33334C5.33352 6.51015 5.40375 6.67972 5.52878 6.80474C5.6538 6.92977 5.82337 7.00001 6.00018 7.00001C6.17699 7.00001 6.34656 6.92977 6.47159 6.80474C6.59661 6.67972 6.66685 6.51015 6.66685 6.33334C6.66685 6.15653 6.59661 5.98696 6.47159 5.86194C6.34656 5.73691 6.17699 5.66667 6.00018 5.66667ZM2.01685 4.84667C2.01685 4.84667 2.48685 4.37334 2.49018 3.43334C2.37018 2.70334 2.65685 1.84667 3.31352 1.19334C4.29018 0.216674 5.71352 0.0566736 6.50018 0.83334C7.27685 1.62001 7.11685 3.04334 6.14018 4.02001C5.48685 4.67667 4.63018 4.96334 3.90018 4.84334C2.96018 4.84667 2.48685 5.31667 2.48685 5.31667L1.07352 6.73001L0.603516 6.26001L2.01685 4.84667ZM6.02352 1.31001C5.50018 0.790007 4.50018 0.946674 3.78352 1.66667C3.07018 2.38001 2.91018 3.38334 3.43018 3.90334C3.95352 4.42334 4.95352 4.26334 5.66685 3.55001C6.38685 2.83334 6.54352 1.83334 6.02352 1.31001Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_207">
-                            <rect width="8" height="8" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        </div>
-                        <div>Tennis</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.70278 1.375L6.11259 2.95419C5.71659 3.35053 5.71659 4.00778 6.11259 4.40481L5.50072 5.005L5.06072 4.565L2.48259 1.98688L2.23509 1.75038L1.98759 1.98653C1.69539 2.28081 1.53141 2.6787 1.53141 3.09341C1.53141 3.50811 1.69539 3.906 1.98759 4.20028L4.14703 6.35903L1.47266 9.03341L1.96662 9.52841L4.641 6.85334L5.04938 7.25072L5.29619 7.49753L5.53269 7.25072L6.14456 6.63816L9.03447 9.52806L9.52947 9.03306L6.39241 5.90734L5.99469 5.5L6.59625 4.88813H6.60725L6.61756 4.89844C7.01563 5.27656 7.65569 5.27828 8.04619 4.88813L8.0785 4.84481L9.62538 3.29794L9.14206 2.81462L7.56322 4.39312C7.41369 4.543 7.24113 4.54609 7.09056 4.40447L8.90556 2.57812L8.42259 2.09481L6.59625 3.90981C6.45463 3.75959 6.45772 3.58669 6.60725 3.4375L8.18609 1.85831L7.70278 1.375ZM2.33134 2.82563L5.66228 6.15519L5.29653 6.52059L2.48225 3.70528C2.22719 3.45091 2.21962 3.12916 2.331 2.82528L2.33134 2.82563Z" fill="white"/>
                             </svg>
                         </div>
-                        <div>Wld Cls Dine</div>
+                        <div class="text-[10px]">Dining Option</div>
+                    </div>
+                    <div class="flex items-center xl:justifycenter justify-start gap-2">
+                        <div>
+                            <svg width="10" height="11" viewBox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.42856 6.63044V8M3.42856 6.63044C3.42856 5.41304 4.33341 3.646 5.44654 2.65778L5.85711 2.29348V2.21739H4.43655M3.42856 6.63044C3.42856 5.41304 2.5237 3.646 1.41057 2.65778L1 2.29348V2.21739H4.43655M3.42856 8H1.99999M3.42856 8H4.85712M4.43655 2.21739C4.46413 1.95464 4.56251 1.70601 4.71982 1.50151C4.87713 1.29702 5.08665 1.14539 5.32307 1.06494C5.5595 0.984494 5.81274 0.978662 6.05221 1.04815C6.29168 1.11764 6.50715 1.25947 6.67261 1.45654C6.83808 1.6536 6.94646 1.89747 6.98467 2.1587C7.02288 2.41994 6.9893 2.68737 6.88796 2.92872C6.78663 3.17006 6.62189 3.37501 6.41362 3.51882C6.20535 3.66262 5.96245 3.73914 5.71425 3.73913M2.14285 3.43478H4.71426" stroke="white"/>
+                            </svg>
+                        </div>
+                        <div class="text-[10px]">Bar & Lounge</div>
+                    </div>
+                    <div class="flex items-center justify-center xl:justify-start lg:pl-0 md:pl-5 pl-0 gap-2">
+                        <div>
+                            <svg width="11" height="11" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 10C4.39167 9.925 3.7875 9.7605 3.1875 9.5065C2.5875 9.2525 2.05217 8.88783 1.5815 8.4125C1.11083 7.93717 0.7295 7.33717 0.437501 6.6125C0.145501 5.88783 -0.000332763 5.017 5.70125e-07 4V3.5H0.500001C0.925 3.5 1.3625 3.55417 1.8125 3.6625C2.2625 3.77083 2.68333 3.93333 3.075 4.15C3.175 3.43333 3.40217 2.69783 3.7565 1.9435C4.11083 1.18917 4.52533 0.541333 5 0C5.475 0.541667 5.88967 1.18967 6.244 1.944C6.59833 2.69833 6.82533 3.43367 6.925 4.15C7.31667 3.93333 7.7375 3.77083 8.1875 3.6625C8.6375 3.55417 9.075 3.5 9.5 3.5H10V4C10 5.01667 9.85417 5.8875 9.5625 6.6125C9.27083 7.3375 8.88967 7.9375 8.419 8.4125C7.94833 8.8875 7.415 9.25217 6.819 9.5065C6.223 9.76083 5.61667 9.92533 5 10ZM4.975 8.975C4.88333 7.59167 4.47283 6.54583 3.7435 5.8375C3.01417 5.12917 2.108 4.69167 1.025 4.525C1.11667 5.95 1.53967 7.0125 2.294 7.7125C3.04833 8.4125 3.942 8.83333 4.975 8.975ZM5 5.8C5.125 5.61667 5.27717 5.42717 5.4565 5.2315C5.63583 5.03583 5.80867 4.867 5.975 4.725C5.95833 4.25 5.86467 3.75417 5.694 3.2375C5.52333 2.72083 5.292 2.21667 5 1.725C4.70833 2.21667 4.477 2.72083 4.306 3.2375C4.135 3.75417 4.04133 4.25 4.025 4.725C4.19167 4.86667 4.36667 5.0355 4.55 5.2315C4.73333 5.4275 4.88333 5.617 5 5.8ZM5.975 8.75C6.28333 8.65 6.60417 8.50417 6.9375 8.3125C7.27083 8.12083 7.58133 7.8605 7.869 7.5315C8.15667 7.2025 8.4025 6.792 8.6065 6.3C8.8105 5.808 8.93333 5.21633 8.975 4.525C8.19167 4.64167 7.50417 4.90217 6.9125 5.3065C6.32083 5.71083 5.86667 6.22533 5.55 6.85C5.65 7.11667 5.7355 7.40833 5.8065 7.725C5.8775 8.04167 5.93367 8.38333 5.975 8.75Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="text-[10px]">Spa Treatment</div>
                     </div>
                 </div>
                 
                 <!-- Book-now button (tiny) -->
-                <div class="absolute bottom-3 right-3">
+                <div class="absolute bottom-3 xl:right-3 right-28">
                     <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer">
                     <button
-                    class="bg-white text-purple p-1 rounded-md font-medium text-sm hover:bg-darkPurple transition">
+                    class="bg-white text-purple py-1 px-2 rounded-md font-medium text-xs hover:bg-darkPurple hover:text-white transition">
                     Book now
                     </button>
                     </a>
@@ -883,27 +926,28 @@
         </div>
         </div>
 
-        <div class="relative bg-cover bg-center rounded-xl h-[484px]" style="background-image: url('./assets/images/Yacht-hotel.png');">
+        <!-- Lakowe Lakes Apartment -->
+        <div class="relative bg-cover bg-center rounded-xl xl:h-[484px] h-[454px]" style="background-image: url('./assets/images/Lakowe-lakes-apartment.png');">
 
         <!-- card -->
-         <div class="absolute bottom-5 right-5 left-5 bg-purple text-white text-xs py-3 rounded-tr-xl rounded-bl-xl">
+        <div class="absolute xl:bottom-5 bottom-3 xl:right-5 right-3 xl:left-5 left-3 bg-purple text-white py-3 rounded-tr-xl rounded-bl-xl">
 
-            <div class="flex justify-between items-center px-7 pb-7">
+            <div class="flex justify-between items-center xl:px-5 px-3 pb-5">
             <div>
-                <h3 class="text-lg font-semibold leading-none">Salt Beach</h3>
-                <p class="text-sm text-gray-200">Ikaare Private Island</p>
+                <h3 class="xl:text-lg text-base font-semibold leading-none">Lakowe Lakes Apartment</h3>
+                <p class="xl:text-sm text-xs text-gray-200">Lakowe</p>
             </div>
 
-            <div class="text-right leading-tight">
-                <span class="block text-base font-bold">800k</span>
-                <span class="block text-sm">per night</span>
+            <div class="text-right xl:leading-tight">
+                <span class="block xl:text-base text-sm font-bold">380k</span>
+                <span class="block xl:text-sm text-xs">per night</span>
             </div>
             </div>
 
             <!-- Features row -->
-             <div class="flex">
-                <div class="grid grid-cols-3 gap-y-5 px-7">
-                    <div class="flex items-center justify-center gap-4">
+            <div class="xl:flex">
+                <div class="grid xl:grid-cols-3 grid-cols-2 xl:gap-y-5 gap-y-3 gap-x-10 xl:gap-x-0 xl:px-5 px-3 mb-8 xl:mb-0">
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
                         <div>
                             <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_453_194)">
@@ -916,50 +960,33 @@
                             </defs>
                             </svg>
                         </div>
-                        <div>Swimming Pool</div>
+                        <div class="text-[10px]">Swimming Pool</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center justify-center gap-2">
                         <div>
-                            <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_215)">
-                            <path d="M1.97852 4.33752L2.42935 5.93294L3.22685 5.70752M3.60956 4.02002L3.57622 5.12835C3.57186 5.27395 3.62551 5.41531 3.72537 5.52135C3.82524 5.62738 3.96313 5.6894 4.10872 5.69377C4.25432 5.69813 4.39568 5.64448 4.50172 5.54462C4.60775 5.44476 4.66978 5.30686 4.67414 5.16127L4.70727 4.05294M5.20914 5.94044L5.36914 4.29044L5.74039 4.32648C5.83522 4.33561 5.92732 4.36335 6.01142 4.40809C6.09553 4.45284 6.16999 4.51373 6.23055 4.58727C6.29111 4.66081 6.33658 4.74557 6.36436 4.8367C6.39215 4.92782 6.4017 5.02353 6.39247 5.11835L6.37227 5.3246C6.36313 5.41941 6.3354 5.51149 6.29067 5.59558C6.24593 5.67967 6.18507 5.75412 6.11155 5.81468C6.03803 5.87524 5.95329 5.92072 5.86219 5.94851C5.77109 5.97631 5.6754 5.98588 5.5806 5.97669L5.20914 5.94044Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M7.96405 4.69183C7.93513 4.38991 7.66694 4.1686 7.36502 4.19752C7.06311 4.22644 6.8418 4.49463 6.87072 4.79654L6.92405 5.35337C6.95297 5.65528 7.22116 5.87659 7.52307 5.84768C7.82499 5.81876 8.0463 5.55057 8.01738 5.24865L7.96405 4.69183Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8.02148 1.14587H1.97982C1.51958 1.14587 1.14648 1.51897 1.14648 1.97921V8.02087C1.14648 8.48111 1.51958 8.85421 1.97982 8.85421H8.02148C8.48172 8.85421 8.85482 8.48111 8.85482 8.02087V1.97921C8.85482 1.51897 8.48172 1.14587 8.02148 1.14587Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_215">
-                            <rect width="10" height="10" fill="white"/>
-                            </clipPath>
-                            </defs>
+                            <svg width="8" height="12" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.28092 2.11938C2.69483 2.11938 3.02695 1.74859 3.02695 1.29179C3.02695 0.834794 2.69483 0.463996 2.28092 0.463996C1.87015 0.463996 1.53471 0.834794 1.53471 1.29179C1.53471 1.74859 1.87015 2.11938 2.28092 2.11938ZM2.49231 2.39998H0.276923C-0.0923077 2.39998 -0.0923077 2.99998 0.276923 2.99998H2.49231C2.86154 2.99998 2.86154 2.39998 2.49231 2.39998ZM6 2.65078C6 1.73339 5.70369 0.856993 5.16369 0.166399C5.16609 0.163999 5.02745 0 5.02745 0L2.92652 2.32958L2.89071 2.36798L2.91065 2.39718C2.94295 2.46098 2.96086 2.53198 2.96825 2.60278C2.97046 2.63198 2.96825 2.66218 2.96511 2.69238C2.96105 2.75398 2.95034 2.81438 2.92652 2.87158L2.92431 2.87738L2.91083 2.91218L2.89717 2.94138C2.80486 3.09858 2.64683 3.19998 2.45483 3.19998H1.2V6.39995L0.796246 9.44653C0.752123 9.69753 0.928615 9.94172 1.15495 9.99052C1.38129 10.0419 1.70769 9.85353 1.75385 9.59993L2.12308 6.19995H2.30769L2.93354 9.62553C2.97969 9.87912 3.30314 10.0419 3.53151 9.99052C3.756 9.94172 3.88117 9.69753 3.83705 9.44653L3.23077 6.19375V3.47137L4.95249 5.29836C4.95249 5.29836 5.12843 5.13336 5.12843 5.13116C5.66585 4.44117 6 3.56457 6 2.65078ZM5.61951 2.99998C5.55785 3.59997 5.23514 4.32557 4.83065 4.85636C4.4568 4.44297 3.6 3.66437 3.23077 3.15418V2.99998H5.61951ZM5.61951 2.39998H3.21268C3.65483 1.79999 4.48154 0.993392 4.90523 0.524996C5.31157 1.05499 5.56006 1.59999 5.61951 2.39998Z" fill="white"/>
                             </svg>
                         </div>
-                        <div>Ludo</div>
+                        <div class="text-[10px]">Archery</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
                         <div>
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.916016 8.25004V7.33337C1.20629 7.33337 1.42217 7.25699 1.56364 7.10421C1.70511 6.95143 2.00104 6.87504 2.45143 6.87504C2.90182 6.87504 3.1979 6.95143 3.33968 7.10421C3.48146 7.25699 3.68954 7.33337 3.96393 7.33337C4.25421 7.33337 4.47008 7.25699 4.61156 7.10421C4.75303 6.95143 5.04896 6.87504 5.49935 6.87504C5.93477 6.87504 6.23085 6.95143 6.3876 7.10421C6.54435 7.25699 6.76007 7.33337 7.03477 7.33337C7.32504 7.33337 7.5371 7.25699 7.67093 7.10421C7.80477 6.95143 8.09688 6.87504 8.54727 6.87504C8.99765 6.87504 9.29374 6.95143 9.43552 7.10421C9.57729 7.25699 9.79302 7.33337 10.0827 7.33337V8.25004C9.64727 8.25004 9.35134 8.17365 9.19489 8.02087C9.03845 7.8681 8.82257 7.79171 8.54727 7.79171C8.27196 7.79171 8.06388 7.8681 7.92302 8.02087C7.78215 8.17365 7.48607 8.25004 7.03477 8.25004C6.59935 8.25004 6.30342 8.17365 6.14697 8.02087C5.99053 7.8681 5.77465 7.79171 5.49935 7.79171C5.20907 7.79171 4.99335 7.8681 4.85218 8.02087C4.71102 8.17365 4.41493 8.25004 3.96393 8.25004C3.51293 8.25004 3.22082 8.17365 3.0876 8.02087C2.95438 7.8681 2.74232 7.79171 2.45143 7.79171C2.16054 7.79171 1.94482 7.8681 1.80427 8.02087C1.66371 8.17365 1.36763 8.25004 0.916016 8.25004ZM0.916016 6.41671V5.50004C1.20629 5.50004 1.42217 5.42365 1.56364 5.27087C1.70511 5.1181 2.00104 5.04171 2.45143 5.04171C2.88685 5.04171 3.17911 5.1181 3.32822 5.27087C3.47734 5.42365 3.68924 5.50004 3.96393 5.50004C4.25421 5.50004 4.46993 5.42365 4.6111 5.27087C4.75227 5.1181 5.04835 5.04171 5.49935 5.04171C5.93477 5.04171 6.22886 5.1181 6.38164 5.27087C6.53442 5.42365 6.74449 5.50004 7.01185 5.50004C7.30213 5.50004 7.51785 5.42365 7.65902 5.27087C7.80018 5.1181 8.09627 5.04171 8.54727 5.04171C8.98268 5.04171 9.27877 5.1181 9.43552 5.27087C9.59227 5.42365 9.80799 5.50004 10.0827 5.50004V6.41671C9.63199 6.41671 9.33209 6.34032 9.18297 6.18754C9.03386 6.03476 8.82196 5.95837 8.54727 5.95837C8.27257 5.95837 8.06449 6.03476 7.92302 6.18754C7.78154 6.34032 7.48546 6.41671 7.03477 6.41671C6.59935 6.41671 6.30342 6.34032 6.14697 6.18754C5.99053 6.03476 5.77465 5.95837 5.49935 5.95837C5.20907 5.95837 4.99702 6.03476 4.86318 6.18754C4.72935 6.34032 4.43724 6.41671 3.98685 6.41671C3.53646 6.41671 3.23671 6.34032 3.0876 6.18754C2.93849 6.03476 2.72643 5.95837 2.45143 5.95837C2.17643 5.95837 1.96071 6.03476 1.80427 6.18754C1.64782 6.34032 1.35174 6.41671 0.916016 6.41671ZM0.916016 4.58337V3.66671C1.20629 3.66671 1.42217 3.59032 1.56364 3.43754C1.70511 3.28476 2.00104 3.20837 2.45143 3.20837C2.88685 3.20837 3.17911 3.28476 3.32822 3.43754C3.47734 3.59032 3.68924 3.66671 3.96393 3.66671C4.25421 3.66671 4.46993 3.59032 4.6111 3.43754C4.75227 3.28476 5.04835 3.20837 5.49935 3.20837C5.93477 3.20837 6.22886 3.28476 6.38164 3.43754C6.53442 3.59032 6.74449 3.66671 7.01185 3.66671C7.30213 3.66671 7.51785 3.59032 7.65902 3.43754C7.80018 3.28476 8.09627 3.20837 8.54727 3.20837C8.98268 3.20837 9.27877 3.28476 9.43552 3.43754C9.59227 3.59032 9.80799 3.66671 10.0827 3.66671V4.58337C9.63199 4.58337 9.33209 4.50699 9.18297 4.35421C9.03386 4.20143 8.82196 4.12504 8.54727 4.12504C8.27257 4.12504 8.06449 4.20143 7.92302 4.35421C7.78154 4.50699 7.48546 4.58337 7.03477 4.58337C6.59935 4.58337 6.30342 4.50699 6.14697 4.35421C5.99053 4.20143 5.77465 4.12504 5.49935 4.12504C5.20907 4.12504 4.99702 4.20143 4.86318 4.35421C4.72935 4.50699 4.43724 4.58337 3.98685 4.58337C3.53646 4.58337 3.23671 4.50699 3.0876 4.35421C2.93849 4.20143 2.72643 4.12504 2.45143 4.12504C2.17643 4.12504 1.96071 4.20143 1.80427 4.35421C1.64782 4.50699 1.35174 4.58337 0.916016 4.58337Z" fill="white"/>
+                            <svg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 7C13.72 7 13.438 6.93392 13.1947 6.82163C12.9373 6.69862 12.6557 6.63417 12.3704 6.63291C12.0837 6.63359 11.8008 6.69805 11.5422 6.82163C11.2958 6.93364 11.023 7 10.7371 7C10.4602 6.99868 10.1869 6.93785 9.93551 6.82163C9.67702 6.69814 9.3943 6.63367 9.10782 6.63291C8.81522 6.63291 8.5327 6.70291 8.28322 6.82163C8.03053 6.93799 7.75584 6.99881 7.47766 7C7.20056 6.99961 6.92688 6.93874 6.67573 6.82163C6.41742 6.69822 6.1349 6.63375 5.84861 6.63291C5.55293 6.63291 5.27405 6.70291 5.02373 6.82163C4.77144 6.93828 4.49695 6.99913 4.21901 7C3.94247 6.99937 3.66939 6.9385 3.41876 6.82163C3.16564 6.70291 2.8862 6.63291 2.5908 6.63291C2.2954 6.63291 2.09576 6.70291 1.84236 6.82163C1.59904 6.93392 1.39996 7 1.11996 7V5.77411C1.39996 5.77411 1.59904 5.70803 1.84236 5.59574C2.09548 5.4801 2.33516 5.4101 2.63056 5.4101C2.92596 5.4101 3.18524 5.4801 3.43864 5.59574C3.68224 5.70775 3.94321 5.77411 4.22909 5.77411C4.51497 5.77411 4.78237 5.70803 5.02905 5.59574C5.28646 5.47494 5.56707 5.41159 5.85141 5.4101C6.14597 5.4101 6.42709 5.4801 6.67714 5.59574C6.92046 5.70775 7.19262 5.77411 7.47822 5.77411C7.76382 5.77411 8.03626 5.70803 8.28322 5.59574C8.54123 5.47466 8.82254 5.41131 9.10754 5.4101C9.40266 5.4101 9.68491 5.4801 9.93523 5.59574C10.1783 5.70775 10.4546 5.77411 10.7369 5.77411C11.0149 5.77328 11.2895 5.71244 11.5419 5.59574C11.8014 5.47496 12.0839 5.41163 12.3701 5.4101C12.6622 5.4101 12.9447 5.4801 13.1944 5.59574C13.4378 5.70775 13.7197 5.77411 13.9997 5.77411L14 7ZM10.7206 1.87972L13.0911 2.06816L12.9122 0.835273L11.172 0.710109C10.7016 0.686868 10.7693 1.16625 10.7693 1.16625L10.7206 1.87972ZM6.32489 1.59886C6.7603 1.59886 7.11086 1.24213 7.11086 0.799432C7.11086 0.356454 6.76058 0 6.32489 0C5.89005 0 5.54033 0.356734 5.54033 0.799432C5.54033 1.24213 5.89005 1.59886 6.32489 1.59886ZM1.47416 4.68039C1.57329 4.65065 1.66991 4.6131 1.76312 4.5681C2.01652 4.44938 2.29568 4.37966 2.59108 4.37966C2.88648 4.37966 3.16592 4.44938 3.41904 4.5681C3.66264 4.68039 3.93341 4.74647 4.21929 4.74647C4.49733 4.74564 4.77192 4.68479 5.02429 4.5681C5.28183 4.44475 5.56362 4.38037 5.84917 4.37966C6.14373 4.37966 6.42625 4.44938 6.6763 4.5681C6.92744 4.68521 7.20112 4.74608 7.47822 4.74647C7.76382 4.74647 8.03654 4.68067 8.2835 4.5681C8.54107 4.44515 8.82269 4.38079 9.1081 4.37966C9.40322 4.37966 9.68546 4.44938 9.93579 4.5681C10.1871 4.68432 10.4605 4.74515 10.7374 4.74647C11.0155 4.74564 11.2901 4.68479 11.5424 4.5681C11.8011 4.44462 12.084 4.38025 12.3707 4.37966C12.6627 4.37966 12.9452 4.44938 13.195 4.5681C13.4462 4.68525 13.72 4.74612 13.9972 4.74647L13.7306 2.56042L3.87797 1.72095L5.36505 0.194328L4.71237 0.134965L3.22724 1.66495L0.000232217 1.3939C-0.0193678 2.51394 1.2076 4.3763 1.47416 4.68039Z" fill="white"/>
                             </svg>
                         </div>
-                        <div>Water Sport</div>
+                        <div class="text-[10px]">Boating</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center justify-center xl:justify-start lg:pl-0 md:pl-5 pl-0 gap-2">
                         <div>
-                            <svg width="14" height="14" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_212)">
-                            <path d="M7.1518 1.84834C6.80465 1.49855 6.39158 1.22107 5.9365 1.03196C5.48142 0.842848 4.99336 0.745853 4.50055 0.746587C4.00761 0.745754 3.5194 0.842701 3.06419 1.03182C2.60897 1.22093 2.19578 1.49846 1.84855 1.84834C0.386422 3.31009 0.386422 5.68946 1.84855 7.15159C2.19583 7.50151 2.60908 7.77906 3.06436 7.96818C3.51964 8.1573 4.00792 8.25422 4.50092 8.25334C4.99371 8.25412 5.48175 8.15718 5.93683 7.96814C6.39191 7.77909 6.80499 7.50168 7.15217 7.15196C8.6143 5.69021 8.6143 3.31084 7.1518 1.84834ZM4.56805 1.49996H4.43342C4.4563 1.49959 4.47805 1.49659 4.50092 1.49659C4.5238 1.49659 4.54517 1.49959 4.56805 1.49996ZM6.8413 6.37496H6.00017L5.52842 7.31846C5.19924 7.43971 4.85135 7.50228 4.50055 7.50334C4.1491 7.50238 3.80055 7.43968 3.4708 7.31809L3.00017 6.37871H2.16205C1.85284 5.99429 1.64373 5.53922 1.55342 5.05421L2.25017 4.12496L1.79417 3.21259C1.94009 2.9033 2.13781 2.62123 2.3788 2.37859C2.71665 2.03968 3.13067 1.78651 3.5863 1.64021L4.50017 2.24996L5.41442 1.64059C5.87001 1.78677 6.28403 2.03981 6.62192 2.37859C6.86267 2.62092 7.06026 2.9026 7.20617 3.21146L6.75017 4.12496L7.44692 5.05421C7.35706 5.53767 7.14901 5.9914 6.8413 6.37496Z" fill="white"/>
-                            <path d="M3.1875 4.125L3.75 5.625H5.25L5.8125 4.125L4.5 3.1875L3.1875 4.125Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_212">
-                            <rect width="9" height="9" fill="white"/>
-                            </clipPath>
-                            </defs>
+                            <svg width="11" height="11" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4.4552 2.0624C4.09707 2.10627 3.7577 2.2334 3.61445 2.35115C2.77895 3.0419 2.3072 3.95502 2.06232 4.75115C1.95688 5.08842 1.88627 5.43561 1.85157 5.78727C1.83882 5.9309 1.8272 6.08127 1.84895 6.2249C1.99257 6.38765 2.19582 6.50577 2.38445 6.60702C2.77857 6.8189 3.3707 7.03865 4.16682 7.12715C4.61757 7.1774 5.18682 7.2059 5.71182 7.1639C6.2567 7.12002 6.67445 7.00565 6.8912 6.83202C7.25645 6.5399 7.3487 6.19902 7.31533 5.90052C7.2797 5.57952 7.09932 5.30802 6.91782 5.1869C6.6047 4.9784 6.2522 4.9574 5.91995 5.0444C5.57795 5.1344 5.29708 5.3294 5.16433 5.48915C5.13102 5.52933 5.08969 5.56212 5.04299 5.58542C4.99629 5.60871 4.94524 5.622 4.8931 5.62444C4.84097 5.62687 4.7889 5.6184 4.74023 5.59956C4.69156 5.58072 4.64736 5.55193 4.61045 5.51502C4.4042 5.30877 4.05358 5.24877 3.5837 5.5619C3.53244 5.59613 3.47352 5.6172 3.41218 5.62323C3.35083 5.62927 3.28894 5.62009 3.23199 5.59651C3.17504 5.57293 3.12478 5.53567 3.08566 5.48803C3.04653 5.44039 3.01976 5.38385 3.0077 5.3234C2.90045 4.78565 2.95632 4.21415 3.05532 3.74277C3.15507 3.27065 3.30507 2.86452 3.41532 2.64477C3.4465 2.58257 3.49437 2.53026 3.55358 2.49371C3.61278 2.45716 3.68099 2.4378 3.75057 2.4378C3.82016 2.4378 3.88837 2.45716 3.94757 2.49371C4.00678 2.53026 4.05465 2.58257 4.08582 2.64477C4.16195 2.79627 4.30107 2.93202 4.46307 2.98902C4.5887 2.9099 4.69783 2.79927 4.78632 2.68115C4.94907 2.4644 5.00345 2.25927 4.93108 2.07815C4.78408 2.02565 4.60632 2.04402 4.4552 2.0624ZM5.01133 1.3259C5.19283 1.36077 5.45795 1.45152 5.58582 1.70727C5.86595 2.26752 5.63458 2.80002 5.38633 3.13115C5.22433 3.34715 5.01583 3.5504 4.7732 3.6749C4.72258 3.70115 4.61945 3.7499 4.50058 3.7499C4.27895 3.7499 4.06182 3.64902 3.8837 3.52302C3.84995 3.63777 3.81732 3.76377 3.7892 3.89727C3.73358 4.15342 3.70343 4.41444 3.6992 4.67652C4.09407 4.54902 4.49795 4.56252 4.84595 4.75902C5.10749 4.55364 5.40828 4.40395 5.72983 4.31915C6.21733 4.19127 6.80233 4.2089 7.3337 4.5629C7.71432 4.81677 8.0027 5.2949 8.06082 5.81802C8.12157 6.36327 7.9322 6.95952 7.35958 7.41777C6.95533 7.74102 6.3392 7.8659 5.7722 7.91127C5.18533 7.95852 4.56545 7.92627 4.08433 7.87265C3.19258 7.77365 2.50782 7.52465 2.02932 7.26777C1.71545 7.09902 1.28607 6.86577 1.14995 6.5084C1.05807 6.26615 1.08207 5.97215 1.10457 5.72015C1.13457 5.38977 1.20807 4.97727 1.3457 4.53027C1.6202 3.63815 2.15757 2.58252 3.1367 1.77327C3.43782 1.52427 3.94183 1.36977 4.3637 1.31802C4.5812 1.2914 4.80995 1.28765 5.01133 1.3259Z" fill="white"/>
                             </svg>
                         </div>
-                        <div>Football</div>
+                        <div class="text-[10px]">Fitness Session</div>
                     </div>
-                    <div class="flex items-center justify-center gap-4">
+                    <div class="flex items-center xl:justify-center justify-start gap-2">
                         <div>
                             <svg width="13" height="13" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_453_207)">
@@ -972,137 +999,15 @@
                             </defs>
                             </svg>
                         </div>
-                        <div>Tennis</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.70278 1.375L6.11259 2.95419C5.71659 3.35053 5.71659 4.00778 6.11259 4.40481L5.50072 5.005L5.06072 4.565L2.48259 1.98688L2.23509 1.75038L1.98759 1.98653C1.69539 2.28081 1.53141 2.6787 1.53141 3.09341C1.53141 3.50811 1.69539 3.906 1.98759 4.20028L4.14703 6.35903L1.47266 9.03341L1.96662 9.52841L4.641 6.85334L5.04938 7.25072L5.29619 7.49753L5.53269 7.25072L6.14456 6.63816L9.03447 9.52806L9.52947 9.03306L6.39241 5.90734L5.99469 5.5L6.59625 4.88813H6.60725L6.61756 4.89844C7.01563 5.27656 7.65569 5.27828 8.04619 4.88813L8.0785 4.84481L9.62538 3.29794L9.14206 2.81462L7.56322 4.39312C7.41369 4.543 7.24113 4.54609 7.09056 4.40447L8.90556 2.57812L8.42259 2.09481L6.59625 3.90981C6.45463 3.75959 6.45772 3.58669 6.60725 3.4375L8.18609 1.85831L7.70278 1.375ZM2.33134 2.82563L5.66228 6.15519L5.29653 6.52059L2.48225 3.70528C2.22719 3.45091 2.21962 3.12916 2.331 2.82528L2.33134 2.82563Z" fill="white"/>
-                            </svg>
-                        </div>
-                        <div>Wld Cls Dine</div>
+                        <div class="text-[10px]">Tennis</div>
                     </div>
                 </div>
                 
                 <!-- Book-now button (tiny) -->
-                <div class="absolute bottom-3 right-3">
+                <div class="absolute bottom-3 xl:right-3 right-28">
                     <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer">
                     <button
-                    class="bg-white text-purple p-1 rounded-md font-medium text-sm hover:bg-darkPurple transition">
-                    Book now
-                    </button>
-                    </a>
-                </div>
-            </div>
-        </div>
-        </div>
-
-        <div class="relative bg-cover bg-center rounded-xl h-[484px]" style="background-image: url('./assets/images/Lakowe-lakes-apartment.png');">
-
-        <!-- card -->
-         <div class="absolute bottom-5 right-5 left-5 bg-purple text-white text-xs py-3 rounded-tr-xl rounded-bl-xl">
-
-            <div class="flex justify-between items-center px-7 pb-7">
-            <div>
-                <h3 class="text-lg font-semibold leading-none">Salt Beach</h3>
-                <p class="text-sm text-gray-200">Ikaare Private Island</p>
-            </div>
-
-            <div class="text-right leading-tight">
-                <span class="block text-base font-bold">800k</span>
-                <span class="block text-sm">per night</span>
-            </div>
-            </div>
-
-            <!-- Features row -->
-             <div class="flex">
-                <div class="grid grid-cols-3 gap-y-5 px-7">
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_194)">
-                            <path d="M2.83398 9.75V8.91667C3.09787 8.91667 3.29579 8.84722 3.42773 8.70833C3.55968 8.56944 3.8201 8.5 4.20898 8.5C4.59787 8.5 4.86523 8.56944 5.01107 8.70833C5.1569 8.84722 5.35482 8.91667 5.60482 8.91667C5.85482 8.91667 6.05273 8.84722 6.19857 8.70833C6.3444 8.56944 6.61176 8.5 7.00065 8.5C7.38954 8.5 7.6569 8.56944 7.80273 8.70833C7.94857 8.84722 8.14648 8.91667 8.39648 8.91667C8.64648 8.91667 8.8444 8.84722 8.99023 8.70833C9.13607 8.56944 9.40343 8.5 9.79232 8.5C10.1812 8.5 10.4416 8.56944 10.5736 8.70833C10.7055 8.84722 10.9034 8.91667 11.1673 8.91667V9.75C10.7576 9.75 10.4886 9.68056 10.3602 9.54167C10.2319 9.40278 10.0426 9.33333 9.79232 9.33333C9.54204 9.33333 9.34412 9.40278 9.19857 9.54167C9.05301 9.68056 8.78565 9.75 8.39648 9.75C8.00732 9.75 7.73996 9.68056 7.5944 9.54167C7.44885 9.40278 7.25093 9.33333 7.00065 9.33333C6.75037 9.33333 6.55246 9.40278 6.4069 9.54167C6.26135 9.68056 5.99398 9.75 5.60482 9.75C5.21565 9.75 4.94829 9.68056 4.80273 9.54167C4.65718 9.40278 4.45926 9.33333 4.20898 9.33333C3.95871 9.33333 3.7694 9.40278 3.64107 9.54167C3.51273 9.68056 3.24371 9.75 2.83398 9.75ZM2.83398 7.875V7.04167C3.09787 7.04167 3.29579 6.97222 3.42773 6.83333C3.55968 6.69444 3.8201 6.625 4.20898 6.625C4.59787 6.625 4.86704 6.69444 5.01648 6.83333C5.16593 6.97222 5.36204 7.04167 5.60482 7.04167C5.85482 7.04167 6.05273 6.97222 6.19857 6.83333C6.3444 6.69444 6.61176 6.625 7.00065 6.625C7.38954 6.625 7.6569 6.69444 7.80273 6.83333C7.94857 6.97222 8.14648 7.04167 8.39648 7.04167C8.64648 7.04167 8.8444 6.97222 8.99023 6.83333C9.13607 6.69444 9.40343 6.625 9.79232 6.625C10.1812 6.625 10.4416 6.69444 10.5736 6.83333C10.7055 6.97222 10.9034 7.04167 11.1673 7.04167V7.875C10.7576 7.875 10.4886 7.80556 10.3602 7.66667C10.2319 7.52778 10.0426 7.45833 9.79232 7.45833C9.54204 7.45833 9.34926 7.52778 9.21398 7.66667C9.07871 7.80556 8.80621 7.875 8.39648 7.875C8.00065 7.875 7.73162 7.80556 7.5894 7.66667C7.44718 7.52778 7.25093 7.45833 7.00065 7.45833C6.73676 7.45833 6.54065 7.52778 6.41232 7.66667C6.28398 7.80556 6.01482 7.875 5.60482 7.875C5.19482 7.875 4.92218 7.80556 4.7869 7.66667C4.65162 7.52778 4.45898 7.45833 4.20898 7.45833C3.95898 7.45833 3.76982 7.52778 3.64148 7.66667C3.51315 7.80556 3.24398 7.875 2.83398 7.875ZM4.87565 5.75L6.26107 4.36458L5.8444 3.94792C5.61523 3.71875 5.37218 3.55208 5.11523 3.44792C4.85829 3.34375 4.54232 3.29167 4.16732 3.29167V2.25C4.68815 2.25 5.11871 2.30736 5.45898 2.42208C5.79926 2.53681 6.1326 2.75722 6.45898 3.08333L9.12565 5.75C9.0076 5.82639 8.89301 5.88722 8.7819 5.9325C8.67079 5.97778 8.54232 6.00028 8.39648 6C8.14648 6 7.94857 5.93056 7.80273 5.79167C7.6569 5.65278 7.38954 5.58333 7.00065 5.58333C6.61176 5.58333 6.3444 5.65278 6.19857 5.79167C6.05273 5.93056 5.85482 6 5.60482 6C5.45898 6 5.33051 5.9775 5.2194 5.9325C5.10829 5.8875 4.99371 5.82667 4.87565 5.75ZM8.95898 2.25C9.25065 2.25 9.49718 2.3525 9.69857 2.5575C9.89996 2.7625 10.0007 3.00722 10.0007 3.29167C10.0007 3.58333 9.89996 3.82986 9.69857 4.03125C9.49718 4.23264 9.25065 4.33333 8.95898 4.33333C8.66732 4.33333 8.42079 4.23264 8.2194 4.03125C8.01801 3.82986 7.91732 3.58333 7.91732 3.29167C7.91732 3.00695 8.01801 2.76208 8.2194 2.55708C8.42079 2.35208 8.66732 2.24972 8.95898 2.25Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_194">
-                            <rect width="10" height="10" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        </div>
-                        <div>Swimming Pool</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_215)">
-                            <path d="M1.97852 4.33752L2.42935 5.93294L3.22685 5.70752M3.60956 4.02002L3.57622 5.12835C3.57186 5.27395 3.62551 5.41531 3.72537 5.52135C3.82524 5.62738 3.96313 5.6894 4.10872 5.69377C4.25432 5.69813 4.39568 5.64448 4.50172 5.54462C4.60775 5.44476 4.66978 5.30686 4.67414 5.16127L4.70727 4.05294M5.20914 5.94044L5.36914 4.29044L5.74039 4.32648C5.83522 4.33561 5.92732 4.36335 6.01142 4.40809C6.09553 4.45284 6.16999 4.51373 6.23055 4.58727C6.29111 4.66081 6.33658 4.74557 6.36436 4.8367C6.39215 4.92782 6.4017 5.02353 6.39247 5.11835L6.37227 5.3246C6.36313 5.41941 6.3354 5.51149 6.29067 5.59558C6.24593 5.67967 6.18507 5.75412 6.11155 5.81468C6.03803 5.87524 5.95329 5.92072 5.86219 5.94851C5.77109 5.97631 5.6754 5.98588 5.5806 5.97669L5.20914 5.94044Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M7.96405 4.69183C7.93513 4.38991 7.66694 4.1686 7.36502 4.19752C7.06311 4.22644 6.8418 4.49463 6.87072 4.79654L6.92405 5.35337C6.95297 5.65528 7.22116 5.87659 7.52307 5.84768C7.82499 5.81876 8.0463 5.55057 8.01738 5.24865L7.96405 4.69183Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8.02148 1.14587H1.97982C1.51958 1.14587 1.14648 1.51897 1.14648 1.97921V8.02087C1.14648 8.48111 1.51958 8.85421 1.97982 8.85421H8.02148C8.48172 8.85421 8.85482 8.48111 8.85482 8.02087V1.97921C8.85482 1.51897 8.48172 1.14587 8.02148 1.14587Z" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_215">
-                            <rect width="10" height="10" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        </div>
-                        <div>Ludo</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.916016 8.25004V7.33337C1.20629 7.33337 1.42217 7.25699 1.56364 7.10421C1.70511 6.95143 2.00104 6.87504 2.45143 6.87504C2.90182 6.87504 3.1979 6.95143 3.33968 7.10421C3.48146 7.25699 3.68954 7.33337 3.96393 7.33337C4.25421 7.33337 4.47008 7.25699 4.61156 7.10421C4.75303 6.95143 5.04896 6.87504 5.49935 6.87504C5.93477 6.87504 6.23085 6.95143 6.3876 7.10421C6.54435 7.25699 6.76007 7.33337 7.03477 7.33337C7.32504 7.33337 7.5371 7.25699 7.67093 7.10421C7.80477 6.95143 8.09688 6.87504 8.54727 6.87504C8.99765 6.87504 9.29374 6.95143 9.43552 7.10421C9.57729 7.25699 9.79302 7.33337 10.0827 7.33337V8.25004C9.64727 8.25004 9.35134 8.17365 9.19489 8.02087C9.03845 7.8681 8.82257 7.79171 8.54727 7.79171C8.27196 7.79171 8.06388 7.8681 7.92302 8.02087C7.78215 8.17365 7.48607 8.25004 7.03477 8.25004C6.59935 8.25004 6.30342 8.17365 6.14697 8.02087C5.99053 7.8681 5.77465 7.79171 5.49935 7.79171C5.20907 7.79171 4.99335 7.8681 4.85218 8.02087C4.71102 8.17365 4.41493 8.25004 3.96393 8.25004C3.51293 8.25004 3.22082 8.17365 3.0876 8.02087C2.95438 7.8681 2.74232 7.79171 2.45143 7.79171C2.16054 7.79171 1.94482 7.8681 1.80427 8.02087C1.66371 8.17365 1.36763 8.25004 0.916016 8.25004ZM0.916016 6.41671V5.50004C1.20629 5.50004 1.42217 5.42365 1.56364 5.27087C1.70511 5.1181 2.00104 5.04171 2.45143 5.04171C2.88685 5.04171 3.17911 5.1181 3.32822 5.27087C3.47734 5.42365 3.68924 5.50004 3.96393 5.50004C4.25421 5.50004 4.46993 5.42365 4.6111 5.27087C4.75227 5.1181 5.04835 5.04171 5.49935 5.04171C5.93477 5.04171 6.22886 5.1181 6.38164 5.27087C6.53442 5.42365 6.74449 5.50004 7.01185 5.50004C7.30213 5.50004 7.51785 5.42365 7.65902 5.27087C7.80018 5.1181 8.09627 5.04171 8.54727 5.04171C8.98268 5.04171 9.27877 5.1181 9.43552 5.27087C9.59227 5.42365 9.80799 5.50004 10.0827 5.50004V6.41671C9.63199 6.41671 9.33209 6.34032 9.18297 6.18754C9.03386 6.03476 8.82196 5.95837 8.54727 5.95837C8.27257 5.95837 8.06449 6.03476 7.92302 6.18754C7.78154 6.34032 7.48546 6.41671 7.03477 6.41671C6.59935 6.41671 6.30342 6.34032 6.14697 6.18754C5.99053 6.03476 5.77465 5.95837 5.49935 5.95837C5.20907 5.95837 4.99702 6.03476 4.86318 6.18754C4.72935 6.34032 4.43724 6.41671 3.98685 6.41671C3.53646 6.41671 3.23671 6.34032 3.0876 6.18754C2.93849 6.03476 2.72643 5.95837 2.45143 5.95837C2.17643 5.95837 1.96071 6.03476 1.80427 6.18754C1.64782 6.34032 1.35174 6.41671 0.916016 6.41671ZM0.916016 4.58337V3.66671C1.20629 3.66671 1.42217 3.59032 1.56364 3.43754C1.70511 3.28476 2.00104 3.20837 2.45143 3.20837C2.88685 3.20837 3.17911 3.28476 3.32822 3.43754C3.47734 3.59032 3.68924 3.66671 3.96393 3.66671C4.25421 3.66671 4.46993 3.59032 4.6111 3.43754C4.75227 3.28476 5.04835 3.20837 5.49935 3.20837C5.93477 3.20837 6.22886 3.28476 6.38164 3.43754C6.53442 3.59032 6.74449 3.66671 7.01185 3.66671C7.30213 3.66671 7.51785 3.59032 7.65902 3.43754C7.80018 3.28476 8.09627 3.20837 8.54727 3.20837C8.98268 3.20837 9.27877 3.28476 9.43552 3.43754C9.59227 3.59032 9.80799 3.66671 10.0827 3.66671V4.58337C9.63199 4.58337 9.33209 4.50699 9.18297 4.35421C9.03386 4.20143 8.82196 4.12504 8.54727 4.12504C8.27257 4.12504 8.06449 4.20143 7.92302 4.35421C7.78154 4.50699 7.48546 4.58337 7.03477 4.58337C6.59935 4.58337 6.30342 4.50699 6.14697 4.35421C5.99053 4.20143 5.77465 4.12504 5.49935 4.12504C5.20907 4.12504 4.99702 4.20143 4.86318 4.35421C4.72935 4.50699 4.43724 4.58337 3.98685 4.58337C3.53646 4.58337 3.23671 4.50699 3.0876 4.35421C2.93849 4.20143 2.72643 4.12504 2.45143 4.12504C2.17643 4.12504 1.96071 4.20143 1.80427 4.35421C1.64782 4.50699 1.35174 4.58337 0.916016 4.58337Z" fill="white"/>
-                            </svg>
-                        </div>
-                        <div>Water Sport</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="14" height="14" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_212)">
-                            <path d="M7.1518 1.84834C6.80465 1.49855 6.39158 1.22107 5.9365 1.03196C5.48142 0.842848 4.99336 0.745853 4.50055 0.746587C4.00761 0.745754 3.5194 0.842701 3.06419 1.03182C2.60897 1.22093 2.19578 1.49846 1.84855 1.84834C0.386422 3.31009 0.386422 5.68946 1.84855 7.15159C2.19583 7.50151 2.60908 7.77906 3.06436 7.96818C3.51964 8.1573 4.00792 8.25422 4.50092 8.25334C4.99371 8.25412 5.48175 8.15718 5.93683 7.96814C6.39191 7.77909 6.80499 7.50168 7.15217 7.15196C8.6143 5.69021 8.6143 3.31084 7.1518 1.84834ZM4.56805 1.49996H4.43342C4.4563 1.49959 4.47805 1.49659 4.50092 1.49659C4.5238 1.49659 4.54517 1.49959 4.56805 1.49996ZM6.8413 6.37496H6.00017L5.52842 7.31846C5.19924 7.43971 4.85135 7.50228 4.50055 7.50334C4.1491 7.50238 3.80055 7.43968 3.4708 7.31809L3.00017 6.37871H2.16205C1.85284 5.99429 1.64373 5.53922 1.55342 5.05421L2.25017 4.12496L1.79417 3.21259C1.94009 2.9033 2.13781 2.62123 2.3788 2.37859C2.71665 2.03968 3.13067 1.78651 3.5863 1.64021L4.50017 2.24996L5.41442 1.64059C5.87001 1.78677 6.28403 2.03981 6.62192 2.37859C6.86267 2.62092 7.06026 2.9026 7.20617 3.21146L6.75017 4.12496L7.44692 5.05421C7.35706 5.53767 7.14901 5.9914 6.8413 6.37496Z" fill="white"/>
-                            <path d="M3.1875 4.125L3.75 5.625H5.25L5.8125 4.125L4.5 3.1875L3.1875 4.125Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_212">
-                            <rect width="9" height="9" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        </div>
-                        <div>Football</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="13" height="13" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_453_207)">
-                            <path d="M6.00018 5.00001C6.3538 5.00001 6.69294 5.14048 6.94299 5.39053C7.19304 5.64058 7.33352 5.97972 7.33352 6.33334C7.33352 6.68696 7.19304 7.0261 6.94299 7.27615C6.69294 7.5262 6.3538 7.66667 6.00018 7.66667C5.64656 7.66667 5.30742 7.5262 5.05737 7.27615C4.80732 7.0261 4.66685 6.68696 4.66685 6.33334C4.66685 5.97972 4.80732 5.64058 5.05737 5.39053C5.30742 5.14048 5.64656 5.00001 6.00018 5.00001ZM6.00018 5.66667C5.82337 5.66667 5.6538 5.73691 5.52878 5.86194C5.40375 5.98696 5.33352 6.15653 5.33352 6.33334C5.33352 6.51015 5.40375 6.67972 5.52878 6.80474C5.6538 6.92977 5.82337 7.00001 6.00018 7.00001C6.17699 7.00001 6.34656 6.92977 6.47159 6.80474C6.59661 6.67972 6.66685 6.51015 6.66685 6.33334C6.66685 6.15653 6.59661 5.98696 6.47159 5.86194C6.34656 5.73691 6.17699 5.66667 6.00018 5.66667ZM2.01685 4.84667C2.01685 4.84667 2.48685 4.37334 2.49018 3.43334C2.37018 2.70334 2.65685 1.84667 3.31352 1.19334C4.29018 0.216674 5.71352 0.0566736 6.50018 0.83334C7.27685 1.62001 7.11685 3.04334 6.14018 4.02001C5.48685 4.67667 4.63018 4.96334 3.90018 4.84334C2.96018 4.84667 2.48685 5.31667 2.48685 5.31667L1.07352 6.73001L0.603516 6.26001L2.01685 4.84667ZM6.02352 1.31001C5.50018 0.790007 4.50018 0.946674 3.78352 1.66667C3.07018 2.38001 2.91018 3.38334 3.43018 3.90334C3.95352 4.42334 4.95352 4.26334 5.66685 3.55001C6.38685 2.83334 6.54352 1.83334 6.02352 1.31001Z" fill="white"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_453_207">
-                            <rect width="8" height="8" fill="white"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        </div>
-                        <div>Tennis</div>
-                    </div>
-                    <div class="flex items-center justify-center gap-4">
-                        <div>
-                            <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.70278 1.375L6.11259 2.95419C5.71659 3.35053 5.71659 4.00778 6.11259 4.40481L5.50072 5.005L5.06072 4.565L2.48259 1.98688L2.23509 1.75038L1.98759 1.98653C1.69539 2.28081 1.53141 2.6787 1.53141 3.09341C1.53141 3.50811 1.69539 3.906 1.98759 4.20028L4.14703 6.35903L1.47266 9.03341L1.96662 9.52841L4.641 6.85334L5.04938 7.25072L5.29619 7.49753L5.53269 7.25072L6.14456 6.63816L9.03447 9.52806L9.52947 9.03306L6.39241 5.90734L5.99469 5.5L6.59625 4.88813H6.60725L6.61756 4.89844C7.01563 5.27656 7.65569 5.27828 8.04619 4.88813L8.0785 4.84481L9.62538 3.29794L9.14206 2.81462L7.56322 4.39312C7.41369 4.543 7.24113 4.54609 7.09056 4.40447L8.90556 2.57812L8.42259 2.09481L6.59625 3.90981C6.45463 3.75959 6.45772 3.58669 6.60725 3.4375L8.18609 1.85831L7.70278 1.375ZM2.33134 2.82563L5.66228 6.15519L5.29653 6.52059L2.48225 3.70528C2.22719 3.45091 2.21962 3.12916 2.331 2.82528L2.33134 2.82563Z" fill="white"/>
-                            </svg>
-                        </div>
-                        <div>Wld Cls Dine</div>
-                    </div>
-                </div>
-                
-                <!-- Book-now button (tiny) -->
-                <div class="absolute bottom-3 right-3">
-                    <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer">
-                    <button
-                    class="bg-white text-purple p-1 rounded-md font-medium text-sm hover:bg-darkPurple transition">
+                    class="bg-white text-purple py-1 px-2 rounded-md font-medium text-xs hover:bg-darkPurple hover:text-white transition">
                     Book now
                     </button>
                     </a>
@@ -1114,7 +1019,7 @@
 
     <!-- View more button -->
     <div class="text-center mt-10">
-        <button class="bg-purple text-white px-24 py-4 rounded-lg hover:bg-purple-700 transition">
+        <button class="view-more-btn border border-purple text-purple px-24 py-4 rounded-lg hover:bg-purple hover:text-white transition duration-300 ease-in-out">
         View more
         </button>
     </div>
@@ -1122,30 +1027,30 @@
     <!-- End of Honeymoon and Getaways -->
 
     <!-- Hotel Reservations -->
-    <section id="hotels" class="py-10 mx-10 lg:mx-24 xl:mx-32">
+    <section id="hotels" class="mt-10 mb-40 mx-10">
     <h2 class="text-3xl lg:text-5xl font-bold text-center mb-12">Hotel Reservations</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
         <!-- Hotel 1 -->
         <div class="relative">
         <div class="relative">
             <img src="./assets/images/BEL BEACH HOUSE.png" alt="Black Diamond" class="w-full h-auto object-cover">
 
             <!-- Date badge -->
-            <div class="absolute top-4 right-4 bg-blue text-white p-1 md:p-2 lg:p-3 rounded-lg leading-tight text-center">
+            <div class="absolute top-4 right-4 bg-blue opacity-75 text-white p-1 md:p-2 lg:p-3 rounded-lg leading-tight text-center">
             <p class="text-2xl lg:text-4xl font-semibold leading-none">Mar.</p>
             <p class="">14th - 16th</p>
             </div>
         </div>
 
-        <div class="flex justify-between p-4 lg:p-8 pt-3 lg:pt-4 pb-14 lg:pb-20 bg-blue text-white">
+        <div class="flex justify-between p-4 lg:p-6 pt-3 lg:pt-4 pb-14 xl:pb-14 bg-blue rounded-tr2xl text-white">
             <div>
-            <h3 class="text-lg md:text-xl kg:text-2xl xl:text-3xl font-semibold mb-2">Black Diamond</h3>
+            <h3 class="text-lg md:text-xl xl:text-2xl  font-semibold mb-2">Black Diamond Hotel</h3>
             <p class="text-xs lg:text-sm">Lagos, Nigeria</p>
             </div>
             <div class="text-right">
             <p class="text-xs">Package for</p>
-             <p class="text-3xl lg:text-4xl xl:text-5xl font-bold">₦1.3m</p>
+            <p class="text-3xl lg:text-4xl font-bold">₦1.3m</p>
             </div>
         </div>
         </div>
@@ -1156,26 +1061,50 @@
             <img src="./assets/images/Black-diamond.png" alt="Yacht hotel" class="w-full h-auto object-cover">
 
             <!-- Date badge -->
-            <div class="absolute top-4 right-4 bg-blue text-white p-1 md:p-2 lg:p-3 rounded-lg leading-tight text-center">
+            <div class="absolute top-4 right-4 bg-blue opacity-75 text-white p-1 md:p-2 lg:p-3 rounded-lg leading-tight text-center">
             <p class="text-2xl lg:text-4xl font-semibold leading-none">Mar.</p>
             <p class="">14th - 16th</p>
             </div>
         </div>
 
-        <div class="flex justify-between p-4 lg:p-8 pt-3 lg:pt-4 pb-14 lg:pb-20 bg-blue text-white">
+        <div class="flex justify-between p-4 lg:p-6 pt-3 lg:pt-4 pb-14 xl:pb-14 bg-blue rounded-tr2xl text-white">
             <div>
-            <h3 class="text-lg md:text-xl kg:text-2xl xl:text-3xl font-semibold mb-2">Yacht Hotel</h3>
+            <h3 class="text-lg md:text-xl xl:text-2xl font-semibold mb-2">The Yacht Hotel</h3>
             <p class="text-xs lg:text-sm">Lagos, Nigeria</p>
             </div>
             <div class="text-right">
             <p class="text-xs">Package for</p>
-             <p class="text-3xl lg:text-4xl xl:text-5xl font-bold">₦1.3m</p>
+            <p class="text-3xl lg:text-4xl font-bold">₦1.3m</p>
+            </div>
+        </div>
+        </div>
+
+        <!-- Hotel 3 -->
+        <div class="relative">
+        <div class="relative">
+            <img src="./assets/images/Lakowe-lakes.png" alt="Yacht hotel" class="w-full h-auto object-cover">
+
+            <!-- Date badge -->
+            <div class="absolute top-4 right-4 bg-blue opacity-75 text-white p-1 md:p-2 lg:p-3 rounded-lg leading-tight text-center">
+            <p class="text-2xl lg:text-4xl font-semibold leading-none">Mar.</p>
+            <p class="">14th - 16th</p>
+            </div>
+        </div>
+
+        <div class="flex justify-between p-4 lg:p-6 pt-3 lg:pt-4 pb-14 xl:pb-14 bg-blue rounded-tr2xl text-white">
+            <div>
+            <h3 class="text-lg md:text-xl xl:text-2xl font-semibold mb-2">Lakowe Lakes</h3>
+            <p class="text-xs lg:text-sm">Lagos, Nigeria</p>
+            </div>
+            <div class="text-right">
+            <p class="text-xs">Package for</p>
+            <p class="text-3xl lg:text-4xl font-bold">₦380k</p>
             </div>
         </div>
         </div>
     </div>
     </section>
-     <!-- End of Hotel Reservations -->
+    <!-- End of Hotel Reservations -->
 
     <!-- Contact Us -->
     <section id="contact" class="bg-purple text-white py-12">
@@ -1188,26 +1117,31 @@
 
         <!-- Form -->
         <div class="lg:col-span-2">
-        <form class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <form id="contact-form" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
             <label class="block text-sm mb-1">First Name</label>
-            <input type="text" placeholder="Input First Name" class="w-full px-3 py-2 rounded text-black" />
+            <input type="text" name="first_name" placeholder="Input First Name" class="w-full px-3 py-4 rounded-md text-black border border-lightgray focus:outline-none focus:ring focus:ring-purple" />
+            <span class="text-red-500 text-xs mt-1 block" id="first-name-error"></span>
             </div>
             <div>
             <label class="block text-sm mb-1">Last Name</label>
-            <input type="text" placeholder="Input Last Name" class="w-full px-3 py-2 rounded text-black" />
+            <input type="text" name="last_name" placeholder="Input Last Name" class="w-full px-3 py-4 rounded-md text-black border border-lightgray focus:outline-none focus:ring focus:ring-purple" />
+            <span class="text-red-500 text-xs mt-1 block" id="last-name-error"></span>
             </div>
             <div>
             <label class="block text-sm mb-1">Email Address</label>
-            <input type="email" placeholder="Input Email" class="w-full px-3 py-2 rounded text-black" />
+            <input type="email" name="email" placeholder="Input Email" class="w-full px-3 py-4 rounded-md text-black border border-lightgray focus:outline-none focus:ring focus:ring-purple" />
+            <span class="text-red-500 text-xs mt-1 block" id="email-error"></span>
             </div>
             <div>
             <label class="block text-sm mb-1">Phone Number</label>
-            <input type="text" placeholder="Input WhatsApp Number" class="w-full px-3 py-2 rounded text-black" />
+            <input type="text" name="phone" placeholder="Input WhatsApp Number" class="w-full px-3 py-4 rounded-md text-black border border-lightgray focus:outline-none focus:ring focus:ring-purple" />
+            <span class="text-red-500 text-xs mt-1 block" id="phone-error"></span>
             </div>
             <div class="lg:col-span-2">
             <label class="block text-sm mb-1">Message</label>
-            <textarea rows="4" placeholder="Type Message" class="w-full px-3 py-2 rounded text-black"></textarea>
+            <textarea name="message" rows="4" placeholder="Type Message" class="w-full px-3 py-4 rounded-md text-black border border-lightgray focus:outline-none focus:ring focus:ring-purple" ></textarea>
+            <span class="text-red-500 text-xs mt-1 block" id="message-error"></span>
             </div>
             <div class="lg:col-span-2 text-left">
             <button type="submit" class="bg-white text-purple font-semibold w-[50%] py-4 rounded hover:bg-purple-100 transition">
@@ -1221,12 +1155,12 @@
     <!-- End of Contact Us -->
 
     <!-- Frequently Asked Question -->
-    <section class="py-20 mx-10 md:mx-16 lg:mx-32 xl:mx-40">
-    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-left">Frequently Asked Question</h2>
+    <section class="py-24 mx-10 md:mx-16 lg:mx-32 xl:mx-40">
+    <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-14 text-left">Frequently Asked Question</h2>
 
     <div class="space-y-4">
         <!-- FAQ Item -->
-        <details class="group border-2 rounded-md shadow-xl overflow-hidden transition-all duration-300">
+        <details class="group border border-lightgray shadow-xl overflow-hidden transition-all duration-300">
         <summary class="cursor-pointer px-5 md:px-8 lg:px-10 xl:px-12 py-5 md:py-8 lg:py-10 xl:py-12 font-bold flex justify-between items-center transition">
             <span>Do you offer both local and international tours?</span>
             <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1234,11 +1168,11 @@
             </svg>
         </summary>
         <div class="px-5 md:px-8 lg:px-10 xl:px-12 pb-3 lg:pb-5 text-black transition-all duration-300 ease-in-out">
-            We offer a wide range of local tours within Nigeria and exciting international travel experiences. Whether you're looking for a cultural adventure, a beach escape, or a luxury getaway, there’s something for everyone.
+            We offer a wide range of local tours within Nigeria and exciting international travel experiences. Whether you’re looking for a cultural adventure, a beach escape, or a luxury getaway, there’s something for everyone. Simply explore our available trips and we’ll take it from there!
         </div>
         </details>
 
-        <details class="group border-2 rounded-md shadow-xl overflow-hidden transition-all duration-300">
+        <details class="group border border-lightgray shadow-xl overflow-hidden transition-all duration-300">
         <summary class="cursor-pointer px-5 md:px-8 lg:px-10 xl:px-12 py-5 md:py-8 lg:py-10 xl:py-12 font-bold flex justify-between items-center transition">
             <span>How do I book a tour or travel package?</span>
             <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1246,11 +1180,11 @@
             </svg>
         </summary>
         <div class="px-5 md:px-8 lg:px-10 xl:px-12 pb-3 lg:pb-5 text-black transition-all duration-300 ease-in-out">
-            You can book by contacting us via our website form, WhatsApp, or social media handles. We’ll guide you through payment and confirmation.
+        Once you find a package you love, just click the WhatsApp button on the tour page. One of our travel consultants will assist you with availability, pricing, and next steps. We’ll handle everything from there ,giving you a stress-free booking experience directly on WhatsApp.
         </div>
         </details>
 
-        <details class="group border-2 rounded-md shadow-xl overflow-hidden transition-all duration-300">
+        <details class="group border border-lightgray shadow-xl overflow-hidden transition-all duration-300">
         <summary class="cursor-pointer px-5 md:px-8 lg:px-10 xl:px-12 py-5 md:py-8 lg:py-10 xl:py-12 font-bold flex justify-between items-center transition">
             <span>What is included in the tour package price?</span>
             <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1258,23 +1192,23 @@
             </svg>
         </summary>
         <div class="px-5 md:px-8 lg:px-10 xl:px-12 pb-3 lg:pb-5 text-black transition-all duration-300 ease-in-out">
-            Most packages include accommodation, activities, local transport, and tour guides. Check individual packages for details.
+        Our tour packages typically include: Accommodation, Breakfast, Tour guides & planned activities, Return tickets. Some packages may include flights or travel insurance, while others may not. A full breakdown of what's included will be shared once you connect with us on WhatsApp , so there are no hidden surprises!
         </div>
         </details>
 
-        <details class="group border-2 rounded-md shadow-xl overflow-hidden transition-all duration-300">
+        <details class="group border border-lightgray shadow-xl overflow-hidden transition-all duration-300">
         <summary class="cursor-pointer px-5 md:px-8 lg:px-10 xl:px-12 py-5 md:py-8 lg:py-10 xl:py-12 font-bold flex justify-between items-center transition">
-            <span>Is there a deposit required to secure my booking?</span>
+            <span>Is there a deposi to secure my booking?</span>
             <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
         </summary>
         <div class="px-5 md:px-8 lg:px-10 xl:px-12 pb-3 lg:pb-5 text-black transition-all duration-300 ease-in-out">
-            Yes, a deposit is typically required. The amount and terms are shared when you select your preferred travel plan.
+            Yes, a 30% deposit i to secure your booking. This ensures your spot is reserved and the necessary arrangements are made in advance. The remaining balance can be paid at a later date, as advised by our team. Once you're ready, click the WhatsApp button on the package page and we’ll guide you through the payment process smoothly.
         </div>
         </details>
 
-        <details class="group border-2 rounded-md shadow-xl overflow-hidden transition-all duration-300">
+        <details class="group border border-lightgray shadow-xl overflow-hidden transition-all duration-300">
         <summary class="cursor-pointer px-5 md:px-8 lg:px-10 xl:px-12 py-5 md:py-8 lg:py-10 xl:py-12 font-bold flex justify-between items-center transition">
             <span>Do you help with visa applications?</span>
             <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1282,7 +1216,7 @@
             </svg>
         </summary>
         <div class="px-5 md:px-8 lg:px-10 xl:px-12 pb-3 lg:pb-5 text-black transition-all duration-300 ease-in-out">
-            Yes. We assist clients with documentation and advice for their visa application, depending on destination country.
+        Yes, we do! If your chosen destination requires a visa, our team can assist you with the entire visa application process. We’ll provide a checklist o documents, help you prepare, and offer guidance to increase your chances of approval. Please note that visa decisions are made by the embassies, but we’re here to support you every step of the way.
         </div>
         </details>
     </div>
@@ -1306,7 +1240,7 @@
                 <div>
                 <h3 class="font-bold text-lg">Mrs Juliet Okafor</h3>
                 <p class="text-sm text-gray-600">Business Woman</p>
-                <h4 class="mt-4 font-semibold">Happy Client</h4>
+                <h4 class="mt-4 font-bold">Happy Client</h4>
                 <p class="mt-2 max-w-xl text-gray-700 text-sm leading-relaxed">
                     I didn’t have to lift a finger, everything was perfectly planned and stress-free. Thank you for making my day so special.
                 </p>
@@ -1316,14 +1250,14 @@
             <!-- Testimonial Card 2 -->
             <div class="min-w-full flex flex-col md:flex-row gap-16">
                 <div>
-                    <img src="./assets/images/Mrs-Juliet.png" alt="">
+                    <img src="./assets/images/Morenikeji.png" alt="">
                 </div>
                 <div>
-                <h3 class="font-bold text-lg">Mrs Juliet Okafor</h3>
+                <h3 class="font-bold text-lg">Morenikeji</h3>
                 <p class="text-sm text-gray-600">Business Woman</p>
-                <h4 class="mt-4 font-semibold">Happy Client</h4>
+                <h4 class="mt-4 font-bold">"06 Adventures gave me the trip of a lifetime!"</h4>
                 <p class="mt-2 max-w-xl text-gray-700 text-sm leading-relaxed">
-                    I didn’t have to lift a finger, everything was perfectly planned and stress-free. Thank you for making my day so special.
+                    I’ve travelled before, but nothing compares to the experience I had with 06 Adventures. From the moment I booked, everything was seamless — friendly communication, helpful guides, and an itinerary that perfectly balanced adventure and relaxation.
                 </p>
                 </div>
             </div>
@@ -1332,14 +1266,14 @@
             <!-- Testimonial Card 3 -->
             <div class="min-w-full flex flex-col md:flex-row gap-16">
                 <div>
-                    <img src="./assets/images/Mrs-Juliet.png" alt="">
+                    <img src="./assets/images/Mr-Desmond.png" alt="">
                 </div>
                 <div>
-                <h3 class="font-bold text-lg">Mrs Juliet Okafor</h3>
-                <p class="text-sm text-gray-600">Business Woman</p>
-                <h4 class="mt-4 font-semibold">Happy Client</h4>
+                <h3 class="font-bold text-lg">Mr Desmond</h3>
+                <p class="text-sm text-gray-600">Business Man</p>
+                <h4 class="mt-4 font-bold">Happy Client</h4>
                 <p class="mt-2 max-w-xl text-gray-700 text-sm leading-relaxed">
-                    I didn’t have to lift a finger, everything was perfectly planned and stress-free. Thank you for making my day so special.
+                    06 Adventures made topping up a breeze, no matter where I am in the world! Smooth, hassle-free, and totally stress-free. 5 stars!
                 </p>
                 </div>
             </div>
@@ -1386,26 +1320,29 @@
         <!-- Destinations -->
         <div class="mt-16 md:mt-28 mb-10 md:mb-0">
         <h4 class="font-bold mb-7">Destination</h4>
-        <ul class="space-y-2">
-            <li class="pb-4 font-light">Dubai</li>
-            <li class="pb-4 font-light">Qatar</li>
-            <li class="font-light">Kenya</li>
-        </ul>
+        <div class="space-y-3">
+                <a href="#dubai" class="block text-sm">Dubai</a>
+                <a href="#qatar" class="block text-sm">Qatar</a>
+                <a href="#kenya" class="block text-sm">Kenya</a>
+                <a href="#morocco" class="block text-sm">Morocco</a>
+                <a href="#benin" class="block text-sm">Benin Republic</a>
+                <a href="#seychelles" class="block text-sm">Seychelles</a>
+            </div>
         </div>
 
         <!-- Services -->
         <div class="mb-12 lg:mb-0 mt-0 md:mt-28">
         <h4 class="font-bold mb-7">Services</h4>
-        <ul class="space-y-2">
-            <li class="pb-4 font-light">Customized Travel</li>
-            <li class="pb-4 font-light">Flight Bookings</li>
-            <li class="pb-4 font-light">Hotel Reservations</li>
-            <li class="pb-4 font-light">Group Tours & Corp.</li>
-            <li class="pb-4 font-light">Honeymoon & Getaways</li>
-            <li class="pb-4 font-light">Adventure & Cultural Exp.</li>
-            <li class="pb-4 font-light">Visa Assistance</li>
-            <li class="">Travel Insurance</li>
-        </ul>
+        <div class="space-y-3">
+                <a href="#" class="block text-sm">Customized Travel Planning</a>
+                <a href="#" class="block text-sm">Flight Bookings</a>
+                <a href="#hotels" class="block text-sm">Hotel Reservations</a>
+                <a href="#" class="block text-sm">Group Tours & Corporate Retreat</a>
+                <a href="#honeymoon" class="block text-sm">Honeymoon & Getaways</a>
+                <a href="#adventures" class="block text-sm">Adventure & Cultural Experiences</a>
+                <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer" class="block text-sm">Visa Assistance</a>
+                <a href="#" class="block text-sm">Travel Insurance</a>
+            </div>
         </div>
 
         <!-- About Us -->
@@ -1420,21 +1357,47 @@
         <!-- Contact Us -->
         <div>
         <h4 class="font-bold mb-7 mt-0 lg:mt-28">Contact Us</h4>
-        <p class="mb-2 font-light">
-            Idowu Dabiri Rd, Lekki Epe Expressway, Eti-Osa, Lekki 106104, Lagos
-        </p>
+        <p><a href="https://www.google.com/maps?q=Idowu+Dabiri+Rd,+Lekki+Epe+Expressway,+Eti-Osa,+Lekki+106104,+Lagos" target="_blank" rel="noopener noreferrer">
+        Idowu Dabiri Rd, Lekki Epe Expressway, Eti-Osa, Lekki 106104, Lagos</a></p>
+
+        <div class="grid mb-2 mt-7 font-light">
+            <div class="flex gap-2">
+                <div>
+                    <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.815 2.91667C3.85 3.43583 3.9375 3.94333 4.0775 4.4275L3.3775 5.1275C3.13833 4.4275 2.98667 3.68667 2.93417 2.91667H3.815ZM9.56667 9.92833C10.0625 10.0683 10.57 10.1558 11.0833 10.1908V11.06C10.3133 11.0075 9.5725 10.8558 8.86667 10.6225L9.56667 9.92833ZM4.375 1.75H2.33333C2.0125 1.75 1.75 2.0125 1.75 2.33333C1.75 7.81083 6.18917 12.25 11.6667 12.25C11.9875 12.25 12.25 11.9875 12.25 11.6667V9.63083C12.25 9.31 11.9875 9.0475 11.6667 9.0475C10.9433 9.0475 10.2375 8.93083 9.58417 8.715C9.52641 8.69343 9.46495 8.68351 9.40333 8.68583C9.25167 8.68583 9.10583 8.74417 8.98917 8.855L7.70583 10.1383C6.05236 9.29269 4.7073 7.94764 3.86167 6.29417L5.145 5.01083C5.30833 4.8475 5.355 4.62 5.29083 4.41583C5.06994 3.74377 4.95769 3.04077 4.95833 2.33333C4.95833 2.0125 4.69583 1.75 4.375 1.75Z" fill="white"/>
+                    </svg>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Phone Numbers:</h4>
+                </div>
+            </div>
+            <div class="grid pl-4">
+                <a href="https://wa.me/2348078873240" target="_blank" rel="noopener noreferrer">+234 807 887 3240</a>
+                <a href="tel:+2349135835839">+234 913 583 5839</a>
+                <a href="tel:+2347013878564">+234 701 387 8564</a> 
+            </div>
+        </div>
         </div>
 
-        <!-- Socials & Email -->
+        <!-- Socials & Email --> 
         <div class="mt-0 lg:mt-28">
         <h4 class="font-bold mb-4">Follow us on our socials</h4>
-        <div class="flex space-x-4 mb-10">
+        <div class="flex space-x-4 mb-20">
             <a href="#"><img src="./assets/images/facebook.svg" alt="Facebook" class="w-5 h-5"></a>
             <a href="#"><img src="./assets/images/x.svg" alt="Instagram" class="w-5 h-5"></a>
             <a href="#"><img src="./assets/images/instagram.svg" alt="X/Twitter" class="w-5 h-5"></a>
         </div>
-        <p class="mb-14 font-light">Email us:<br> <a href="mailto:06Adventures@gmail.com" class="underline">06Adventures@gmail.com</a></p>
-        <p>Visit us at:<br class="font-light "> Idowu Dabiri Rd, Lekki Epe Expressway, Eti-Osa, Lekki 106104, Lagos</p>
+            <div class="flex gap-2">
+                <div class="pt-1">
+                <svg width="14" height="12" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.6667 1.16667C11.6667 0.525 11.1417 0 10.5 0H1.16667C0.525 0 0 0.525 0 1.16667V8.16667C0 8.80833 0.525 9.33333 1.16667 9.33333H10.5C11.1417 9.33333 11.6667 8.80833 11.6667 8.16667V1.16667ZM10.5 1.16667L5.83333 4.08333L1.16667 1.16667H10.5ZM10.5 8.16667H1.16667V2.33333L5.83333 5.25L10.5 2.33333V8.16667Z" fill="white"/>
+                </svg>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Email Us:</h4>
+                </div>
+            </div>
+            <a href="mailto:06Adventures@gmail.com" class="underline"><p class="pl-5">06Adventures@gmail.com</p></a>
         </div>
     </div>
 
@@ -1443,42 +1406,7 @@
     </div>
     </footer>
 
-   
-    <script>
-    // Toggle dropdown menus
-    function toggleDropdown(id) {
-        const el = document.getElementById(id);
-        el.classList.toggle("hidden");
-    }
-
-    // View More Button Action
-    document.getElementById("viewMoreBtn")?.addEventListener("click", () => {
-        alert("More experiences coming soon!"); // Replace with modal or load new cards
-    });
-
-    // Testimonial Slider
-    const wrapper = document.getElementById('testimonialWrapper');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-
-    if (wrapper && nextBtn && prevBtn) {
-        let currentIndex = 0;
-        const slideCount = wrapper.children.length;
-
-        nextBtn.addEventListener('click', () => {
-        if (currentIndex < slideCount - 1) {
-            currentIndex++;
-            wrapper.style.transform = `translateX(-${100 * currentIndex}%)`;
-        }
-        });
-
-        prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            wrapper.style.transform = `translateX(-${100 * currentIndex}%)`;
-        }
-        });
-    }
-    </script>
+    <script src="./main.js"></script>
+    <script src="./form.js"></script>
 </body>
 </html>

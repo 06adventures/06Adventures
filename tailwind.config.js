@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./docs/**/*.{html,js}"],
+  content: ["./docs/**/*.{html,js}", "./**/*.html",],
   theme: {
     extend: {
       colors: {
@@ -10,6 +10,8 @@ module.exports = {
         blue: "#62A4E9",
         white: "#ffffff",
         lilac: "#DFCFEF",
+        gray: "#929292",
+        orange: "#FF6D1A",
        }, 
        fontFamily: {
         // Outfit: ['Outfit', 'sans-serif'],
