@@ -32,9 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Dropdown Toggle Function
   function toggleDropdown(id) {
-    document.querySelectorAll('[id$="Dropdown"]').forEach(dropdown => {
-      if (dropdown.id !== id) dropdown.classList.add("hidden");
-    });
+    document
+      .querySelectorAll('[id$="DropdownDesktop"], [id$="DropdownMobile"]')
+      .forEach((dropdown) => {
+        if (dropdown.id !== id) dropdown.classList.add("hidden");
+      });
 
     const el = document.getElementById(id);
     el.classList.toggle("hidden");
@@ -44,8 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Close dropdowns on outside click
   document.addEventListener("click", function (e) {
-    const dropdowns = document.querySelectorAll('[id$="Dropdown"]');
-    dropdowns.forEach(dropdown => {
+    const dropdowns = document.querySelectorAll('[id$="DropdownDesktop"], [id$="DropdownMobile"]');
+    dropdowns.forEach((dropdown) => {
       if (
         !dropdown.contains(e.target) &&
         !dropdown.previousElementSibling.contains(e.target)
@@ -59,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const heroBackgrounds = [
     "./assets/images/hero-img-1.png",
     "./assets/images/hero-img-2.png",
-    "./assets/images/hero-img-3.png"
+    "./assets/images/hero-img-3.png",
   ];
 
   let heroIndex = 0;
@@ -100,15 +102,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  //View More / View Less toggle for multiple sections
-  document.querySelectorAll('.view-more-btn').forEach(button => {
-    button.addEventListener('click', () => {
-      const section = button.closest('section');
-      const moreCards = section.querySelector('.more-cards');
+  // View More / View Less toggle for multiple sections
+  document.querySelectorAll(".view-more-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      const section = button.closest("section");
+      const moreCards = section.querySelector(".more-cards");
 
       if (moreCards) {
-        moreCards.classList.toggle('hidden');
-        button.textContent = moreCards.classList.contains('hidden') ? 'View more' : 'View less';
+        moreCards.classList.toggle("hidden");
+        button.textContent = moreCards.classList.contains("hidden") ? "View more" : "View less";
       }
     });
   });
