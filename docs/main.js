@@ -6,34 +6,92 @@ document.addEventListener("DOMContentLoaded", function () {
   const testimonialNext = document.getElementById("nextBtn");
   const testimonialPrev = document.getElementById("prevBtn");
 
-  // Flash Sales Popup Modal logic (commented out)
-  // window.addEventListener('load', () => {
-  //   const modal = document.getElementById('popup-modal');
-  //   const mainContent = document.getElementById('main-content');
-  //   if (modal && mainContent) {
-  //     modal.classList.remove('hidden');
-  //     modal.classList.add('flex');
-  //     mainContent.classList.add('opacity-0');
-  //     mainContent.classList.remove('opacity-100');
-  //   }
-  // });
+  const toggleBtn = document.getElementById('searchToggleBtn');
+  const searchInput = document.getElementById('searchInput');
+  const noResultsMessage = document.getElementById('noResultsMessage');
 
-  // Close Modal Function (Globally accessible)
-  // window.closeModal = function () {
-  //   const modal = document.getElementById('popup-modal');
-  //   const mainContent = document.getElementById('main-content');
-  //   if (modal && mainContent) {
-  //     modal.classList.add('hidden');
-  //     modal.classList.remove('flex');
-  //     mainContent.classList.remove('opacity-0');
-  //     mainContent.classList.add('opacity-100');
-  //   }
-  // }
+  const searchMap = {
+    "our mission": "our-mission",
+    "our vision": "our-vision",
+    "core values": "core-values",
+    "dubai": "dubai",
+    "kenya": "kenya",
+    "morocco": "morocco",
+    "qatar": "qatar", 
+    "seychelles": "seychelles",
+    "benin": "benin",
+    "summer in seychelles": "seychelles",
+    "salt beach": "salt-beach",
+    "yolo beach resort": "yolo-beach",
+    "avista beach resort": "avista-beach",
+    "bel beach house": "bel-beach",
+    "yacht hotel": "yacht-hotel",
+    "lakowe-lakes-apartment": "lakowe-lakes",
+    "hotel": "hotel",
+    "beach": "yolo-beach",
+    "vacation": "dubai",
+    "what customers say about us": "customer-reviews",
+    "frequently asked questions": "faqs",
+    "faq": "faqs",
+    "reviews": "customer-reviews"
+  };
 
-  // Dropdown Toggle Function
+  if (toggleBtn && searchInput) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      searchInput.classList.toggle('hidden');
+      if (!searchInput.classList.contains('hidden')) {
+        searchInput.focus();
+      }
+    });
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase().replace(/\s+/g, ' ');
+      let matchedId = null;
+
+      for (const [keyword, id] of Object.entries(searchMap)) {
+        if (query.includes(keyword)) {
+          matchedId = id;
+          break;
+        }
+      }
+
+      if (noResultsMessage) {
+        noResultsMessage.classList.toggle('hidden', !!matchedId);
+      }
+
+      if (matchedId) {
+        const targetSection = document.getElementById(matchedId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          targetSection.classList.add('ring-2', 'ring-purple', 'transition');
+          setTimeout(() => {
+            targetSection.classList.remove('ring-2', 'ring-purple');
+          }, 2500);
+        }
+      }
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        searchInput.classList.add('hidden');
+        if (noResultsMessage) noResultsMessage.classList.add('hidden');
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!searchInput.classList.contains('hidden') &&
+        !searchInput.contains(e.target) &&
+        !toggleBtn.contains(e.target)) {
+        searchInput.classList.add('hidden');
+        if (noResultsMessage) noResultsMessage.classList.add('hidden');
+      }
+    });
+  }
+
   function toggleDropdown(id) {
     document
-      .querySelectorAll('[id$="DropdownDesktop"], [id$="DropdownMobile"]')
+      .querySelectorAll('[id$="DropdownDesktop"], [id$="DropdownMobile"], [id$="Dropdown"]')
       .forEach((dropdown) => {
         if (dropdown.id !== id) dropdown.classList.add("hidden");
       });
@@ -44,20 +102,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.toggleDropdown = toggleDropdown;
 
-  // Close dropdowns on outside click
   document.addEventListener("click", function (e) {
-    const dropdowns = document.querySelectorAll('[id$="DropdownDesktop"], [id$="DropdownMobile"]');
+    const dropdowns = document.querySelectorAll('[id$="DropdownDesktop"], [id$="DropdownMobile"], [id$="Dropdown"]');
     dropdowns.forEach((dropdown) => {
-      if (
-        !dropdown.contains(e.target) &&
-        !dropdown.previousElementSibling.contains(e.target)
-      ) {
+      if (!dropdown.contains(e.target) &&
+        !dropdown.previousElementSibling.contains(e.target)) {
         dropdown.classList.add("hidden");
       }
     });
   });
 
-  // Hero slider images
   const heroBackgrounds = [
     "./assets/images/hero-img-1.png",
     "./assets/images/hero-img-2.png",
@@ -83,7 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Testimonial slider logic
   if (testimonialWrapper && testimonialNext && testimonialPrev) {
     const testimonialCount = testimonialWrapper.children.length;
 
@@ -102,7 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // View More / View Less toggle for multiple sections
   document.querySelectorAll(".view-more-btn").forEach((button) => {
     button.addEventListener("click", () => {
       const section = button.closest("section");
@@ -112,6 +164,36 @@ document.addEventListener("DOMContentLoaded", function () {
         moreCards.classList.toggle("hidden");
         button.textContent = moreCards.classList.contains("hidden") ? "View more" : "View less";
       }
+    });
+  });
+
+  document.querySelectorAll('.destination-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const targetId = this.dataset.target;
+      const targetCard = document.getElementById(targetId);
+
+      if (!targetCard) return;
+
+      const parentContainer = targetCard.closest('.more-cards');
+      if (parentContainer && parentContainer.classList.contains('hidden')) {
+        parentContainer.classList.remove('hidden');
+
+        const toggleBtn = parentContainer.closest("section")?.querySelector(".view-more-btn");
+        if (toggleBtn) toggleBtn.textContent = "View less";
+      }
+
+      const dropdown = document.getElementById("destDropdown");
+      if (dropdown) dropdown.classList.add("hidden");
+
+      setTimeout(() => {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetCard.classList.add('ring-2', 'ring-purple', 'transition');
+        setTimeout(() => {
+          targetCard.classList.remove('ring-2', 'ring-purple');
+        }, 2500);
+      }, 200);
     });
   });
 });
