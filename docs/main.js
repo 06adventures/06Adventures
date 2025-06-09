@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "dubai": "dubai",
     "kenya": "kenya",
     "morocco": "morocco",
-    "qatar": "qatar", 
+    "qatar": "qatar",
     "seychelles": "seychelles",
     "benin": "benin",
     "summer in seychelles": "seychelles",
@@ -155,14 +155,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ✅ Corrected "View More" Logic
   document.querySelectorAll(".view-more-btn").forEach((button) => {
     button.addEventListener("click", () => {
       const section = button.closest("section");
-      const moreCards = section.querySelector(".more-cards");
+      const moreCards = section.querySelectorAll(".more-card");
 
-      if (moreCards) {
-        moreCards.classList.toggle("hidden");
-        button.textContent = moreCards.classList.contains("hidden") ? "View more" : "View less";
+      if (moreCards.length > 0) {
+        const isShowing = !moreCards[0].classList.contains("hidden");
+
+        moreCards.forEach((card) => {
+          card.classList.toggle("hidden");
+        });
+
+        button.textContent = isShowing ? "View more" : "View less";
       }
     });
   });
@@ -176,11 +182,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!targetCard) return;
 
-      const parentContainer = targetCard.closest('.more-cards');
-      if (parentContainer && parentContainer.classList.contains('hidden')) {
-        parentContainer.classList.remove('hidden');
+      const parentCard = targetCard.closest('.more-card');
+      if (parentCard && parentCard.classList.contains('hidden')) {
+        parentCard.classList.remove('hidden');
 
-        const toggleBtn = parentContainer.closest("section")?.querySelector(".view-more-btn");
+        const toggleBtn = parentCard.closest("section")?.querySelector(".view-more-btn");
         if (toggleBtn) toggleBtn.textContent = "View less";
       }
 

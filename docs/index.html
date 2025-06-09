@@ -283,8 +283,9 @@
     <section id="adventures" class="pb-10 bg-white" id="experiences">
     <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center text-black mb-16">Adventure and Cultural Experiences</h2>
 
-     <!-- First 3 cards (visible) -->
-    <div class="grid gap-5 mx-10 lg:grid-cols-3 md:grid-cols-2 mb-10">
+    <!-- Cards -->
+    <div class="grid gap-5 mx-10 md:grid-cols-2 lg:grid-cols-3">
+        <!-- First 3 cards (visible) -->
         <!-- Dubai -->
         <div id="dubai" class="bg-white shadowmd rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray destination-card">
         <img src="./assets/images/Dubai.png" alt="Qatar" class="w-full h-58 object-cover">
@@ -365,12 +366,11 @@
             </div>
         </div>
         </div>
-    </div>
 
-    <!-- Hidden cards -->
-    <div class="more-cards hidden grid gap-5 mx-10 md:grid-cols-2 lg:grid-cols-3">
-         <!-- Republic of Benin -->
-        <div id="benin" class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray destination-card">
+
+        <!-- Hidden cards -->
+        <!-- Republic of Benin -->
+        <div id="benin" class="more-card hidden bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray destination-card">
         <img src="./assets/images/Benin-republic.png" alt="Seychelles" class="w-full h-58 object-cover">
         <div class="xl:p-5 p-3">
             <div class="flex justify-between">
@@ -397,7 +397,7 @@
         </div>
 
         <!-- Qatar Experience -->
-        <div id="qatar" class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray destination-card">
+        <div id="qatar" class="more-card hidden bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray destination-card">
         <img src="./assets/images/Qatar2.png" alt="Seychelles" class="w-full h-58 object-cover">
         <div class="xl:p-5 p-3">
             <div class="flex justify-between">
@@ -424,7 +424,7 @@
         </div>
 
         <!-- Summer in Seychelles -->
-        <div id="seychelles" class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray destination-card">
+        <div id="seychelles" class="more-card hidden bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300 border-[3px] border-lightgray destination-card">
         <img src="./assets/images/Seychelles.png" alt="Seychelles" class="w-full h-58 object-cover">
         <div class="xl:p-5 p-3">
             <div class="flex justify-between">
@@ -464,8 +464,8 @@
     <section id="honeymoon" class="mx-10">
     <h2 class="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-12">Honeymoon and Getaways</h2>
 
-    <!-- First 3 cards (visible) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 gap-5 mb-10">
+   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 gap-5">
+        <!-- First 3 cards (visible) -->
         <!-- Salt Beach -->
         <div>
         <div id="salt-beach" class="relative bg-cover bg-center rounded-t-xl xl:h-[330px] h-[230px]" style="background-image: url('./assets/images/Salt-beach.png');">
@@ -777,12 +777,11 @@
                 </div>
             </div>
         </div>
-    </div>
+        
 
-     <!-- Hidden cards -->
-    <div class="more-cards hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 gap-5">
+        <!-- Hidden cards -->
         <!-- Bel Beach House -->
-        <div>
+        <div class="more-card hidden">
             <div id="bel-beach" class="relative bg-cover bg-center rounded-t-xl xl:h-[330px] h-[230px]" style="background-image: url('./assets/images/Bel-beach-house.png');">
             </div>
             <!-- <div>
@@ -923,7 +922,7 @@
                     </div>
                     <div class="flex items-center justify-center gap-2">
                         <div>
-                           <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="16" height="16" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.70278 1.375L6.11259 2.95419C5.71659 3.35053 5.71659 4.00778 6.11259 4.40481L5.50072 5.005L5.06072 4.565L2.48259 1.98688L2.23509 1.75038L1.98759 1.98653C1.69539 2.28081 1.53141 2.6787 1.53141 3.09341C1.53141 3.50811 1.69539 3.906 1.98759 4.20028L4.14703 6.35903L1.47266 9.03341L1.96662 9.52841L4.641 6.85334L5.04938 7.25072L5.29619 7.49753L5.53269 7.25072L6.14456 6.63816L9.03447 9.52806L9.52947 9.03306L6.39241 5.90734L5.99469 5.5L6.59625 4.88813H6.60725L6.61756 4.89844C7.01563 5.27656 7.65569 5.27828 8.04619 4.88813L8.0785 4.84481L9.62538 3.29794L9.14206 2.81462L7.56322 4.39312C7.41369 4.543 7.24113 4.54609 7.09056 4.40447L8.90556 2.57812L8.42259 2.09481L6.59625 3.90981C6.45463 3.75959 6.45772 3.58669 6.60725 3.4375L8.18609 1.85831L7.70278 1.375ZM2.33134 2.82563L5.66228 6.15519L5.29653 6.52059L2.48225 3.70528C2.22719 3.45091 2.21962 3.12916 2.331 2.82528L2.33134 2.82563Z" fill="white"/>
                             </svg>
                         </div>
@@ -1049,7 +1048,7 @@
             <!-- </div> -->
         <!-- </div> -->
         <!-- </div> -->
-    </div>
+   </div>
 
     <!-- View more button -->
     <div class="text-center mt-10">
