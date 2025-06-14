@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (hasError) return; // Stop submission if errors
 
     // Send with EmailJS if no errors
-    emailjs.sendForm("service_iv7hw4p", "template_ksqrzk5", form)
+    emailjs.sendForm("service_v4e6b2h", "template_i7s2mam", form)
       .then(function () {
         alert("Message sent successfully!");
         form.reset();
